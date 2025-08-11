@@ -1,3 +1,6 @@
+# Ignore macOS system files
+.DS_Store
+
 # Generated files
 dist/
 packages/*/visualize/*
@@ -19,6 +22,7 @@ api-docs/
 
 # Ignore eleventy output when doing manual tests
 _site/
+public/
 
 # Ignore test files
 .cache
