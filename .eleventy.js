@@ -18,6 +18,7 @@ export default function (eleventyConfig) {
             pictureAttributes: {}
         },
     });
+    eleventyConfig.addPassthroughCopy("src/imgaes");
 
     return {
         dir: {
