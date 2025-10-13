@@ -108,3 +108,27 @@ nejtěžší cesta na světě 9c+ (v Norsku)
 - Nosnost s otevřeným zámkem se uplatní i při nezašroubované pojistce.
  
  <img src="./images/karabiny.jpg" width="700" height="400" alt="">
+
+### správné používání, skladováni, evidence, kontrola a vyřazování lezeckého materiálu v souladu s normou EN a pokyny výrobce
+- Textilní materiál - odstranění pásek nebo jiného překryvu, vizuální kontrola, kontrola hmatem. Fleky neznámého původu (možné chemické poškození) -> vyřazovat.
+- Kovový materiál - vrypy, probrusy, ostré hrany, vybroušené drážky u jistítka apod.
+- Helma a úvazky - vizuální kontrola, kontrola hmatem, kontrola spon, kontrola fleků. Kontrola pevnostního šití v nosných částech. Pevnostní švy bývají často v kontrastní barvě.
+- Lano - kontrolovat po celé délce, vizuálně a vždy i hmatem (přebrat lano v ruce).
+- Rozvázat uzly ze všech smyček - pokud nejdou rozvázat, vyřadit.
+- Friend, vklíněnec - kontrola všech prvků, kovových i textilních.
+- Vytažená nit u smyček nebo pomocných šňůr -> vyřadit. Doporučeno používat kevlarové šňůry 5,5 mm.
+- Kontrola funkčnosti vybavení - rozhoduji se mezi dvěma stavy: funguje vs. nefunguje.
+- Vyřadit pomocné šňůry o nevhodných průměrech <6mm, >7mm.
+- Je vhodné, aby instruktor měl náhradní materiál pro klienty - pokud jim něco vyřadí z používání.
+- Typ kontroly
+    - Revize
+    - vizualni kontrola pred lezenim
+    - evidencni – vyrazeni dle zivotnosti
+
+### popis základních jisticich pomůcek (kyblík a poloautomat)
+- Typ kyblik
+- Poloautomat – pomaha zachytit pad, nedava prokluz pri padu
+    - pakove
+    - vackove (grigri, neox)
+    - ostatni (clickup, revo)
+- Osmicka je pouze slanovaci pomucka pro specificke pripady!! Nebezpecna predevsim s novymi lany
