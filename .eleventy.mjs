@@ -1,6 +1,6 @@
 import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
 
-/** @param {import("@11ty/eleventy").UserConfig} eleventyConfig */
+/** @param {import("@11ty/eleventy").Eleventy} eleventyConfig */
 export default function (eleventyConfig) {
     eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
         // output image formats
@@ -18,12 +18,14 @@ export default function (eleventyConfig) {
             pictureAttributes: {}
         },
     });
-    eleventyConfig.addPassthroughCopy("src/imgaes");
+    eleventyConfig.addPassthroughCopy("src/images");
+    // eleventyConfig.setInputDir('src')
+    // eleventyConfig.outputDir('public')
 
     return {
         dir: {
             input: "src",
-            output: "public"
+            output: "public",
         }
     }
 }
