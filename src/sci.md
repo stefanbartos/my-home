@@ -107,7 +107,7 @@ nejtěžší cesta na světě 9c+ (v Norsku)
 
 - Nosnost s otevřeným zámkem se uplatní i při nezašroubované pojistce.
  
- <img src="./images/karabiny.jpg" width="700" height="400" alt="">
+<img src="./images/karabiny.jpg" width="700" height="400" alt="">
 
 ### správné používání, skladováni, evidence, kontrola a vyřazování lezeckého materiálu v souladu s normou EN a pokyny výrobce
 - Textilní materiál - odstranění pásek nebo jiného překryvu, vizuální kontrola, kontrola hmatem. Fleky neznámého původu (možné chemické poškození) -> vyřazovat.
@@ -132,3 +132,57 @@ nejtěžší cesta na světě 9c+ (v Norsku)
     - vackove (grigri, neox)
     - ostatni (clickup, revo)
 - Osmicka je pouze slanovaci pomucka pro specificke pripady!! Nebezpecna predevsim s novymi lany
+
+### pádový faktor (výpočet pádového faktoru a rázové síly) vysvětlit s různými druhy jištění, fixniho osazení skal
+- Délka pádu / činná délka lana (zachycující pád)
+
+- Udává ""tvrdost"" pádu.
+
+- Rázová síla je maximální síla působící na lezce v okamžiku pádu. Nelze ji spočítat, měří se ale při laboratorních zkouškách.
+
+- Nejvyšší pádový faktor při lezení s lanem je při odlézání ze štandu před založením prvního postupového jištění (max. hodnota 2).
+- Proto je důležité založit co nejdříve první postupové jištění.
+
+- Pádový faktor se zvyšuje, pokud se lano tře v expreskách, o skálu apod. - protože se snižuje aktivní délka lana, která zachytává pád.
+
+- Vysoké hodnoty pádového faktoru se můžou vyskytnout na ferratách (více než 2). Proto je nezbytné používat feratovou brzdu s tlumičem pádu.
+
+### Uzly
+- Typy
+    - kotvící – 8, dvojita draci… stejnosmerne uzly
+    - spojovací – rybarska spojka, vudcovsky … protismerne uzly
+    - ostatní – manipulační
+
+**dvojita draci**
+
+{% youtube "https://www.youtube.com/watch?v=IxyNgWzk-JY" %}
+
+**Navazování na sedák a prsak pomoci lana**
+
+<img src="./images/navazani-lano-sedak-prsak.png" width="500"  alt="">
+
+[https://www.horosvaz.cz/res/archive/293/046566.pdf?seek=1565180726](https://www.horosvaz.cz/res/archive/293/046566.pdf?seek=1565180726)
+
+**Navazování na sedák a prsak pomoci smycky**
+
+<img src="./images/navazovani-sedak-prsak-smycka.png" width="500"  alt="">
+
+[https://www.horosvaz.cz/res/archive/128/048840.pdf](https://www.horosvaz.cz/res/archive/128/048840.pdf)
+
+
+
+
+*konce lan nejméně 10ti násobek průměru lana, u ploché smyčky 5ti násobek šířky (délka cca do vzdálenosti sevřené dlaně se vztyčeným palcem), tolerance plus 5 cm - delší je nebezpečný, svádí k navázání dalšího uzlu*
+
+### Guidelines
+1. Správně provedený partner-check
+1. kontrolní odsednutí
+1. správná práce a pozice jistící ruky
+
+### Slaneni na zvonika
+
+1. nejdriv pojistny uzel na lano(oba pramenay)
+1. pak sebe do kybliku nad uzel
+1. pak se zapoji do slaneni ostatni
+
+> nesmi se odlehcit na standu.
