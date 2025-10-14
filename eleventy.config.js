@@ -1,4 +1,6 @@
 import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
+import { HtmlBasePlugin } from "@11ty/eleventy";
+
 
 /** @param {import("@11ty/eleventy").Eleventy} eleventyConfig */
 export default function (eleventyConfig) {
@@ -18,14 +20,12 @@ export default function (eleventyConfig) {
             pictureAttributes: {}
         },
     });
-    eleventyConfig.addPassthroughCopy("src/images");
-    // eleventyConfig.setInputDir('src')
-    // eleventyConfig.outputDir('public')
-
-    return {
-        dir: {
-            input: "src",
-            output: "public",
-        }
-    }
+    eleventyConfig.addPlugin(HtmlBasePlugin);
 }
+
+export const config = {
+    dir: {
+        input: "src",
+        output: "public",
+    }
+};
