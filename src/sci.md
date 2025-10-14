@@ -201,6 +201,10 @@ nejtěžší cesta na světě 9c+ (v Norsku)
 
 <img src="./images/slaneni-kouzelnik.jpg" width="800"  alt="">
 
+### Vybudování štandu pomocí dočasných jistících pomůcek
+
+
+
 ### Bezpečné zajištění a vylezení cesty 4 UIAA s pomocí zakládaných jistících pomůcek
 
 - pravidlo 2, 3, 5, 3-5 m: zakládám ve 2, 3 a 5ti metrech, následně po 3-5ti metrech, prvolezec nesmí spadnout na zem
