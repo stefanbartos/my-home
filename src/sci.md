@@ -9,6 +9,7 @@ title: SCI
 - NSK - [https://www.narodnikvalifikace.cz/kvalifikace-1858-Instruktorinstruktorka_lezeni_na_skalach](https://www.narodnikvalifikace.cz/kvalifikace-1858-Instruktorinstruktorka_lezeni_na_skalach)
 - [https://www.horosvaz.cz/instruktori-sci-rci-a-hal/kvalifikace-sci/](https://www.horosvaz.cz/instruktori-sci-rci-a-hal/kvalifikace-sci/)
 - [https://www.horosvaz.cz/narodni-soustava-kvalifikaci/](https://www.horosvaz.cz/narodni-soustava-kvalifikaci/)
+- Lezeme splhame kniha - [https://www.databazeknih.cz/knihy/lezeme-a-splhame-108833](https://www.databazeknih.cz/knihy/lezeme-a-splhame-108833)
 
 
 ## Osnova
@@ -186,3 +187,9 @@ nejtěžší cesta na světě 9c+ (v Norsku)
 1. pak se zapoji do slaneni ostatni
 
 > nesmi se odlehcit na standu.
+
+<img src="./images/slaneni-zvonik.jpg" width="800"  alt="">
+
+### Slaneni na kouzelnika
+
+<img src="./images/slaneni-kouzelnik.jpg" width="800"  alt="">
