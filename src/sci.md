@@ -9,6 +9,7 @@ title: SCI
 - NSK - [https://www.narodnikvalifikace.cz/kvalifikace-1858-Instruktorinstruktorka_lezeni_na_skalach](https://www.narodnikvalifikace.cz/kvalifikace-1858-Instruktorinstruktorka_lezeni_na_skalach)
 - [https://www.horosvaz.cz/instruktori-sci-rci-a-hal/kvalifikace-sci/](https://www.horosvaz.cz/instruktori-sci-rci-a-hal/kvalifikace-sci/)
 - [https://www.horosvaz.cz/narodni-soustava-kvalifikaci/](https://www.horosvaz.cz/narodni-soustava-kvalifikaci/)
+- CHS karty [https://www.horosvaz.cz/doporuceni-a-informace/metodika-doporuceni/](https://www.horosvaz.cz/doporuceni-a-informace/metodika-doporuceni/)
 - Lezeme splhame kniha - [https://www.databazeknih.cz/knihy/lezeme-a-splhame-108833](https://www.databazeknih.cz/knihy/lezeme-a-splhame-108833)
 
 
@@ -180,6 +181,12 @@ nejtěžší cesta na světě 9c+ (v Norsku)
 1. kontrolní odsednutí
 1. správná práce a pozice jistící ruky
 
+### Zakraveni kyble
+
+<img src="./images/zakraveni-kyble.png"  height="400"  alt="">
+
+<img src="./images/zakraveni-kyble-1.png"  height="400"  alt="">
+
 ### Slaneni na zvonika
 
 1. nejdriv pojistny uzel na lano(oba pramenay)
@@ -193,3 +200,18 @@ nejtěžší cesta na světě 9c+ (v Norsku)
 ### Slaneni na kouzelnika
 
 <img src="./images/slaneni-kouzelnik.jpg" width="800"  alt="">
+
+### Bezpečné zajištění a vylezení cesty 4 UIAA s pomocí zakládaných jistících pomůcek
+
+- pravidlo 2, 3, 5, 3-5 m: zakládám ve 2, 3 a 5ti metrech, následně po 3-5ti metrech, prvolezec nesmí spadnout na zem
+
+### Tvorba odsazeného štandu
+
+<img src="./images/odsazeny-stand-1.jpg" width="800"  alt="">
+<img src="./images/odsazeny-stand-2.jpg" width="800"  alt="">
+
+### Záchranná technika směrem nahoru – dopomoc druholezci (kýbl i HMS)
+<img src="./images/dopomoc-hms.jpg" width="800"  alt="">
+
+### Záchranná technika směrem dolů – spuštění druholezce
+<img src="./images/odblokovani-kyble.jpg" width="800"  alt="">
