@@ -41,17 +41,17 @@ title: SCI
 - Obtížnost cesty se hodnotí podle nejtěžšího kroku.
 - Stupnice obtížnosti:
 
-  - UIAA: Arabská číslice, příp. doplněná znaménkem plus nebo minus.
+  - UIAA: Rimske číslice(na stenach aj arabske), příp. doplněná znaménkem plus nebo minus.
         Např. 5+
 
   - Francouzská stupnice: Arabská číslice a malé písmeno a, b nebo c
 Např. 5a
 
   - Bouldrová stupnice: Arabská číslice a velké písmeno A, B nebo C
-Např. 5A
+Např. 5A, 7B
 
   - Saská (pískařská) stupnice: Římská číslice, popř. doplněná písmenem b, c
-Např. VIIb
+Např. VIIb *Mensi jako 7 nemaji pismeno*
 
   - Převod mezi stupnicemi UIAA a Francouzskou:
 Např. zde na str. 6: [https://theuiaa.org/documents/mountaineering/THESCALESOFDIFFICULTYINCLIMBING_p1b.pdf](https://theuiaa.org/documents/mountaineering/THESCALESOFDIFFICULTYINCLIMBING_p1b.pdf)
@@ -79,7 +79,7 @@ nejtěžší cesta na světě 9c+ (v Norsku)
 ### druhy jištění, styly přelezu - kritérium obtžnosti (OS, RP, PP, TR)
 - Fixní jištění:
     - Borhák (vždy lepený, dloušťka a délka dle horniny, lze z něho nouzově slanit, protože je oblý)
-    - Plaketa nýtu
+    - Nýt - muze byt pomoci expazni hmlozdinkou
 
 - Vrcholové jistící stanoviště: 
     - Staré uspořádání: Dva nýty/borháky v jedné rovině
@@ -201,9 +201,17 @@ nejtěžší cesta na světě 9c+ (v Norsku)
 
 <img src="./images/slaneni-kouzelnik.jpg" width="800"  alt="">
 
+### Slaneni pres uzel
+
+<img src="./images/slaneni_pres_uzel_1.jpeg" width="800"  alt="">
+<img src="./images/slaneni_pres_uzel_2.jpeg" width="800"  alt="">
+<img src="./images/slaneni_pres_uzel_3.jpeg" width="800"  alt="">
+
+
 ### Vybudování štandu pomocí dočasných jistících pomůcek
 
-
+<img src="./images/stand_z_docasnych_pomucek_1.jpg" width="600"  alt="">
+<img src="./images/stand_z_docasnych_pomucek_2.jpg" width="600"  alt="">
 
 ### Bezpečné zajištění a vylezení cesty 4 UIAA s pomocí zakládaných jistících pomůcek
 
