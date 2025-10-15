@@ -181,6 +181,12 @@ nejtěžší cesta na světě 9c+ (v Norsku)
 1. kontrolní odsednutí
 1. správná práce a pozice jistící ruky
 
+### Schéma metodického výstupu 
+- vysvetlit
+- ukazat
+- precvicit
+- overit
+
 ### Zakraveni kyble
 
 <img src="./images/zakraveni-kyble.png"  height="400"  alt="">
