@@ -68,7 +68,7 @@ Nejtěžší cesta na světě: "Silence" v Norsku, obtížnost 9c+ (odpovídá c
 
 
 ### určt vhodny počet osob ve skupině při vedení různych druhů výcviku
-- Vhodný počet osob je takový, abych zvládl všechny body metodického výstupu (vysvětlit, předvést, procvičit, ověřit).
+- Vhodný počet osob je takový, abych zvládl všechny body metodického výstupu
 - Vždy řešíme maximální počet klientů na jednoho instruktora, aby byla zajištěna:
     - bezpečnost
     - srozumitelnost
@@ -103,7 +103,7 @@ Nejtěžší cesta na světě: "Silence" v Norsku, obtížnost 9c+ (odpovídá c
 
 ### Druhy a použití různých druhủ lan, smyček a pomocných šňůr, orientace v jejich značení a nosnosti
 - Druhy lan:
-  - statické - Pro výškové práce. Nejsou určena k zachycení pádu.)
+  - statické - Pro výškové práce. Nejsou určena k zachycení pádu.
   - dynamické - Určeny k horolezectví a k zachycení pádu:
       - Dělení:
         - jednoduché - &#9312;
@@ -170,7 +170,7 @@ Nejtěžší cesta na světě: "Silence" v Norsku, obtížnost 9c+ (odpovídá c
   - pomahá zachytit pád, nedavá prokluz při pádu
   - pro uvolnění lana (podávání nebo spuštění) je potřeba udělat nějaký úkon k odblokování
   - rozdělení poloautomatů
-    - Pákové (např. Rama, Smart, Megajul)
+    - Pákové (např. Rama, Smart, Mega Jul)
     - Vačkové (Grigri, Neox, Pinch)
     - Ostatní (Click Up, Revo)
   - partner-check u poloautomatů: musím zatáhnout za lezcovo lano, abych vyzkoušel samosvornou funkci poloautomatu
@@ -269,11 +269,11 @@ Pokud vratný bod odsazuji pomocí smyčky a ve fixním bodě mohou slaňovat ji
 
 ### Zrušení vratného bodu top-rope s následným spuštěním
 
-https://www.horosvaz.cz/res/archive/310/052449.pdf
+[https://www.horosvaz.cz/res/archive/310/052449.pdf](https://www.horosvaz.cz/res/archive/310/052449.pdf)
 
 ### Zrušení vratného bodu top-rope s následným slaněním
 
-https://www.horosvaz.cz/res/archive/310/052448.pdf
+[https://www.horosvaz.cz/res/archive/310/052448.pdf](https://www.horosvaz.cz/res/archive/310/052448.pdf)
 
 
 ### Slanění "na zvoníka"
