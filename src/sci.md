@@ -23,12 +23,12 @@ title: SCI
 
 
 ### Tištěné průvodce, ochrana životního prostředí, povolení vstupu do skalních oblastí (kde ziskat informace), význarnné skalní oblasti ČR, vlastnosti hornin
-- Skály ČR – webová databáze na [horosvaz.cz](horosvaz.cz) + mobilní aplikace
-- Celkový přehled skalních oblastí ČR + mapka např. zde: https://www.skalnioblasti.cz/4_ovk_index.asp?cmd=5
+- Skály ČR – webová databáze na [https://horosvaz.cz](https://horosvaz.cz) + mobilní aplikace
+- Celkový přehled skalních oblastí ČR + mapka např. zde: [https://www.skalnioblasti.cz/4_ovk_index.asp?cmd=5](https://www.skalnioblasti.cz/4_ovk_index.asp?cmd=5)
 - Základní rozdělení hornin:
   - Vyvřeliny (magmatické horniny) – žula, syenit, čedič, ...
-  - Usazeniny (sedimentární horniny) – pískovec, břidlice, vápenec, ...
-  - Přeměněné horniny (metamorfované) – svor, rula, ...
+  - Usazeniny (sedimentární horniny) – pískovec, vápenec, ...
+  - Přeměněné horniny (metamorfované) – svor, břidlice, rula, ...
     - Vznikají působením teploty a tlaku na jiný typ horniny
 
 ### vhodný oděv a doplňky (povinná lezecká helma), upozornit na nebezpečné osobní předměty, které mohou způsobit zraněni
