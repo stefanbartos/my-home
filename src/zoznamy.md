@@ -11,11 +11,15 @@
 - 2x1.5m + 2x3m prusík
 - nôž(ľahky petzl)
 - papuče
-- peřovka, 
+- peřovka
 - čelovka + nahradné batérie
 - vreckovky
 - šumák
+- vankúš
 - 1 deň
   - 2x müsli tyčinka
   - plechovka dm
   - niečo na raňajky
+  - čaj
+  - nejaký protein??
+  - káva
