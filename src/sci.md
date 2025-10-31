@@ -367,6 +367,20 @@ Pokud je to možné, štand provazuji i zespodu do protitahu - aby nedošlo k na
 
 ### Tvorba odsazeného štandu
 
+1. Prvolezec přileze ke štandu.
+1. Prvolezec osadí do štandu centrální karabinu.
+1. Do centrální karabiny dá HMS karabinu a do ní poloviční lodní uzel.
+1. Do centrálního oka sedáku si připraví volnou karabinu.
+1. Spustí se zpět do místa, odkud chce jistit druholezce.
+1. Na konci lana vedoucímu k jističi si udělá lodní uzel a cvakne ho do karabiny v centrálním oku sedáku.
+1. Uváže prusík přes oba dva prameny lana, na prusíku udělá uzel a do vzniklého oka cvakne karabinu. (Je vhodné udělat aspoň 3 otočky prusíku pro snazší manipulaci později.)
+1. Dá jističi povel "zruš".
+1. Dobere lano.
+1. Založí poloviční lodní uzel do připavené karabiny a odjistí druholezce.
+1. Jakmile druholezec přileze k jističi, vezme si do ruky prusík, posouvá si ho po lanech a takto doleze ke štandu. (Jistič buďto stále jistí, nebo si druholezec půlloďák zakraví.)
+1. Druholezec se zajistí na štandu do centrální karabiny.
+1. Druholezec dobere původního jističe pomocí polovičního lodního uzlu, který je tam už připravený. (Za které lano má dobírat parťáka se podle tvaru uzlu - podle toho, jak je půlloďák "překlopený".)
+
 <img src="./images/odsazeny-stand-1.jpg" width="800"  alt="">
 <img src="./images/odsazeny-stand-2.jpg" width="800"  alt="">
 
