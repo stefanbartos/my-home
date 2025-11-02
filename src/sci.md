@@ -367,6 +367,16 @@ Pokud je to možné, štand provazuji i zespodu do protitahu - aby nedošlo k na
 
 ### Tvorba odsazeného štandu
 
+1. jistič doleze na štand
+1. osadí centrální karabinu a do ní HMS, do ní poloviční lodní uzel
+1. spustí se zpet do mista, odkud chce jistit
+1. cvakne karabinu do centr. oka a do ni udela lodak na konci lana smerujicim k jistici - a od toho okamziku je sam zajisteny
+1. navaze prusik kolem obou pramenu lana
+1. na prusiku udela ocko a do neho da karabinu
+1. z karabiny jisti pullodakem druholezce
+1. jak druholezec prileze, tak si chytne prusik a posouva si ho po lanech a doleze az ke standu (pokud by to bylo daleko, muze si i pullodak zakravit)
+1. Druholezec dojisti puvodniho jistice ze standu pomoci pullodaku, ktery uz je tam pripraveny
+
 <img src="./images/odsazeny-stand-1.jpg" width="800"  alt="">
 <img src="./images/odsazeny-stand-2.jpg" width="800"  alt="">
 
