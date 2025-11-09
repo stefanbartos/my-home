@@ -16,10 +16,12 @@ title: SCI
 
 ## Osnova kurzu SCI
 
+<img src="./images/osnova_sci.jpg" height="500" alt="" />
+
 ### Horolezecké značky
 [https://horolezeckametodika.cz/horolezecke-znacky](https://horolezeckametodika.cz/horolezecke-znacky)
 
-<img src="./images/znacky.jpg" width="500" height="400" alt="">
+<img src="./images/znacky.jpg" width="500" height="400" alt="" />
 
 
 ### Tištěné průvodce, ochrana životního prostředí, povolení vstupu do skalních oblastí (kde ziskat informace), význarnné skalní oblasti ČR, vlastnosti hornin
