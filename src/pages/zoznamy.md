@@ -1,6 +1,7 @@
 ---
 layout: ../layouts/Default.astro
 title: Zoznamy
+lang: sk
 ---
 
 # zoznamy

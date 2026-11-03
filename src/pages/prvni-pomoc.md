@@ -1,6 +1,7 @@
 ---
 layout: ../layouts/Default.astro
 title: Prvni pomoc
+lang: sk
 ---
 
 # Prvni pomoc (PP)
