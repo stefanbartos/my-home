@@ -1,0 +1,45 @@
+---
+import type { MarkdownHeading } from "astro";
+
+interface Props {
+    headings: MarkdownHeading[];
+}
+
+// Page title (h1) is skipped; h2 and h3 sections are listed.
+const items = Astro.props.headings.filter((h) => h.depth === 2 || h.depth === 3);
+---
+
+{
+    items.length > 0 && (
+        <details class="toc">
+            <summary>Obsah</summary>
+            <ul>
+                {items.map((h) => (
+                    <li class={`depth-${h.depth}`}>
+                        <a href={`#${h.slug}`}>{h.text}</a>
+                    </li>
+                ))}
+            </ul>
+        </details>
+    )
+}
+
+<style>
+    .toc {
+        margin: 0 0 2rem;
+        padding: 0.75rem 1rem;
+        border: 1px solid currentColor;
+        border-radius: 6px;
+    }
+    summary {
+        cursor: pointer;
+        font-weight: 600;
+    }
+    ul {
+        margin: 0.75rem 0 0;
+        padding-left: 1rem;
+    }
+    .depth-3 {
+        margin-left: 1rem;
+    }
+</style>

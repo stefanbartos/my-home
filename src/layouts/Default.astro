@@ -1,10 +1,14 @@
 ---
+import type { MarkdownHeading } from "astro";
+import Toc from "../components/Toc.astro";
+
 interface Props {
-    frontmatter?: { title?: string; lang?: string };
+    frontmatter?: { title?: string; lang?: string; toc?: boolean };
+    headings?: MarkdownHeading[];
     title?: string;
 }
 
-const { frontmatter, title: titleProp } = Astro.props;
+const { frontmatter, headings = [], title: titleProp } = Astro.props;
 const title = titleProp ?? frontmatter?.title ?? "My home";
 const lang = frontmatter?.lang ?? "cs";
 ---
@@ -19,6 +23,7 @@ const lang = frontmatter?.lang ?? "cs";
 
     <body>
         <main>
+            {frontmatter?.toc && <Toc headings={headings} />}
             <slot />
         </main>
     </body>
