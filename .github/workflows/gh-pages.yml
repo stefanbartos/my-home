@@ -13,7 +13,9 @@ on:
   workflow_dispatch:
 
 jobs:
-  deploy:
+  build:
+    # Pull requests only build; the deploy step runs on main only.
+    name: ${{ github.event_name == 'pull_request' && 'build' || 'build & deploy' }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
     permissions:
