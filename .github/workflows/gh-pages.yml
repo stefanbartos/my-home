@@ -3,7 +3,7 @@ name: GitHub Pages with Astro
 on:
   push:
     branches:
-      - main  # Set a branch name to trigger deployment
+      - main # Set a branch name to trigger deployment
   # Build pull requests too, so a broken build is caught before merging.
   # The deploy step below only runs on pushes to main.
   pull_request:
@@ -34,6 +34,11 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      # On failure, format the files and print the diff so the log shows
+      # what needs to change.
+      - name: Check formatting
+        run: npm run format:check || { npm run format >/dev/null; git --no-pager diff; exit 1; }
 
       # Astro keeps optimized images in node_modules/.astro. Restoring it skips
       # re-processing photos that have not changed. It must come after npm ci,

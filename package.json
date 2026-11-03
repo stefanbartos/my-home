@@ -8,7 +8,9 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "format": "oxfmt",
+    "format:check": "oxfmt --check"
   },
   "repository": {
     "type": "git",
@@ -28,5 +30,9 @@
   },
   "allowScripts": {
     "fsevents": false
+  },
+  "devDependencies": {
+    "@astrojs/compiler-rs": "^0.5.2",
+    "oxfmt": "^0.75.0"
   }
 }
