@@ -37,4 +37,4 @@ import photo from "../assets/images/photo.jpg";
 
 ## Deployment
 
-Every push to `main` builds the site with GitHub Actions (`.github/workflows/gh-pages.yml`) and publishes `dist/` to the `gh-pages` branch. The site is served under the `/my-home` base path (see `astro.config.mjs`).
+Every push to `main` builds the site with GitHub Actions (`.github/workflows/pages.yml`) and deploys `dist/` with the official GitHub Pages actions (repo Settings → Pages → Source: "GitHub Actions"). Pull requests only build. The site is served under the `/my-home` base path (see `astro.config.mjs`).

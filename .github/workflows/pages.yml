@@ -3,27 +3,25 @@ name: GitHub Pages with Astro
 on:
   push:
     branches:
-      - main # Set a branch name to trigger deployment
+      - main
   # Build pull requests too, so a broken build is caught before merging.
-  # The deploy step below only runs on pushes to main.
+  # Only pushes to main (and manual runs on main) deploy.
   pull_request:
     branches:
       - main
   # Allow a manual redeploy from the Actions tab.
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   build:
-    # Pull requests only build; the deploy step runs on main only.
-    name: ${{ github.event_name == 'pull_request' && 'build' || 'build & deploy' }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
-    permissions:
-      contents: write
     concurrency:
-      group: ${{ github.workflow }}-${{ github.ref }}
-      # A newer push to a PR makes its running build obsolete. Never cancel
-      # a deploy on main halfway through; queue the next one instead.
+      group: ${{ github.workflow }}-build-${{ github.ref }}
+      # A newer push to a PR makes its running build obsolete.
       cancel-in-progress: ${{ github.event_name == 'pull_request' }}
     steps:
       - uses: actions/checkout@v7
@@ -55,11 +53,29 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v4
-        # Only deploy from main (push or manual run), never from pull requests.
+      - name: Upload site
         if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        uses: actions/upload-pages-artifact@v5
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
-          publish_branch: gh-pages
+          path: ./dist
+
+  deploy:
+    needs: build
+    # Never from pull requests.
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    # One deploy at a time; never cancel one halfway through.
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5

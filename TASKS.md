@@ -124,9 +124,9 @@ All images in `sci.md` have `alt=""`. These are instructional photos, so a short
 
 `peaceiris/actions-gh-pages` pushes to a `gh-pages` branch and needs `contents: write`.
 
-- [ ] Replace it with `actions/configure-pages` + `actions/upload-pages-artifact` + `actions/deploy-pages`
-- [ ] Narrow permissions to `pages: write`, `id-token: write`, `contents: read`
-- [ ] Switch repo Settings → Pages → Source to "GitHub Actions"
+- [x] Replace it with `actions/upload-pages-artifact` + `actions/deploy-pages`
+- [x] Narrow permissions to `pages: write`, `id-token: write`, `contents: read`
+- [x] Switch repo Settings → Pages → Source to "GitHub Actions"
 - [ ] Delete the `gh-pages` branch after the first successful deploy
 
 ### CI-03
