@@ -4,3 +4,7 @@ title: My home
 ---
 
 # My home
+
+- [SCI – instruktor lezení na skalách](/my-home/sci/)
+- [Prvni pomoc](/my-home/prvni-pomoc/)
+- [Zoznamy](/my-home/zoznamy/)
