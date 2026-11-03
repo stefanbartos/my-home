@@ -39,7 +39,7 @@ jobs:
       # re-processing photos that have not changed. It must come after npm ci,
       # which wipes node_modules.
       - name: Cache optimized images
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: node_modules/.astro
           key: astro-${{ hashFiles('src/**/*.jpg', 'src/**/*.jpeg', 'src/**/*.png', 'src/**/*.webp', 'astro.config.mjs', 'package-lock.json') }}
