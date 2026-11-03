@@ -1,29 +1,16 @@
-# Ignore macOS system files
-.DS_Store
-
-# Generated files
-dist/
-packages/*/visualize/*
-
-# Ignore installed npm modules
+# Dependencies
 node_modules/
 
-# Ignore build tool output, e.g. code coverage
-.nyc_output/
-coverage/
-docs/_data/coverage.json
-
-# Ignore API documentation
-api-docs/
-
-# Ignore folders from source code editors
-.vscode
-.idea
-
 # Astro build output and generated types
+dist/
 .astro/
 
+# Logs and local env files
+npm-debug.log*
+.env
+.env.*
 
-# Ignore test files
-.cache
-test/stubs-layout-cache/_includes/*.js
+# OS and editor files
+.DS_Store
+.vscode/
+.idea/
