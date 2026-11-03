@@ -2,7 +2,7 @@
 
 Personal notes published as a small static site, built with [Astro](https://astro.build):
 
-- **SCI**: study notes for the *Instruktor lezení na skalách* (rock climbing instructor) course
+- **SCI**: study notes for the _Instruktor lezení na skalách_ (rock climbing instructor) course
 - **Prvni pomoc**: first-aid kit and procedure notes
 
 ## Run locally
@@ -18,13 +18,13 @@ npm run preview   # serve the production build
 
 ## Project layout
 
-| Path | What's there |
-|------|--------------|
-| `src/pages/` | One file per page (`.md`, or `.mdx` when a page uses components) |
-| `src/layouts/Default.astro` | Shared page layout |
-| `src/components/` | `Img` (optimized images) and `YouTube` (video embed) |
-| `src/assets/images/` | Source images, processed by Astro at build time |
-| `TASKS.md` | Improvement backlog |
+| Path                        | What's there                                                     |
+| --------------------------- | ---------------------------------------------------------------- |
+| `src/pages/`                | One file per page (`.md`, or `.mdx` when a page uses components) |
+| `src/layouts/Default.astro` | Shared page layout                                               |
+| `src/components/`           | `Img` (optimized images) and `YouTube` (video embed)             |
+| `src/assets/images/`        | Source images, processed by Astro at build time                  |
+| `TASKS.md`                  | Improvement backlog                                              |
 
 To add an image to an `.mdx` page, import it and use the `Img` component with an `alt` description:
 

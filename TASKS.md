@@ -7,33 +7,33 @@ Backlog from a project review (2026-11-03). Each task has a unique ID; reference
 
 ## Summary
 
-| ID | Task | Priority | Size |
-|----|------|----------|------|
-| [BUG-01](#bug-01) | Add front matter to `prvni-pomoc.md` | P1 | S |
-| [BUG-02](#bug-02) | Link all pages from the home page | P1 | S |
-| [BUG-03](#bug-03) | Make bare URLs clickable | P1 | S |
-| [BUG-04](#bug-04) | Constrain image size (SCI outline image + overflow on mobile) | P1 | S |
-| [BUG-05](#bug-05) | Set the page language to Czech | P1 | S |
-| [IMG-01](#img-01) | Downsize oversized source photos | P2 | S |
-| [IMG-02](#img-02) | Generate responsive image widths | P2 | S |
-| [IMG-03](#img-03) | Add meaningful `alt` text to images | P2 | M |
-| [CI-01](#ci-01) | Remove Hugo leftovers from the workflow | P2 | S |
-| [CI-02](#ci-02) | Migrate to the official GitHub Pages actions | P2 | M |
-| [CI-03](#ci-03) | Cancel superseded deploys | P3 | S |
-| [CI-04](#ci-04) | Build on pull requests | P2 | S |
-| [HK-01](#hk-01) | Clean up `package.json` metadata | P3 | S |
-| [HK-02](#hk-02) | Update dependencies and fix `npm audit` findings | P2 | S |
-| [HK-03](#hk-03) | Trim `.gitignore` | P3 | S |
-| [HK-04](#hk-04) | Remove Astro leftovers locally | P3 | S |
-| [HK-05](#hk-05) | Write a README | P3 | S |
-| [UX-01](#ux-01) | Add a minimal stylesheet | P1 | S |
-| [UX-02](#ux-02) | Add site navigation to the layout | P2 | S |
-| [UX-03](#ux-03) | Add a table of contents to `sci.md` | P3 | M |
-| [UX-04](#ux-04) | Harden the YouTube shortcode | P3 | S |
-| [CNT-01](#cnt-01) | Fix heading hierarchy and deprecated markup in `sci.md` | P2 | S |
-| [CNT-02](#cnt-02) | Fix typos | P2 | S |
-| [CNT-03](#cnt-03) | Add diacritics to `prvni-pomoc.md` | P3 | M |
-| [CNT-04](#cnt-04) | Resolve open question on the double bowline backup knot | P2 | S |
+| ID                | Task                                                          | Priority | Size |
+| ----------------- | ------------------------------------------------------------- | -------- | ---- |
+| [BUG-01](#bug-01) | Add front matter to `prvni-pomoc.md`                          | P1       | S    |
+| [BUG-02](#bug-02) | Link all pages from the home page                             | P1       | S    |
+| [BUG-03](#bug-03) | Make bare URLs clickable                                      | P1       | S    |
+| [BUG-04](#bug-04) | Constrain image size (SCI outline image + overflow on mobile) | P1       | S    |
+| [BUG-05](#bug-05) | Set the page language to Czech                                | P1       | S    |
+| [IMG-01](#img-01) | Downsize oversized source photos                              | P2       | S    |
+| [IMG-02](#img-02) | Generate responsive image widths                              | P2       | S    |
+| [IMG-03](#img-03) | Add meaningful `alt` text to images                           | P2       | M    |
+| [CI-01](#ci-01)   | Remove Hugo leftovers from the workflow                       | P2       | S    |
+| [CI-02](#ci-02)   | Migrate to the official GitHub Pages actions                  | P2       | M    |
+| [CI-03](#ci-03)   | Cancel superseded deploys                                     | P3       | S    |
+| [CI-04](#ci-04)   | Build on pull requests                                        | P2       | S    |
+| [HK-01](#hk-01)   | Clean up `package.json` metadata                              | P3       | S    |
+| [HK-02](#hk-02)   | Update dependencies and fix `npm audit` findings              | P2       | S    |
+| [HK-03](#hk-03)   | Trim `.gitignore`                                             | P3       | S    |
+| [HK-04](#hk-04)   | Remove Astro leftovers locally                                | P3       | S    |
+| [HK-05](#hk-05)   | Write a README                                                | P3       | S    |
+| [UX-01](#ux-01)   | Add a minimal stylesheet                                      | P1       | S    |
+| [UX-02](#ux-02)   | Add site navigation to the layout                             | P2       | S    |
+| [UX-03](#ux-03)   | Add a table of contents to `sci.md`                           | P3       | M    |
+| [UX-04](#ux-04)   | Harden the YouTube shortcode                                  | P3       | S    |
+| [CNT-01](#cnt-01) | Fix heading hierarchy and deprecated markup in `sci.md`       | P2       | S    |
+| [CNT-02](#cnt-02) | Fix typos                                                     | P2       | S    |
+| [CNT-03](#cnt-03) | Add diacritics to `prvni-pomoc.md`                            | P3       | M    |
+| [CNT-04](#cnt-04) | Resolve open question on the double bowline backup knot       | P2       | S    |
 
 ---
 
