@@ -4,7 +4,6 @@ Personal notes published as a small static site, built with [Astro](https://astr
 
 - **SCI**: study notes for the *Instruktor lezení na skalách* (rock climbing instructor) course
 - **Prvni pomoc**: first-aid kit and procedure notes
-- **Zoznamy**: packing lists
 
 ## Run locally
 
