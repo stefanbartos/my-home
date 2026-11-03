@@ -4,25 +4,25 @@ title: Prvni pomoc
 lang: sk
 ---
 
-# Prvni pomoc (PP)
+# Prvá pomoc (PP)
 
-### Lekarnicka - outdoor
-- rukavice - tak aby vypadli ked otvorim lekarnicku a napadlo mi ich pouzit
-- Noznice - take aby boli schopne prestrinut oblecenie, obvazy, pasy, ale aj hrubsiu latku. Napriklda
+## Lekárnička – outdoor
+- rukavice – tak, aby vypadli, keď otvorím lekárničku, a napadlo mi ich použiť
+- nožnice – také, aby boli schopné prestrihnúť oblečenie, obväzy, pásy, ale aj hrubšiu látku. Napríklad
 [https://www.rescue-store.cz/nastroje/nar-trauma-shears-16cm/](https://www.rescue-store.cz/nastroje/nar-trauma-shears-16cm/)
-- pinzeta - na vyberanie drobnych predmetov z rany
-- turniket/škrtidlo - elasticky pas z gumy napr. [https://www.rescue-store.cz/skrtidla/skrtidlo-swat-t/](https://www.rescue-store.cz/skrtidla/skrtidlo-swat-t/)
-- gaza - na vyplnenie rany
-- trojcipa satka - lepsia je bavlnena, viacero ucelov
-- naplasti - podla uvazenia, rozne veľkosti
-- izotermicka folia
+- pinzeta – na vyberanie drobných predmetov z rany
+- turniket/škrtidlo – elastický pás z gumy, napr. [https://www.rescue-store.cz/skrtidla/skrtidlo-swat-t/](https://www.rescue-store.cz/skrtidla/skrtidlo-swat-t/)
+- gáza – na vyplnenie rany
+- trojcípa šatka – lepšia je bavlnená, viacero účelov
+- náplasti – podľa uváženia, rôzne veľkosti
+- izotermická fólia
 
-Moze sa hodit
+Môže sa hodiť
 - lightstick
 
-### Ako postupovat pri poskytnuti PP
-- Uistim sa, ze som v sam v bezpeci
-- Rozhladniem sa - ci nie je okolo dalsie nebezpecenstvo (napr. padajuce skaly, divoke zvierata, elektrina, ohen, voda...)
-- Naddychnem sa - môžem cítiť nejakú chemikáliu, dym alebo iny nebezpecny plyn. Rovnako mi to pomoze sa sustredit.
+## Ako postupovať pri poskytnutí PP
+- Uistím sa, že som sám v bezpečí
+- Rozhliadnem sa – či nie je okolo ďalšie nebezpečenstvo (napr. padajúce skaly, divoké zvieratá, elektrina, oheň, voda...)
+- Nadýchnem sa – môžem cítiť nejakú chemikáliu, dym alebo iný nebezpečný plyn. Rovnako mi to pomôže sa sústrediť.
 - Dám si na seba rukavice
-- V prípade nebezpečenstva ho dám do bezpečia 
+- V prípade nebezpečenstva ho dám do bezpečia
