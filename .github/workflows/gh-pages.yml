@@ -24,7 +24,7 @@ jobs:
       # a deploy on main halfway through; queue the next one instead.
       cancel-in-progress: ${{ github.event_name == 'pull_request' }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Setup node
         uses: actions/setup-node@v4
