@@ -9,16 +9,20 @@ on:
   pull_request:
     branches:
       - main
+  # Allow a manual redeploy from the Actions tab.
+  workflow_dispatch:
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     permissions:
       contents: write
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
-      # A newer push to the same branch makes the running build obsolete.
-      cancel-in-progress: true
+      # A newer push to a PR makes its running build obsolete. Never cancel
+      # a deploy on main halfway through; queue the next one instead.
+      cancel-in-progress: ${{ github.event_name == 'pull_request' }}
     steps:
       - uses: actions/checkout@v4
 
@@ -26,16 +30,28 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version-file: .node-version
+          cache: npm
 
-      - name: Install dependencies & build
-        run: |
-          npm ci
-          npm run build
+      - name: Install dependencies
+        run: npm ci
+
+      # Astro keeps optimized images in node_modules/.astro. Restoring it skips
+      # re-processing photos that have not changed. It must come after npm ci,
+      # which wipes node_modules.
+      - name: Cache optimized images
+        uses: actions/cache@v4
+        with:
+          path: node_modules/.astro
+          key: astro-${{ hashFiles('src/**/*.jpg', 'src/**/*.jpeg', 'src/**/*.png', 'src/**/*.webp', 'astro.config.mjs', 'package-lock.json') }}
+          restore-keys: astro-
+
+      - name: Build
+        run: npm run build
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
-        # Only deploy on pushes to main, never from pull requests.
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        # Only deploy from main (push or manual run), never from pull requests.
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
