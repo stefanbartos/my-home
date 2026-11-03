@@ -9,20 +9,18 @@ interface Props {
 const items = Astro.props.headings.filter((h) => h.depth === 2 || h.depth === 3);
 ---
 
-{
-    items.length > 0 && (
-        <details class="toc">
-            <summary>Obsah</summary>
-            <ul>
-                {items.map((h) => (
-                    <li class={`depth-${h.depth}`}>
-                        <a href={`#${h.slug}`}>{h.text}</a>
-                    </li>
-                ))}
-            </ul>
-        </details>
-    )
-}
+{items.length > 0 && (
+    <details class="toc">
+        <summary>Obsah</summary>
+        <ul>
+            {items.map((h) => (
+                <li class={`depth-${h.depth}`}>
+                    <a href={`#${h.slug}`}>{h.text}</a>
+                </li>
+            ))}
+        </ul>
+    </details>
+)}
 
 <style>
     .toc {
