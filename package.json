@@ -23,7 +23,7 @@
   "homepage": "https://github.com/stefanbartos/my-home#readme",
   "type": "module",
   "dependencies": {
-    "@astrojs/mdx": "^8.0.3",
+    "@astrojs/mdx": "^8.1.2",
     "astro": "~7.4"
   },
   "allowScripts": {
