@@ -1,7 +1,8 @@
 {
   "name": "my-home",
   "version": "1.0.0",
-  "description": "",
+  "private": true,
+  "description": "Personal notes: SCI climbing instructor course, first aid and gear lists",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -14,7 +15,7 @@
     "url": "git+https://github.com/stefanbartos/my-home.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Stefan Bartos",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/stefanbartos/my-home/issues"
