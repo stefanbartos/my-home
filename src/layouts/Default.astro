@@ -1,15 +1,16 @@
 ---
 interface Props {
-    frontmatter?: { title?: string };
+    frontmatter?: { title?: string; lang?: string };
     title?: string;
 }
 
 const { frontmatter, title: titleProp } = Astro.props;
 const title = titleProp ?? frontmatter?.title ?? "My home";
+const lang = frontmatter?.lang ?? "cs";
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang={lang}>
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
