@@ -9,7 +9,7 @@ Backlog from a project review (2026-11-03). Each task has a unique ID; reference
 
 | ID | Task | Priority | Size |
 |----|------|----------|------|
-| [BUG-01](#bug-01) | Add front matter to `prvni-pomoc.md` and `zoznamy.md` | P1 | S |
+| [BUG-01](#bug-01) | Add front matter to `prvni-pomoc.md` | P1 | S |
 | [BUG-02](#bug-02) | Link all pages from the home page | P1 | S |
 | [BUG-03](#bug-03) | Make bare URLs clickable | P1 | S |
 | [BUG-04](#bug-04) | Constrain image size (SCI outline image + overflow on mobile) | P1 | S |
@@ -41,12 +41,11 @@ Backlog from a project review (2026-11-03). Each task has a unique ID; reference
 
 ### BUG-01
 
-**Add front matter to `prvni-pomoc.md` and `zoznamy.md`** · P1 · S
+**Add front matter to `prvni-pomoc.md`** · P1 · S
 
-Both files have no front matter, so they render without the layout. The output starts directly at `<h1>`, with no `<html>`, `<head>`, `<meta charset>` or `<title>`. Diacritics may display garbled, and the browser tab shows no title.
+The file has no front matter, so it renders without the layout. The output starts directly at `<h1>`, with no `<html>`, `<head>`, `<meta charset>` or `<title>`. Diacritics may display garbled, and the browser tab shows no title.
 
 - [ ] Add `layout: default` and a `title` to `src/prvni-pomoc.md`
-- [ ] Add `layout: default` and a `title` to `src/zoznamy.md`
 - Optional: set the layout for all pages at once with `src/src.json` (`{ "layout": "default" }`)
 
 ### BUG-02
@@ -55,7 +54,7 @@ Both files have no front matter, so they render without the layout. The output s
 
 `src/index.md` only contains `# My home`, so the other pages can't be found without knowing their URLs.
 
-- [ ] Add links to SCI, Prvni pomoc and Zoznamy (or generate the list from a collection)
+- [ ] Add links to SCI and Prvni pomoc (or generate the list from a collection)
 
 ### BUG-03
 
@@ -80,7 +79,7 @@ eleventy-img drops the `height="500"` on `osnova_sci.jpg`, so it renders at 1259
 
 `src/_includes/default.html` has `<html lang="en">`, but the content is Czech/Slovak. This affects screen readers, hyphenation and browser translate prompts.
 
-- [ ] Change to `lang="cs"`, and optionally allow a per-page override (`lang="{{ lang | default: 'cs' }}"`, with `lang: sk` on `zoznamy.md` / `prvni-pomoc.md`)
+- [ ] Change to `lang="cs"`, and optionally allow a per-page override (`lang="{{ lang | default: 'cs' }}"`, with `lang: sk` on `prvni-pomoc.md`)
 
 ## Images
 
