@@ -1,0 +1,12 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "tabWidth": 4,
+  "astro": true,
+  "sortPackageJson": false,
+  "overrides": [
+    {
+      "files": ["*.json", "*.jsonc", "*.yml", "*.yaml", "*.md", "*.mdx"],
+      "options": { "tabWidth": 2 }
+    }
+  ]
+}
