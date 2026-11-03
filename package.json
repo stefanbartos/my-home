@@ -2,11 +2,12 @@
   "name": "my-home",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
-    "start": "eleventy --serve",
-    "build": "eleventy",
-    "build-ghpages": "rm -rf public && eleventy --pathprefix=/my-home/"
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
   },
   "repository": {
     "type": "git",
@@ -21,9 +22,7 @@
   "homepage": "https://github.com/stefanbartos/my-home#readme",
   "type": "module",
   "dependencies": {
-    "@11ty/eleventy": "^3.1.2"
-  },
-  "devDependencies": {
-    "@11ty/eleventy-img": "^6.0.4"
+    "@astrojs/mdx": "^8.0.3",
+    "astro": "^7.3.8"
   }
 }

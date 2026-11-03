@@ -1,3 +1,8 @@
+---
+layout: ../layouts/Default.astro
+title: Zoznamy
+---
+
 # zoznamy
 
 ## Drytool s ubytovaním na dojazd autom
