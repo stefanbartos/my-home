@@ -6,4 +6,10 @@ export default defineConfig({
     site: "https://stefanbartos.github.io",
     base: "/my-home",
     integrations: [mdx()],
+    image: {
+        // Scale images down to fit narrow screens (never above their set size)
+        // and generate a srcset with several widths.
+        layout: "constrained",
+        responsiveStyles: true,
+    },
 });
