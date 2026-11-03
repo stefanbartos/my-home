@@ -1,3 +1,8 @@
+---
+layout: ../layouts/Default.astro
+title: Prvni pomoc
+---
+
 # Prvni pomoc (PP)
 
 ### Lekarnicka - outdoor
