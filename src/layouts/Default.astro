@@ -1,5 +1,6 @@
 ---
 import type { MarkdownHeading } from "astro";
+import Nav from "../components/Nav.astro";
 import Toc from "../components/Toc.astro";
 
 interface Props {
@@ -91,6 +92,7 @@ const lang = frontmatter?.lang ?? "cs";
     </head>
 
     <body>
+        <Nav />
         <main>
             {frontmatter?.toc && <Toc headings={headings} />}
             <slot />
