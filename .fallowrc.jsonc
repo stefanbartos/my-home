@@ -1,0 +1,7 @@
+{
+  "$schema": "./node_modules/fallow/schema.json",
+  // Astro loads integrations from astro.config.mjs at build time, which
+  // fallow counts as a dev-only file. Astro's docs keep integrations in
+  // dependencies, so do not flag it as test-only.
+  "ignoreDependencies": ["@astrojs/mdx"],
+}

@@ -43,6 +43,10 @@ jobs:
       - name: Check formatting
         run: npm run format:check || { npm run format >/dev/null; git --no-pager diff; exit 1; }
 
+      # Unused files, exports and dependencies, duplication and complexity.
+      - name: Check code with fallow
+        run: npm run lint:fallow
+
       # Astro keeps optimized images in node_modules/.astro. Restoring it skips
       # re-processing photos that have not changed. It must come after npm ci,
       # which wipes node_modules.
