@@ -15,6 +15,7 @@ npm ci
 npm run dev       # dev server at http://localhost:4321/my-home/
 npm run build     # production build into dist/
 npm run preview   # serve the production build
+npm run lint:fallow  # unused code, duplication, complexity (runs in CI)
 ```
 
 ## Project layout

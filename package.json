@@ -10,7 +10,8 @@
     "preview": "astro preview",
     "astro": "astro",
     "format": "oxfmt",
-    "format:check": "oxfmt --check"
+    "format:check": "oxfmt --check",
+    "lint:fallow": "fallow --fail-on-issues"
   },
   "repository": {
     "type": "git",
@@ -33,6 +34,7 @@
   },
   "devDependencies": {
     "@astrojs/compiler-rs": "^0.5.2",
+    "fallow": "^3.38.1",
     "oxfmt": "^0.75.0"
   }
 }
