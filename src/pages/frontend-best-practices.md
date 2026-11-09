@@ -22,3 +22,13 @@ lang: en
   ```
 
   Note: this also delays urgent security fixes. To let a package (or your own packages) through right away, add it to `min-release-age-exclude`, as in the second line above. Only that package skips the delay. Its dependencies still wait.
+
+## Code health
+
+- **Run [fallow](https://fallow.tools/docs) in CI.** Unused files, exports and dependencies pile up quietly as code changes, and nothing in a normal build fails because of them. fallow finds them, along with copy-pasted code and overly complex functions, in one fast pass with no config for most frameworks. Pass `--fail-on-issues` so findings fail the build. Without it, fallow always exits 0.
+
+  ```json
+  "scripts": {
+    "lint:fallow": "fallow --fail-on-issues"
+  }
+  ```
