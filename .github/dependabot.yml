@@ -4,11 +4,19 @@ updates:
     directory: /
     schedule:
       interval: monthly
+    # Wait a week before proposing a new release, so a compromised version
+    # is likely caught and pulled first.
+    cooldown:
+      default-days: 7
 
   - package-ecosystem: npm
     directory: /
     schedule:
       interval: monthly
+    # Wait a week before proposing a new release, so a compromised version
+    # is likely caught and pulled first.
+    cooldown:
+      default-days: 7
     groups:
       astro:
         patterns:
