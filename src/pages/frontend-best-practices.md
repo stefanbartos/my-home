@@ -23,6 +23,8 @@ lang: en
 
   Note: this also delays urgent security fixes. To let a package (or your own packages) through right away, add it to `min-release-age-exclude`, as in the second line above. Only that package skips the delay. Its dependencies still wait.
 
+## Container images
+
 - **Pin container images by digest in pipelines and Dockerfiles.** A tag like `node:22-alpine` can be re-pushed to point at different content, so a compromised or changed image reaches your build without any change on your side. A digest always resolves to the same image. Keep the tag in front of it so people can still read which version it is.
 
   ```yaml
