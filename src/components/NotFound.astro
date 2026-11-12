@@ -34,8 +34,10 @@ const en404 = notFoundUrl("en");
     </script>}
     <section class="not-found">
         <Topo class="not-found-topo" seed={404} peaks={[{ x: 50, y: 48, r: 58 }]} />
-        <p class="eyebrow mono">404</p>
-        <h1 class="not-found-title">{t("notFound.title")}</h1>
+        <h1 class="not-found-title">
+            <span class="not-found-code mono">404</span>
+            {t("notFound.title")}
+        </h1>
         <p class="not-found-text">{t("notFound.text")}</p>
         <div class="not-found-actions">
             <a class="button" href={home}>
