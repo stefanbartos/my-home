@@ -35,7 +35,7 @@ const { label } = Astro.props;
 
 <script>
     // The saved choice is applied in <head> (Default.astro) before first paint.
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
+    const prefersDark = globalThis.matchMedia("(prefers-color-scheme: dark)");
 
     document.querySelector(".theme-toggle")?.addEventListener("click", () => {
         const root = document.documentElement;

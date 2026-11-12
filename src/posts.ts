@@ -1,4 +1,5 @@
-import { url, type Locale } from "./i18n/ui";
+import type { Locale } from "./i18n/ui";
+import { url } from "./i18n/ui";
 
 interface PostFrontmatter {
     title: string;
@@ -20,10 +21,10 @@ export function getPosts(): Post[] {
     });
     return Object.entries(modules)
         .map(([file, mod]) => ({
-            href: url(file.replace(/^\.\/pages/, "").replace(/\.mdx?$/, "/")),
+            href: url(file.replace(/^\.\/pages/u, "").replace(/\.mdx?$/u, "/")),
             title: mod.frontmatter.title,
             lang: mod.frontmatter.lang ?? "sk",
             summary: mod.frontmatter.summary ?? {},
         }))
-        .sort((a, b) => a.title.localeCompare(b.title));
+        .toSorted((a, b) => a.title.localeCompare(b.title));
 }

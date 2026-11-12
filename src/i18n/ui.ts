@@ -2,7 +2,7 @@ const locales = ["sk", "en"] as const;
 export type Locale = (typeof locales)[number];
 export const defaultLocale: Locale = "sk";
 
-const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const base = import.meta.env.BASE_URL.replace(/\/$/u, "");
 
 /** Absolute URL for a path inside the site, e.g. url("/sci/") → "/my-home/sci/". */
 export function url(path: string) {

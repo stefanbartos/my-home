@@ -9,11 +9,17 @@ const { url, title } = Astro.props;
 // Accepts youtube.com/watch?v=ID, youtu.be/ID, youtube.com/embed/ID and youtube.com/shorts/ID.
 function videoId(raw: string): string {
     const u = new URL(raw);
-    if (u.hostname === "youtu.be") return u.pathname.slice(1);
+    if (u.hostname === "youtu.be") {
+        return u.pathname.slice(1);
+    }
     const v = u.searchParams.get("v");
-    if (v) return v;
-    const match = u.pathname.match(/^\/(?:embed|shorts)\/([^/?]+)/);
-    if (match) return match[1];
+    if (v) {
+        return v;
+    }
+    const match = u.pathname.match(/^\/(?:embed|shorts)\/([^/?]+)/u);
+    if (match) {
+        return match[1];
+    }
     throw new Error(`YouTube: can't find a video ID in "${raw}"`);
 }
 
