@@ -6,7 +6,11 @@ import sitemap from "@astrojs/sitemap";
 export default defineConfig({
     site: "https://stefanbartos.github.io",
     base: "/my-home",
-    integrations: [mdx(), sitemap()],
+    integrations: [
+        mdx(),
+        // Keep the 404 pages out of the sitemap (/404.html is skipped already).
+        sitemap({ filter: (page) => !page.endsWith("/404/") }),
+    ],
     image: {
         // Scale images down to fit narrow screens (never above their set size)
         // and generate a srcset with several widths.
