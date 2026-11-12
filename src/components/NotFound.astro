@@ -1,5 +1,6 @@
 ---
 import Default from "../layouts/Default.astro";
+import Topo from "./Topo.astro";
 import type { Locale } from "../i18n/ui";
 import { homeUrl, url, useTranslations } from "../i18n/ui";
 
@@ -11,6 +12,7 @@ const { locale } = Astro.props;
 const t = useTranslations(locale);
 const notFoundUrl = (lang: Locale) => url(lang === "sk" ? "/404/" : `/${lang}/404/`);
 const otherLocale: Locale = locale === "sk" ? "en" : "sk";
+const home = homeUrl(locale);
 
 // GitHub Pages serves only the root 404.html, also for missing /en/ URLs.
 // Send those visitors to the English 404 page instead.
@@ -19,6 +21,7 @@ const en404 = notFoundUrl("en");
 ---
 
 <Default
+    wide
     locale={locale}
     title={t("notFound.title")}
     description={t("notFound.text")}
@@ -29,10 +32,33 @@ const en404 = notFoundUrl("en");
             location.replace(en404);
         }
     </script>}
-    <p class="eyebrow mono">404</p>
-    <h1>{t("notFound.title")}</h1>
-    <p>{t("notFound.text")}</p>
-    <p>
-        <a href={homeUrl(locale)}>{t("notFound.home")}</a>
-    </p>
+    <section class="not-found">
+        <Topo class="not-found-topo" seed={404} peaks={[{ x: 50, y: 48, r: 58 }]} />
+        <p class="not-found-code" aria-hidden="true">
+            404
+        </p>
+        <p class="eyebrow">{t("notFound.eyebrow")}</p>
+        <h1 class="not-found-title">{t("notFound.title")}</h1>
+        <p class="not-found-text">{t("notFound.text")}</p>
+        <p class="not-found-path mono" hidden></p>
+        <div class="not-found-actions">
+            <a class="button button-primary" href={home}>
+                <span aria-hidden="true">←</span>
+                {t("notFound.home")}
+            </a>
+            <a class="button" href={`${home}#posts`}>
+                {t("notFound.posts")}
+            </a>
+        </div>
+    </section>
+    <script is:inline>
+        // Show which address failed, so a mistyped URL is easy to spot.
+        {
+            const path = document.querySelector(".not-found-path");
+            if (path && !location.pathname.endsWith("/404/")) {
+                path.textContent = decodeURI(location.pathname);
+                path.hidden = false;
+            }
+        }
+    </script>
 </Default>
