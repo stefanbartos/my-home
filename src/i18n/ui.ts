@@ -32,6 +32,11 @@ const ui = {
         "code.copy": "Kopírovať kód",
         "code.copied": "Skopírované",
 
+        "notFound.title": "Stránka sa nenašla",
+        "notFound.text":
+            "Odkaz, ktorý ste otvorili, je nefunkčný alebo stránka bola presunutá či odstránená.",
+        "notFound.home": "Späť na úvodnú stránku",
+
         "hero.eyebrow": "Ahoj, ja som",
         "hero.lead":
             "Frontend developer. Píšem o webovom vývoji, lezení a ďalších veciach, ktorým sa venujem.",
@@ -65,6 +70,10 @@ const ui = {
         "lightbox.next": "Next image",
         "code.copy": "Copy code",
         "code.copied": "Copied",
+
+        "notFound.title": "Page not found",
+        "notFound.text": "The link you followed is broken, or the page has been moved or removed.",
+        "notFound.home": "Back to the home page",
 
         "hero.eyebrow": "Hi, I'm",
         "hero.lead":
