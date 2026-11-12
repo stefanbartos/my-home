@@ -20,7 +20,7 @@ Backlog from a project review (2026-11-03). Each task has a unique ID; reference
 | [IMG-02](#img-02) | Generate responsive image widths                              | P2       | S    | Done     | #7       |
 | [IMG-03](#img-03) | Add meaningful `alt` text to images                           | P2       | M    | Done     | #14      |
 | [CI-01](#ci-01)   | Remove Hugo leftovers from the workflow                       | P2       | S    | Done     | #4       |
-| [CI-02](#ci-02)   | Migrate to the official GitHub Pages actions                  | P2       | M    | Open     | #33      |
+| [CI-02](#ci-02)   | Migrate to the official GitHub Pages actions                  | P2       | M    | Done     | #33      |
 | [CI-03](#ci-03)   | Cancel superseded deploys                                     | P3       | S    | Done     | #17      |
 | [CI-04](#ci-04)   | Build on pull requests                                        | P2       | S    | Done     | #16      |
 | [HK-01](#hk-01)   | Clean up `package.json` metadata                              | P3       | S    | Open     | #18      |
@@ -142,14 +142,14 @@ All images in `sci.md` have `alt=""`. These are instructional photos, so a short
 
 **Migrate to the official GitHub Pages actions** · P2 · M
 
-**Status:** Open: deployed with the official actions since #33, and `main` deploys succeed. The `gh-pages` branch still exists on the remote.
+**Status:** Done: deployed with the official actions since #33 (Pages source is "GitHub Actions"), and the unused `gh-pages` branch was deleted on 2026-11-12.
 
 `peaceiris/actions-gh-pages` pushes to a `gh-pages` branch and needs `contents: write`.
 
 - [x] Replace it with `actions/upload-pages-artifact` + `actions/deploy-pages`
 - [x] Narrow permissions to `pages: write`, `id-token: write`, `contents: read`
 - [x] Switch repo Settings → Pages → Source to "GitHub Actions"
-- [ ] Delete the `gh-pages` branch after the first successful deploy
+- [x] Delete the `gh-pages` branch after the first successful deploy
 
 ### CI-03
 
