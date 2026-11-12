@@ -763,6 +763,79 @@ main.prose .toc .depth-3 {
 }
 
 /* ==========================================================================
+   404 page
+   ========================================================================== */
+.not-found {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: min(60vh, 560px);
+    max-width: 720px;
+    margin: 0 auto;
+    padding: clamp(3rem, 8vw, 5rem) var(--gutter);
+    text-align: center;
+}
+.not-found-topo {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    left: calc(50% - 50vw);
+    width: 100vw;
+    max-width: none;
+    opacity: 0.6;
+    mask-image: radial-gradient(ellipse at center, #000 35%, transparent 72%);
+    -webkit-mask-image: radial-gradient(ellipse at center, #000 35%, transparent 72%);
+}
+.not-found-title {
+    margin: 0;
+    font-size: clamp(2rem, 1.6rem + 2vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+}
+.not-found-title {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem 1rem;
+}
+.not-found-code {
+    padding-right: 1rem;
+    border-right: 1px solid var(--line);
+    color: var(--accent);
+    font-size: 0.6em;
+    font-weight: 600;
+    letter-spacing: 0;
+}
+.not-found-text {
+    max-width: 44ch;
+    margin: 1rem 0 0;
+    font-size: clamp(1.05rem, 1rem + 0.3vw, 1.2rem);
+    color: var(--ink-soft);
+}
+.not-found-actions {
+    margin-top: 2rem;
+}
+
+.button {
+    padding: 0.6rem 1.15rem;
+    border-radius: 999px;
+    background: var(--accent);
+    color: var(--bg);
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: background 0.15s;
+}
+.button:hover {
+    background: color-mix(in srgb, var(--accent) 85%, var(--ink));
+    color: var(--bg);
+}
+
+/* ==========================================================================
    Motion preferences
    ========================================================================== */
 @media (prefers-reduced-motion: reduce) {

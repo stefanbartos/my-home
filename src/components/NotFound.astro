@@ -1,0 +1,48 @@
+---
+import Default from "../layouts/Default.astro";
+import Topo from "./Topo.astro";
+import type { Locale } from "../i18n/ui";
+import { homeUrl, url, useTranslations } from "../i18n/ui";
+
+interface Props {
+    locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const notFoundUrl = (lang: Locale) => url(lang === "sk" ? "/404/" : `/${lang}/404/`);
+const otherLocale: Locale = locale === "sk" ? "en" : "sk";
+const home = homeUrl(locale);
+
+// GitHub Pages serves only the root 404.html, also for missing /en/ URLs.
+// Send those visitors to the English 404 page instead.
+const enPrefix = url("/en/");
+const en404 = notFoundUrl("en");
+---
+
+<Default
+    wide
+    locale={locale}
+    title={t("notFound.title")}
+    description={t("notFound.text")}
+    alternate={notFoundUrl(otherLocale)}
+>
+    {locale === "sk" && <script is:inline define:vars={{ enPrefix, en404 }}>
+        if (location.pathname.startsWith(enPrefix)) {
+            location.replace(en404);
+        }
+    </script>}
+    <section class="not-found">
+        <Topo class="not-found-topo" seed={404} peaks={[{ x: 50, y: 48, r: 58 }]} />
+        <h1 class="not-found-title">
+            <span class="not-found-code mono">404</span>
+            {t("notFound.title")}
+        </h1>
+        <p class="not-found-text">{t("notFound.text")}</p>
+        <div class="not-found-actions">
+            <a class="button" href={home}>
+                {t("notFound.home")}
+            </a>
+        </div>
+    </section>
+</Default>
