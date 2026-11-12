@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig } from "astro/config";
+import { defineConfig, sharpImageService } from "astro/config";
 import mdx from "@astrojs/mdx";
 
 export default defineConfig({
@@ -11,6 +11,9 @@ export default defineConfig({
         // and generate a srcset with several widths.
         layout: "constrained",
         responsiveStyles: true,
+        // AVIF encoding dominates the build. Effort 3 (sharp's default is 4) is
+        // about 3x faster and, for these photos, produces slightly smaller files.
+        service: sharpImageService({ avif: { effort: 3 } }),
     },
     i18n: {
         defaultLocale: "sk",

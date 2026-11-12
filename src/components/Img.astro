@@ -29,6 +29,9 @@ const full = await getImage({
     width: Math.min(src.width, 2000),
     format: "avif",
     quality: 70,
+    // A single file, not a srcset: without this the global "constrained"
+    // layout would also encode unused smaller AVIFs for every image.
+    layout: "none",
 });
 ---
 
