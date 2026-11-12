@@ -2,6 +2,9 @@
 layout: ../layouts/Default.astro
 title: Frontend Best Practices
 lang: en
+summary:
+  sk: Čo nastaviť v každom frontend projekte – bezpečnosť závislostí, CI a zdravie kódu.
+  en: What to set up in every frontend project – dependency security, CI and code health.
 ---
 
 # Frontend Best Practices

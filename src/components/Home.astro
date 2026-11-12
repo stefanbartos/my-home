@@ -1,6 +1,7 @@
 ---
 import Topo from "./Topo.astro";
-import { url, useTranslations, type Locale } from "../i18n/ui";
+import { languageName, useTranslations, type Locale } from "../i18n/ui";
+import { getPosts } from "../posts";
 
 interface Props {
     locale: Locale;
@@ -8,135 +9,59 @@ interface Props {
 
 const { locale } = Astro.props;
 const t = useTranslations(locale);
-
-const routes = [
-    {
-        n: 1,
-        href: url("/sci/"),
-        name: t("nav.sci"),
-        grade: "7−",
-        meta: t("routes.sci.meta"),
-        text: t("routes.sci.text"),
-        hold: "lime",
-        lang: "cs",
-    },
-    {
-        n: 2,
-        href: url("/prvni-pomoc/"),
-        name: t("nav.firstAid"),
-        grade: "5",
-        meta: t("routes.aid.meta"),
-        text: t("routes.aid.text"),
-        hold: "pink",
-        lang: "sk",
-    },
-    {
-        n: 3,
-        href: url("/frontend-best-practices/"),
-        name: t("routes.frontend.name"),
-        grade: "6",
-        meta: t("routes.frontend.meta"),
-        text: t("routes.frontend.text"),
-        hold: "violet",
-        lang: "en",
-    },
-];
+const posts = getPosts();
 ---
 
 <section class="hero">
     <Topo class="hero-topo" seed={7} />
-
-    <div class="hero-text">
-        <p class="eyebrow mono">{t("hero.eyebrow")}</p>
-        <h1 class="hero-title">
-            Štefan
-            <br />
-            <span class="hero-accent">Bartoš</span>
-        </h1>
-        <p class="hero-lead">{t("hero.lead")}</p>
-        <ul class="chips" aria-label={t("hero.chipsLabel")}>
-            <li data-hold="sky">
-                <span aria-hidden="true">&lt;/&gt;</span> {t("hero.chip.dev")}
-            </li>
-            <li data-hold="lime">
-                <span aria-hidden="true">▲</span> {t("hero.chip.climb")}
-            </li>
-            <li data-hold="pink">
-                <span aria-hidden="true">✚</span> {t("hero.chip.aid")}
-            </li>
-        </ul>
-    </div>
-
-    <svg class="hero-route" viewBox="0 0 300 420" aria-hidden="true" focusable="false">
-        <path
-            class="route-line"
-            pathLength="1"
-            d="M150 410 C 120 360, 190 330, 170 290 S 90 230, 120 190 S 220 140, 180 100 S 130 40, 160 12"
-        />
-        <g class="bolts">
-            <circle cx="170" cy="290" r="9" data-hold="sky" />
-            <circle cx="120" cy="190" r="9" data-hold="pink" />
-            <circle cx="180" cy="100" r="9" data-hold="lime" />
-            <circle cx="160" cy="12" r="11" class="anchor" />
-        </g>
-        <g class="bolt-labels mono">
-            <text x="192" y="294">
-                {t("hero.bolt.code")}
-            </text>
-            <text x="100" y="194" text-anchor="end">
-                {t("hero.bolt.aid")}
-            </text>
-            <text x="202" y="104">
-                {t("hero.bolt.rock")}
-            </text>
-            <text x="184" y="18">
-                top
-            </text>
-        </g>
-    </svg>
+    <p class="eyebrow">{t("hero.eyebrow")}</p>
+    <h1 class="hero-title">
+        Štefan <span class="hero-accent">Bartoš</span>
+    </h1>
+    <p class="hero-lead">{t("hero.lead")}</p>
 </section>
 
-<section class="routes" aria-labelledby="routes-title">
+<section class="posts" id="posts" aria-labelledby="posts-title">
     <header class="section-head">
-        <p class="eyebrow mono">{t("routes.eyebrow")}</p>
-        <h2 id="routes-title">{t("routes.title")}</h2>
+        <p class="eyebrow">{t("posts.eyebrow")}</p>
+        <h2 id="posts-title">{t("posts.title")}</h2>
     </header>
-    <ol class="route-list">
-        {routes.map((r) => (
+    <ul class="post-list">
+        {posts.map((post) => (
             <li>
-                <a class="route-card" href={r.href} hreflang={r.lang} data-hold={r.hold}>
-                    <span class="route-n mono">{r.n}</span>
-                    <span class="route-body">
-                        <span class="route-name">{r.name}</span>
-                        <span class="route-text">{r.text}</span>
-                        <span class="route-meta mono">{r.meta}</span>
+                <a class="post-item" href={post.href} hreflang={post.lang}>
+                    <span class="post-title" lang={post.lang}>
+                        {post.title}
                     </span>
-                    <span class="route-grade mono">{r.grade}</span>
+                    {post.summary[locale] && (
+                        <span class="post-summary">{post.summary[locale]}</span>
+                    )}
+                    {post.lang !== locale && (
+                        <span class="post-lang">{languageName(locale, post.lang)}</span>
+                    )}
+                    <span class="post-arrow" aria-hidden="true">
+                        →
+                    </span>
                 </a>
             </li>
         ))}
-    </ol>
+    </ul>
 </section>
 
-<section class="about" aria-labelledby="about-title">
+<section class="about" id="about" aria-labelledby="about-title">
     <div class="about-card">
-        <p class="eyebrow mono">{t("about.eyebrow")}</p>
+        <p class="eyebrow">{t("about.eyebrow")}</p>
         <h2 id="about-title">{t("about.title")}</h2>
         <p>{t("about.p1")}</p>
         <p>{t("about.p2")}</p>
-    </div>
-    <div class="now-card">
-        <p class="eyebrow mono">{t("now.eyebrow")}</p>
-        <ul>
-            <li>
-                <span class="dot" data-hold="lime"></span> {t("now.1")}
-            </li>
-            <li>
-                <span class="dot" data-hold="sky"></span> {t("now.2")}
-            </li>
-            <li>
-                <span class="dot" data-hold="pink"></span> {t("now.3")}
-            </li>
-        </ul>
+        <div class="credential">
+            <span class="credential-badge" aria-hidden="true">
+                SCI
+            </span>
+            <div>
+                <p class="credential-title">{t("about.cred.title")}</p>
+                <p class="credential-text">{t("about.cred.text")}</p>
+            </div>
+        </div>
     </div>
 </section>

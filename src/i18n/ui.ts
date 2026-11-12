@@ -16,98 +16,71 @@ export function homeUrl(lang: Locale) {
 
 const ui = {
     sk: {
-        "site.description": "Osobná stránka Štefana Bartoša — kód, skaly a poznámky.",
+        "site.description": "Blog Štefana Bartoša o lezení, jachtingu, motorkách, outdoore a IT.",
         skip: "Preskočiť na obsah",
         "nav.label": "Hlavná navigácia",
         "nav.home": "Domov",
-        "nav.sci": "SCI",
-        "nav.firstAid": "Prvá pomoc",
-        "nav.frontend": "Frontend",
+        "nav.posts": "Články",
+        "nav.about": "O mne",
         "lang.switch": "Switch to English",
         "lang.other": "EN",
+        "theme.toggle": "Prepnúť svetlý/tmavý režim",
 
         "hero.eyebrow": "Ahoj, ja som",
         "hero.lead":
-            "Cez deň skladám webové komponenty, cez víkend istím na skalách. Sem si odkladám poznámky z kurzov, výletov a všetkého medzi tým.",
-        "hero.chipsLabel": "O mne v skratke",
-        "hero.chip.dev": "frontend developer",
-        "hero.chip.climb": "lezec & drytool",
-        "hero.chip.aid": "outdoor prvá pomoc",
-        "hero.bolt.code": "kód",
-        "hero.bolt.aid": "prvá pomoc",
-        "hero.bolt.rock": "skaly",
+            "Frontend developer. Píšem o webovom vývoji, lezení a ďalších veciach, ktorým sa venujem.",
 
-        "routes.eyebrow": "Topo",
-        "routes.title": "Cesty na tejto skale",
-        "routes.sci.text":
-            "Poznámky z kurzu skalného inštruktora: uzly, štandy, slaňovanie a záchranné techniky.",
-        "routes.sci.meta": "dlhá cesta · 40+ krokov",
-        "routes.aid.text":
-            "Čo patrí do outdoorovej lekárničky a ako postupovať, keď sa niečo pokazí.",
-        "routes.aid.meta": "krátka, ale dôležitá",
-        "routes.frontend.name": "Frontend Best Practices",
-        "routes.frontend.text":
-            "Čo nastaviť v každom frontend projekte: bezpečnosť závislostí, CI a zdravie kódu.",
-        "routes.frontend.meta": "z práce · v angličtine",
+        "posts.eyebrow": "Zápisník",
+        "posts.title": "Články",
 
-        "about.eyebrow": "Beta",
-        "about.title": "O mne",
+        "about.eyebrow": "O mne",
+        "about.title": "Kto tu píše",
         "about.p1":
-            "Som frontend developer — baví ma, keď je rozhranie rýchle, prístupné a príjemné na dotyk. Mimo obrazovky ma nájdeš na pieskovci, vápenci alebo v ľade s cepínmi v rukách.",
-        "about.p2":
-            "Táto stránka je môj otvorený zápisník. Nič tu nie je dokonalé, ale všetko je overené v teréne.",
-        "now.eyebrow": "Práve teraz",
-        "now.1": "pripravujem sa na SCI",
-        "now.2": "ladím túto stránku v Astre",
-        "now.3": "dopĺňam lekárničku",
+            "Som frontend developer so zameraním na rýchle, prístupné a dobre použiteľné webové rozhrania. Vo voľnom čase sa venujem lezeniu, jachtingu a motorkám.",
+        "about.p2": "Na tomto blogu zdieľam poznámky a skúsenosti z práce aj z voľného času.",
+        "about.cred.title": "Inštruktor športových ciest (SCI)",
+        "about.cred.text":
+            "Kvalifikovaný inštruktor podľa Národnej sústavy kvalifikácií, s prípravou na Českom horolezeckom zväze.",
     },
     en: {
-        "site.description": "Štefan Bartoš's personal site — code, rock and notes.",
+        "site.description":
+            "Štefan Bartoš's personal blog – notes from code, from the road and everything in between.",
         skip: "Skip to content",
         "nav.label": "Main navigation",
         "nav.home": "Home",
-        "nav.sci": "SCI",
-        "nav.firstAid": "First aid",
-        "nav.frontend": "Frontend",
+        "nav.posts": "Posts",
+        "nav.about": "About",
         "lang.switch": "Prepnúť do slovenčiny",
         "lang.other": "SK",
+        "theme.toggle": "Toggle light/dark theme",
 
         "hero.eyebrow": "Hi, I'm",
         "hero.lead":
-            "By day I build web components, at weekends I belay on the crag. This is where I keep notes from courses, trips and everything in between.",
-        "hero.chipsLabel": "About me in brief",
-        "hero.chip.dev": "frontend developer",
-        "hero.chip.climb": "climber & drytooler",
-        "hero.chip.aid": "outdoor first aid",
-        "hero.bolt.code": "code",
-        "hero.bolt.aid": "first aid",
-        "hero.bolt.rock": "rock",
+            "Frontend developer. I write about web development, climbing and the other things I spend my time on.",
 
-        "routes.eyebrow": "Topo",
-        "routes.title": "Routes on this crag",
-        "routes.sci.text":
-            "Notes from the rock-climbing instructor course: knots, anchors, abseiling and rescue techniques.",
-        "routes.sci.meta": "long route · in Czech",
-        "routes.aid.text":
-            "What goes into an outdoor first-aid kit and what to do when things go wrong.",
-        "routes.aid.meta": "short but important · in Slovak",
-        "routes.frontend.name": "Frontend Best Practices",
-        "routes.frontend.text":
-            "What to set up in every frontend project: dependency security, CI and code health.",
-        "routes.frontend.meta": "from work · checklist",
+        "posts.eyebrow": "Notebook",
+        "posts.title": "Posts",
 
-        "about.eyebrow": "Beta",
-        "about.title": "About me",
+        "about.eyebrow": "About",
+        "about.title": "Who writes here",
         "about.p1":
-            "I'm a frontend developer — I like interfaces that are fast, accessible and pleasant to touch. Away from the screen you'll find me on sandstone, limestone or ice with axes in hand.",
-        "about.p2":
-            "This site is my open notebook. Nothing here is perfect, but all of it has been tested in the field.",
-        "now.eyebrow": "Right now",
-        "now.1": "preparing for the SCI exam",
-        "now.2": "tuning this site in Astro",
-        "now.3": "restocking my first-aid kit",
+            "I'm a frontend developer focused on fast, accessible and usable web interfaces. In my free time I climb, sail and ride motorbikes.",
+        "about.p2": "On this blog I share notes and experience from both work and free time.",
+        "about.cred.title": "Sport Climbing Instructor (SCI)",
+        "about.cred.text":
+            "Qualified under the Czech National Qualifications Framework (NSK), trained by the Czech Mountaineering Federation (ČHS).",
     },
 } as const;
+
+const languageNames: Record<Locale, Record<string, string>> = {
+    sk: { sk: "po slovensky", cs: "po česky", en: "po anglicky" },
+    en: { sk: "in Slovak", cs: "in Czech", en: "in English" },
+};
+
+/** "in Czech" etc., shown on post cards whose language differs from the page. */
+export function languageName(locale: Locale, lang: string) {
+    return languageNames[locale][lang] ?? lang;
+}
 
 export type UIKey = keyof (typeof ui)["sk"];
 
