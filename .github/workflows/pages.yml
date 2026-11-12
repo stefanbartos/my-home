@@ -43,6 +43,10 @@ jobs:
       - name: Check formatting
         run: npm run format:check || { npm run format >/dev/null; git --no-pager diff; exit 1; }
 
+      # Bugs and suspicious patterns in JS/TS and Astro scripts.
+      - name: Lint with oxlint
+        run: npm run lint
+
       # Unused files, exports and dependencies, duplication and complexity.
       - name: Check code with fallow
         run: npm run lint:fallow

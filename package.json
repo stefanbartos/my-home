@@ -11,6 +11,7 @@
     "astro": "astro",
     "format": "oxfmt",
     "format:check": "oxfmt --check",
+    "lint": "oxlint --deny-warnings",
     "lint:fallow": "fallow --fail-on-issues"
   },
   "repository": {
@@ -35,6 +36,7 @@
   "devDependencies": {
     "@astrojs/compiler-rs": "^0.5.2",
     "fallow": "^3.38.1",
-    "oxfmt": "^0.75.0"
+    "oxfmt": "^0.75.0",
+    "oxlint": "^1.91.0"
   }
 }
