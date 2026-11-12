@@ -12,4 +12,9 @@ export default defineConfig({
         layout: "constrained",
         responsiveStyles: true,
     },
+    i18n: {
+        defaultLocale: "sk",
+        locales: ["sk", "en"],
+        routing: { prefixDefaultLocale: false },
+    },
 });
