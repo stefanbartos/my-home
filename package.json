@@ -2,7 +2,7 @@
   "name": "my-home",
   "version": "1.0.0",
   "private": true,
-  "description": "Personal notes: SCI climbing instructor course and first aid",
+  "description": "Personal home page stuff",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
