@@ -23,7 +23,7 @@ Backlog from a project review (2026-11-03). Each task has a unique ID; reference
 | [CI-02](#ci-02)   | Migrate to the official GitHub Pages actions                  | P2       | M    | Open     | #33      |
 | [CI-03](#ci-03)   | Cancel superseded deploys                                     | P3       | S    | Done     | #17      |
 | [CI-04](#ci-04)   | Build on pull requests                                        | P2       | S    | Done     | #16      |
-| [HK-01](#hk-01)   | Clean up `package.json` metadata                              | P3       | S    | Open     | #18      |
+| [HK-01](#hk-01)   | Clean up `package.json` metadata                              | P3       | S    | Done     | #18      |
 | [HK-02](#hk-02)   | Update dependencies and fix `npm audit` findings              | P2       | S    | Obsolete | #4       |
 | [HK-03](#hk-03)   | Trim `.gitignore`                                             | P3       | S    | Done     | #19      |
 | [HK-04](#hk-04)   | Remove Astro leftovers locally                                | P3       | S    | Obsolete | #4       |
@@ -175,11 +175,11 @@ Today the workflow only runs on pushes to `main`, so a broken build is only disc
 
 **Clean up `package.json` metadata** · P3 · S
 
-**Status:** Open: #18 removed `main`, filled in `description` and `author` and set `"private": true`. `license` is still `ISC`.
+**Status:** Done: #18 removed `main`, filled in `description` and `author` and set `"private": true`. The `ISC` `license` field was then dropped, since the package is private and the repo has no license file.
 
 - [x] Remove the template default `"main": "index.js"`
 - [x] Fill in `description` and `author`
-- [ ] Choose a license deliberately (or set `"private": true` and drop `license`)
+- [x] Choose a license deliberately (or set `"private": true` and drop `license`)
 
 ### HK-02
 
