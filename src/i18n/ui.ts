@@ -36,7 +36,6 @@ const ui = {
         "notFound.text":
             "Odkaz, ktorý ste otvorili, je nefunkčný alebo stránka bola presunutá či odstránená.",
         "notFound.home": "Späť na úvod",
-        "notFound.posts": "Prezrieť články",
 
         "hero.eyebrow": "Ahoj, ja som",
         "hero.lead":
@@ -75,7 +74,6 @@ const ui = {
         "notFound.title": "Page not found",
         "notFound.text": "The link you followed is broken, or the page has been moved or removed.",
         "notFound.home": "Back home",
-        "notFound.posts": "Browse posts",
 
         "hero.eyebrow": "Hi, I'm",
         "hero.lead":
