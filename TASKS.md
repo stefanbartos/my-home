@@ -16,7 +16,7 @@ Backlog from a project review (2026-11-03). Each task has a unique ID; reference
 | [BUG-03](#bug-03) | Make bare URLs clickable                                      | P1       | S    | Done     | #4       |
 | [BUG-04](#bug-04) | Constrain image size (SCI outline image + overflow on mobile) | P1       | S    | Done     | #7       |
 | [BUG-05](#bug-05) | Set the page language to Czech                                | P1       | S    | Done     | #8       |
-| [IMG-01](#img-01) | Downsize oversized source photos                              | P2       | S    | Open     | #13      |
+| [IMG-01](#img-01) | Downsize oversized source photos                              | P2       | S    | Done     | #13      |
 | [IMG-02](#img-02) | Generate responsive image widths                              | P2       | S    | Done     | #7       |
 | [IMG-03](#img-03) | Add meaningful `alt` text to images                           | P2       | M    | Done     | #14      |
 | [CI-01](#ci-01)   | Remove Hugo leftovers from the workflow                       | P2       | S    | Done     | #4       |
@@ -99,11 +99,11 @@ eleventy-img drops the `height="500"` on `osnova_sci.jpg`, so it renders at 1259
 
 **Downsize oversized source photos** · P2 · S
 
-**Status:** Open: PR #13 is waiting for review. The two `stand_z_docasnych_pomucek` photos are still 7–8 MB on `main`.
+**Status:** Done in #13: all five photos are now about 2000px on the long edge and under 1 MB each.
 
 `.git` is about 33 MB, mostly photos. `stand_z_docasnych_pomucek_1/2.jpg` are 7–8 MB each, and `slaneni_pres_uzel_1/2/3.jpeg` are about 2.5 MB each.
 
-- [ ] Resize the originals to about 2000px on the long edge before committing (e.g. `sips -Z 2000 file.jpg`)
+- [x] Resize the originals to about 2000px on the long edge before committing (e.g. `sips -Z 2000 file.jpg`)
 - Note: this doesn't shrink history; rewriting history isn't worth it for this repo
 
 ### IMG-02
