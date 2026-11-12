@@ -6,7 +6,8 @@ import Toc from "../components/Toc.astro";
 import ThemeToggle from "../components/ThemeToggle.astro";
 import Lightbox from "../components/Lightbox.astro";
 import CodeCopy from "../components/CodeCopy.astro";
-import { defaultLocale, homeUrl, useTranslations, type Locale } from "../i18n/ui";
+import type { Locale } from "../i18n/ui";
+import { defaultLocale, homeUrl, useTranslations } from "../i18n/ui";
 
 interface Props {
     frontmatter?: {
@@ -82,7 +83,9 @@ const nav = [
                 if (theme === "light" || theme === "dark") {
                     document.documentElement.dataset.theme = theme;
                 }
-            } catch {}
+            } catch {
+                // Storage blocked (private mode etc.): keep the system theme.
+            }
         </script>
     </head>
 

@@ -24,36 +24,39 @@ const { labels } = Astro.props;
 
 <script>
     const template = document.querySelector<HTMLTemplateElement>("#code-copy-template");
+    const buttonTemplate = template?.content.firstElementChild;
 
-    if (template && navigator.clipboard) {
-        const { copy, copied } = template.dataset;
+    if (template && buttonTemplate && navigator.clipboard) {
+        const { copy = "", copied = "" } = template.dataset;
 
-        document.querySelectorAll<HTMLPreElement>(".prose pre").forEach((pre) => {
+        for (const pre of document.querySelectorAll<HTMLPreElement>(".prose pre")) {
             // Wrap the <pre> so the button stays put while the code scrolls sideways.
             const wrapper = document.createElement("div");
             wrapper.className = "code-block";
             pre.before(wrapper);
             wrapper.append(pre);
 
-            const button = template.content.firstElementChild!.cloneNode(true) as HTMLButtonElement;
+            const button = buttonTemplate.cloneNode(true) as HTMLButtonElement;
             wrapper.append(button);
 
-            let timer: number | undefined;
+            let timer: ReturnType<typeof setTimeout> | undefined;
             button.addEventListener("click", async () => {
                 const text = (pre.querySelector("code") ?? pre).textContent ?? "";
                 try {
-                    await navigator.clipboard.writeText(text.replace(/\n$/, ""));
+                    await navigator.clipboard.writeText(text.replace(/\n$/u, ""));
                 } catch {
                     return;
                 }
                 button.classList.add("is-copied");
-                button.ariaLabel = button.title = copied!;
+                button.ariaLabel = copied;
+                button.title = copied;
                 clearTimeout(timer);
-                timer = window.setTimeout(() => {
+                timer = globalThis.setTimeout(() => {
                     button.classList.remove("is-copied");
-                    button.ariaLabel = button.title = copy!;
+                    button.ariaLabel = copy;
+                    button.title = copy;
                 }, 2000);
             });
-        });
+        }
     }
 </script>
