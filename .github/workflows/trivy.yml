@@ -1,0 +1,60 @@
+name: Dependency security
+
+# Scans the repository with Trivy: known vulnerabilities in package-lock.json,
+# committed secrets and misconfigurations. Findings appear in the Security tab
+# and on the pull request diff. The weekly run catches CVEs published after
+# the last change.
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  schedule:
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  trivy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+    permissions:
+      contents: read
+      # Upload findings to code scanning.
+      security-events: write
+      # Needed by the SARIF upload in private repos; harmless in public ones.
+      actions: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      # Fails the job on HIGH or CRITICAL findings; the SARIF report is
+      # uploaded either way.
+      - name: Run Trivy
+        uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
+        with:
+          scan-type: fs
+          scan-ref: .
+          scanners: vuln,secret,misconfig
+          severity: HIGH,CRITICAL
+          ignore-unfixed: true
+          format: sarif
+          output: trivy-results.sarif
+          limit-severities-for-sarif: true
+          exit-code: "1"
+          # Pin the tool too, so a new release can't change what runs here.
+          version: v0.76.2
+
+      - name: Upload results to code scanning
+        if: ${{ !cancelled() }}
+        uses: github/codeql-action/upload-sarif@33d7b85da1a04171e211befe2c739303b9a4c066 # v4.39.3
+        with:
+          sarif_file: trivy-results.sarif
+          category: trivy
