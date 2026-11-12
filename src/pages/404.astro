@@ -1,28 +1,5 @@
 ---
-import Default from "../layouts/Default.astro";
-import { homeUrl, useTranslations } from "../i18n/ui";
-
-// GitHub Pages serves this page for any unknown URL under the base path, so it
-// can't tell which language the visitor wanted: show the message in both.
-const sk = useTranslations("sk");
-const en = useTranslations("en");
+import NotFound from "../components/NotFound.astro";
 ---
 
-<Default title={sk("notFound.title")} description={sk("notFound.text")}>
-    <p class="eyebrow mono">404</p>
-    <h1>{sk("notFound.title")}</h1>
-    <p>{sk("notFound.text")}</p>
-    <p>
-        <a href={homeUrl("sk")}>{sk("notFound.home")}</a>
-    </p>
-
-    <div lang="en">
-        <h2>{en("notFound.title")}</h2>
-        <p>{en("notFound.text")}</p>
-        <p>
-            <a href={homeUrl("en")} hreflang="en">
-                {en("notFound.home")}
-            </a>
-        </p>
-    </div>
-</Default>
+<NotFound locale="sk" />
