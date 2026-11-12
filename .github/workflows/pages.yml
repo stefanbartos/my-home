@@ -54,11 +54,16 @@ jobs:
       # Astro keeps optimized images in node_modules/.astro. Restoring it skips
       # re-processing photos that have not changed. It must come after npm ci,
       # which wipes node_modules.
+      # The key covers everything that decides which variants get generated
+      # (components and pages pick sizes and formats, not just the photos), so
+      # a change there saves a fresh cache. Otherwise the old key keeps hitting,
+      # the cache is never re-saved and the new variants are re-encoded on
+      # every run.
       - name: Cache optimized images
         uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: node_modules/.astro
-          key: astro-${{ hashFiles('src/**/*.jpg', 'src/**/*.jpeg', 'src/**/*.png', 'src/**/*.webp', 'astro.config.mjs', 'package-lock.json') }}
+          key: astro-${{ hashFiles('src/**', 'astro.config.mjs', 'package-lock.json') }}
           restore-keys: astro-
 
       - name: Build
