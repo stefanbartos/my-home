@@ -22,11 +22,13 @@ const width = Math.min(src.width, wide ? WIDE : COLUMN);
 
 // Large, high-quality version shown in the lightbox, so fine detail
 // (rope sheath, knots, carabiner gates) can be inspected.
+// A link can point to only one file, so use AVIF: every current browser
+// supports it, and at the same visual quality it is ~35% smaller than WebP q90.
 const full = await getImage({
     src,
     width: Math.min(src.width, 2000),
-    format: "webp",
-    quality: 90,
+    format: "avif",
+    quality: 70,
 });
 ---
 
