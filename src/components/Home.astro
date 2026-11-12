@@ -1,0 +1,67 @@
+---
+import Topo from "./Topo.astro";
+import { languageName, useTranslations, type Locale } from "../i18n/ui";
+import { getPosts } from "../posts";
+
+interface Props {
+    locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const posts = getPosts();
+---
+
+<section class="hero">
+    <Topo class="hero-topo" seed={7} />
+    <p class="eyebrow">{t("hero.eyebrow")}</p>
+    <h1 class="hero-title">
+        Štefan <span class="hero-accent">Bartoš</span>
+    </h1>
+    <p class="hero-lead">{t("hero.lead")}</p>
+</section>
+
+<section class="posts" id="posts" aria-labelledby="posts-title">
+    <header class="section-head">
+        <p class="eyebrow">{t("posts.eyebrow")}</p>
+        <h2 id="posts-title">{t("posts.title")}</h2>
+    </header>
+    <ul class="post-list">
+        {posts.map((post) => (
+            <li>
+                <a class="post-item" href={post.href} hreflang={post.lang}>
+                    <span class="post-title" lang={post.lang}>
+                        {post.title}
+                    </span>
+                    {post.summary[locale] && (
+                        <span class="post-summary">{post.summary[locale]}</span>
+                    )}
+                    {post.lang !== locale && (
+                        <span class="post-lang">{languageName(locale, post.lang)}</span>
+                    )}
+                    <span class="post-arrow" aria-hidden="true">
+                        →
+                    </span>
+                </a>
+            </li>
+        ))}
+    </ul>
+</section>
+
+<section class="about" id="about" aria-labelledby="about-title">
+    <div class="about-card">
+        <p class="eyebrow">{t("about.eyebrow")}</p>
+        <h2 id="about-title">{t("about.title")}</h2>
+        <p>{t("about.p1")}</p>
+        <p>{t("about.p2")}</p>
+        <div class="credential">
+            <span class="credential-badge" aria-hidden="true">
+                SCI
+            </span>
+            <div>
+                <p class="credential-title">{t("about.cred.title")}</p>
+                <p class="credential-text">{t("about.cred.text")}</p>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,16 +1,49 @@
 ---
+import "../styles/global.css";
 import type { MarkdownHeading } from "astro";
+import Topo from "../components/Topo.astro";
 import Toc from "../components/Toc.astro";
+import ThemeToggle from "../components/ThemeToggle.astro";
+import Lightbox from "../components/Lightbox.astro";
+import CodeCopy from "../components/CodeCopy.astro";
+import { defaultLocale, homeUrl, useTranslations, type Locale } from "../i18n/ui";
 
 interface Props {
-    frontmatter?: { title?: string; lang?: string; toc?: boolean };
+    frontmatter?: {
+        title?: string;
+        description?: string;
+        lang?: string;
+        toc?: boolean;
+    };
     headings?: MarkdownHeading[];
     title?: string;
+    description?: string;
+    /** Language of the page content (html lang). Defaults to the UI locale. */
+    lang?: string;
+    /** Language of the site chrome (nav, footer). */
+    locale?: Locale;
+    /** URL of this page in the other locale, if a translation exists. */
+    alternate?: string;
+    wide?: boolean;
 }
 
-const { frontmatter, headings = [], title: titleProp } = Astro.props;
-const title = titleProp ?? frontmatter?.title ?? "My home";
-const lang = frontmatter?.lang ?? "cs";
+const { frontmatter, headings = [], wide = false } = Astro.props;
+const locale: Locale = Astro.props.locale ?? defaultLocale;
+const otherLocale: Locale = locale === "sk" ? "en" : "sk";
+const t = useTranslations(locale);
+
+const pageTitle = Astro.props.title ?? frontmatter?.title;
+const title = pageTitle ? `${pageTitle} · Štefan Bartoš` : "Štefan Bartoš";
+const description = Astro.props.description ?? frontmatter?.description ?? t("site.description");
+const lang = Astro.props.lang ?? frontmatter?.lang ?? locale;
+const alternate = Astro.props.alternate;
+const switchHref = alternate ?? homeUrl(otherLocale);
+
+const home = homeUrl(locale);
+const nav = [
+    { href: `${home}#posts`, label: t("nav.posts") },
+    { href: `${home}#about`, label: t("nav.about") },
+];
 ---
 
 <!doctype html>
@@ -18,82 +51,105 @@ const lang = frontmatter?.lang ?? "cs";
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content={description} />
+        <meta name="theme-color" content="#f8f7f4" media="(prefers-color-scheme: light)" />
+        <meta name="theme-color" content="#111318" media="(prefers-color-scheme: dark)" />
+        {alternate && (
+            <>
+                <link
+                    rel="alternate"
+                    hreflang={locale}
+                    href={new URL(Astro.url.pathname, Astro.site)}
+                />
+                <link
+                    rel="alternate"
+                    hreflang={otherLocale}
+                    href={new URL(alternate, Astro.site)}
+                />
+            </>
+        )}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500..700&family=Inter:wght@400..700&family=JetBrains+Mono:wght@500;600&display=swap"
+        />
         <title>{title}</title>
-        <style is:global>
-            :root {
-                color-scheme: light dark;
-                --text: #1f2328;
-                --muted: #59636e;
-                --bg: #ffffff;
-                --link: #0969da;
-                --border: #d1d9e0;
-            }
-            @media (prefers-color-scheme: dark) {
-                :root {
-                    --text: #e6edf3;
-                    --muted: #9198a1;
-                    --bg: #0d1117;
-                    --link: #4493f8;
-                    --border: #3d444d;
+        <script is:inline>
+            // Apply a saved light/dark choice before first paint (see ThemeToggle.astro).
+            try {
+                const theme = localStorage.getItem("theme");
+                if (theme === "light" || theme === "dark") {
+                    document.documentElement.dataset.theme = theme;
                 }
-            }
-            body {
-                margin: 0;
-                padding: 1.5rem 1rem 4rem;
-                background: var(--bg);
-                color: var(--text);
-                font-family:
-                    system-ui,
-                    -apple-system,
-                    "Segoe UI",
-                    Roboto,
-                    sans-serif;
-                font-size: 1.0625rem;
-                line-height: 1.6;
-            }
-            main {
-                max-width: 48rem;
-                margin: 0 auto;
-            }
-            h1,
-            h2,
-            h3 {
-                line-height: 1.25;
-                margin: 2em 0 0.5em;
-            }
-            h1 {
-                margin-top: 0;
-            }
-            h3 {
-                padding-top: 1em;
-                border-top: 1px solid var(--border);
-            }
-            a {
-                color: var(--link);
-                overflow-wrap: anywhere;
-            }
-            ul,
-            ol {
-                padding-left: 1.5rem;
-            }
-            li + li {
-                margin-top: 0.25em;
-            }
-            img {
-                max-width: 100%;
-                height: auto;
-            }
-            picture {
-                display: block;
-                margin: 1rem 0;
-            }
-        </style>
+            } catch {}
+        </script>
     </head>
 
     <body>
-        <main>
+        <a class="skip" href="#obsah" lang={locale}>
+            {t("skip")}
+        </a>
+        <header class="site-header" lang={locale}>
+            <a class="brand" href={homeUrl(locale)} aria-label={t("nav.home")}>
+                <span class="brand-hold" aria-hidden="true">
+                    ŠB
+                </span>
+                <span class="brand-name">Štefan Bartoš</span>
+            </a>
+            <nav aria-label={t("nav.label")}>
+                <ul>
+                    {nav.map((item) => (
+                        <li>
+                            <a href={item.href}>{item.label}</a>
+                        </li>
+                    ))}
+                    <li>
+                        <ThemeToggle label={t("theme.toggle")} />
+                    </li>
+                    <li>
+                        <a
+                            class="lang-switch mono"
+                            href={switchHref}
+                            hreflang={otherLocale}
+                            lang={otherLocale}
+                            title={t("lang.switch")}
+                            aria-label={t("lang.switch")}
+                        >
+                            {t("lang.other")}
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <main id="obsah" class:list={[wide ? "wide" : "prose"]}>
+            {!wide && (
+                <div class="page-banner" aria-hidden="true">
+                    <Topo seed={title.length} peaks={[{ x: 85, y: 40, r: 60 }]} />
+                </div>
+            )}
             {frontmatter?.toc && <Toc headings={headings} />}
             <slot />
         </main>
+
+        <footer class="site-footer" lang={locale}>
+            <p>
+                © {new Date().getFullYear()} Štefan Bartoš ·
+                <a href="https://github.com/stefanbartos">GitHub</a>
+            </p>
+        </footer>
+
+        {!wide && <CodeCopy labels={{ copy: t("code.copy"), copied: t("code.copied") }} />}
+        {!wide && (
+            <Lightbox
+                labels={{
+                    dialog: t("lightbox.label"),
+                    close: t("lightbox.close"),
+                    prev: t("lightbox.prev"),
+                    next: t("lightbox.next"),
+                }}
+            />
+        )}
     </body>
 </html>

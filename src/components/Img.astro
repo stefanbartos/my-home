@@ -1,24 +1,48 @@
 ---
-import { Picture } from "astro:assets";
+import { Picture, getImage } from "astro:assets";
 import type { ImageMetadata } from "astro";
 
 interface Props {
     src: ImageMetadata;
     /** Describe what the image shows; use "" only for purely decorative images. */
     alt: string;
-    width?: number;
-    height?: number;
 }
 
-const { src, alt, width, height } = Astro.props;
+const { src, alt } = Astro.props;
+
+// Display size is derived from the image itself:
+// - large landscape photos break out of the text column (up to 960px),
+// - everything else fills the column (never upscaled),
+// - portrait images are also capped by the viewport height (CSS).
+const COLUMN = 720;
+const WIDE = 960;
+const wide = src.width >= WIDE && src.width > src.height * 1.2;
+const tall = src.height > src.width;
+const width = Math.min(src.width, wide ? WIDE : COLUMN);
+
+// Large, high-quality version shown in the lightbox, so fine detail
+// (rope sheath, knots, carabiner gates) can be inspected.
+const full = await getImage({
+    src,
+    width: Math.min(src.width, 2000),
+    format: "webp",
+    quality: 90,
+});
 ---
 
-<Picture
-    src={src}
-    alt={alt}
-    width={width}
-    height={height}
-    formats={["avif", "webp"]}
-    loading="lazy"
-    decoding="async"
-/>
+<a
+    class:list={["img-zoom", { wide, tall }]}
+    style={`--img-w: ${width}px`}
+    href={full.src}
+    target="_blank"
+    rel="noopener"
+>
+    <Picture
+        src={src}
+        alt={alt}
+        width={width}
+        formats={["avif", "webp"]}
+        loading="lazy"
+        decoding="async"
+    />
+</a>

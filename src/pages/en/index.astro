@@ -1,0 +1,9 @@
+---
+import Default from "../../layouts/Default.astro";
+import Home from "../../components/Home.astro";
+import { homeUrl } from "../../i18n/ui";
+---
+
+<Default wide locale="en" alternate={homeUrl("sk")}>
+    <Home locale="en" />
+</Default>

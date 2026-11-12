@@ -1,0 +1,64 @@
+---
+/**
+ * Decorative topographic contour lines, generated deterministically at build time.
+ */
+interface Props {
+    seed?: number;
+    peaks?: { x: number; y: number; r: number }[];
+    class?: string;
+}
+
+const {
+    seed = 1,
+    peaks = [
+        { x: 78, y: 30, r: 46 },
+        { x: 18, y: 88, r: 34 },
+    ],
+    class: className,
+} = Astro.props;
+
+const W = 100;
+const H = 100;
+
+function rand(n: number) {
+    const x = Math.sin(n * 12.9898 + seed * 78.233) * 43758.5453;
+    return x - Math.floor(x);
+}
+
+function ring(cx: number, cy: number, radius: number, k: number) {
+    const steps = 72;
+    const phases = [rand(k + 1) * 6.28, rand(k + 2) * 6.28, rand(k + 3) * 6.28];
+    const pts: string[] = [];
+    for (let i = 0; i <= steps; i++) {
+        const a = (i / steps) * Math.PI * 2;
+        const wobble =
+            1 +
+            0.11 * Math.sin(3 * a + phases[0]) +
+            0.06 * Math.sin(5 * a + phases[1]) +
+            0.03 * Math.sin(9 * a + phases[2]);
+        const x = cx + Math.cos(a) * radius * wobble * 1.25;
+        const y = cy + Math.sin(a) * radius * wobble;
+        pts.push(`${x.toFixed(2)},${y.toFixed(2)}`);
+    }
+    return `M${pts.join("L")}Z`;
+}
+
+const paths = peaks.flatMap((p, pi) =>
+    Array.from({ length: 9 }, (_, i) => ({
+        d: ring(p.x, p.y, (p.r * (i + 1)) / 9, pi * 31 + i * 7),
+        major: i % 3 === 2,
+    })),
+);
+---
+
+<svg
+    class:list={["topo", className]}
+    viewBox={`0 0 ${W} ${H}`}
+    preserveAspectRatio="xMidYMid slice"
+    aria-hidden="true"
+    focusable="false"
+>
+    {paths.map((p) => (
+        <path d={p.d} class={p.major ? "major" : undefined} />
+    ))}
+</svg>

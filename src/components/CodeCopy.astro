@@ -1,0 +1,59 @@
+---
+/**
+ * Adds a "copy" button to the top-right corner of every code block in the
+ * page content. Without JavaScript (or the Clipboard API) nothing is added.
+ */
+interface Props {
+    labels: { copy: string; copied: string };
+}
+
+const { labels } = Astro.props;
+---
+
+<template id="code-copy-template" data-copy={labels.copy} data-copied={labels.copied}>
+    <button class="code-copy" type="button" aria-label={labels.copy} title={labels.copy}>
+        <svg class="code-copy-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="9" y="9" width="11" height="11" rx="2"></rect>
+            <path d="M5 15V6a2 2 0 0 1 2-2h8"></path>
+        </svg>
+        <svg class="code-copy-done" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M5 12.5l4.5 4.5L19 7"></path>
+        </svg>
+    </button>
+</template>
+
+<script>
+    const template = document.querySelector<HTMLTemplateElement>("#code-copy-template");
+
+    if (template && navigator.clipboard) {
+        const { copy, copied } = template.dataset;
+
+        document.querySelectorAll<HTMLPreElement>(".prose pre").forEach((pre) => {
+            // Wrap the <pre> so the button stays put while the code scrolls sideways.
+            const wrapper = document.createElement("div");
+            wrapper.className = "code-block";
+            pre.before(wrapper);
+            wrapper.append(pre);
+
+            const button = template.content.firstElementChild!.cloneNode(true) as HTMLButtonElement;
+            wrapper.append(button);
+
+            let timer: number | undefined;
+            button.addEventListener("click", async () => {
+                const text = (pre.querySelector("code") ?? pre).textContent ?? "";
+                try {
+                    await navigator.clipboard.writeText(text.replace(/\n$/, ""));
+                } catch {
+                    return;
+                }
+                button.classList.add("is-copied");
+                button.ariaLabel = button.title = copied!;
+                clearTimeout(timer);
+                timer = window.setTimeout(() => {
+                    button.classList.remove("is-copied");
+                    button.ariaLabel = button.title = copy!;
+                }, 2000);
+            });
+        });
+    }
+</script>
