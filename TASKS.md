@@ -35,7 +35,7 @@ Backlog from a project review (2026-11-03). Each task has a unique ID; reference
 | [CNT-01](#cnt-01) | Fix heading hierarchy and deprecated markup in `sci.md`       | P2       | S    | Done     | #21      |
 | [CNT-02](#cnt-02) | Fix typos                                                     | P2       | S    | Done     | #22, #23 |
 | [CNT-03](#cnt-03) | Add diacritics to `prvni-pomoc.md`                            | P3       | M    | Done     | #23      |
-| [CNT-04](#cnt-04) | Resolve open question on the double bowline backup knot       | P2       | S    | Open     |          |
+| [CNT-04](#cnt-04) | Resolve open question on the double bowline backup knot       | P2       | S    | Done     |          |
 
 ---
 
@@ -296,8 +296,8 @@ Most of the page is written without diacritics, unlike the other pages.
 
 **Resolve open question on the double bowline backup knot** · P2 · S
 
-**Status:** Open: `sci.mdx` still says "(dvojitý?)".
+**Status:** Done: `sci.mdx` now states that the backup is a double overhand stopper (half of a double fisherman's knot).
 
 `sci.md` → "Dvojitá dračí smyčka" says: "Vhodnější je navázat … pojišťovací uzel (dvojitý?)". This is safety material that may be shared with students, so it shouldn't contain open questions.
 
-- [ ] Confirm against the ČHS methodology and replace the question with a definite statement
+- [x] Confirm against the ČHS methodology and replace the question with a definite statement
