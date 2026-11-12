@@ -25,6 +25,12 @@ const ui = {
         "lang.switch": "Switch to English",
         "lang.other": "EN",
         "theme.toggle": "Prepnúť svetlý/tmavý režim",
+        "lightbox.label": "Prehliadač obrázkov",
+        "lightbox.close": "Zavrieť",
+        "lightbox.prev": "Predchádzajúci obrázok",
+        "lightbox.next": "Ďalší obrázok",
+        "code.copy": "Kopírovať kód",
+        "code.copied": "Skopírované",
 
         "hero.eyebrow": "Ahoj, ja som",
         "hero.lead":
@@ -53,6 +59,12 @@ const ui = {
         "lang.switch": "Prepnúť do slovenčiny",
         "lang.other": "SK",
         "theme.toggle": "Toggle light/dark theme",
+        "lightbox.label": "Image viewer",
+        "lightbox.close": "Close",
+        "lightbox.prev": "Previous image",
+        "lightbox.next": "Next image",
+        "code.copy": "Copy code",
+        "code.copied": "Copied",
 
         "hero.eyebrow": "Hi, I'm",
         "hero.lead":

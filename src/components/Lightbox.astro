@@ -1,0 +1,148 @@
+---
+/**
+ * Full-screen image viewer for the `.img-zoom` links rendered by Img.astro.
+ * Without JavaScript the links simply open the large image.
+ */
+interface Props {
+    labels: { dialog: string; close: string; prev: string; next: string };
+}
+
+const { labels } = Astro.props;
+---
+
+<dialog class="lightbox" aria-label={labels.dialog}>
+    <figure class="lightbox-figure">
+        <img class="lightbox-img" alt="" />
+        <figcaption class="lightbox-caption">
+            <span class="lightbox-counter"></span>
+            <span class="lightbox-alt"></span>
+        </figcaption>
+    </figure>
+    <button
+        class="lightbox-btn lightbox-close"
+        type="button"
+        aria-label={labels.close}
+        title={labels.close}
+    >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M6 6l12 12M18 6L6 18"></path>
+        </svg>
+    </button>
+    <button
+        class="lightbox-btn lightbox-prev"
+        type="button"
+        aria-label={labels.prev}
+        title={labels.prev}
+    >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M15 5l-7 7 7 7"></path>
+        </svg>
+    </button>
+    <button
+        class="lightbox-btn lightbox-next"
+        type="button"
+        aria-label={labels.next}
+        title={labels.next}
+    >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M9 5l7 7-7 7"></path>
+        </svg>
+    </button>
+</dialog>
+
+<script>
+    const dialog = document.querySelector<HTMLDialogElement>(".lightbox");
+    const links = [...document.querySelectorAll<HTMLAnchorElement>("a.img-zoom")];
+
+    if (dialog && links.length) {
+        const img = dialog.querySelector<HTMLImageElement>(".lightbox-img")!;
+        const counter = dialog.querySelector<HTMLElement>(".lightbox-counter")!;
+        const caption = dialog.querySelector<HTMLElement>(".lightbox-alt")!;
+        const prev = dialog.querySelector<HTMLButtonElement>(".lightbox-prev")!;
+        const next = dialog.querySelector<HTMLButtonElement>(".lightbox-next")!;
+        const close = dialog.querySelector<HTMLButtonElement>(".lightbox-close")!;
+        let index = 0;
+
+        const altOf = (i: number) => links[i].querySelector("img")?.alt ?? "";
+
+        const preload = (i: number) => {
+            if (links[i]) new Image().src = links[i].href;
+        };
+
+        const show = (i: number) => {
+            index = Math.max(0, Math.min(links.length - 1, i));
+            img.src = links[index].href;
+            img.alt = altOf(index);
+            caption.textContent = altOf(index);
+            counter.textContent = links.length > 1 ? `${index + 1} / ${links.length}` : "";
+            prev.disabled = index === 0;
+            next.disabled = index === links.length - 1;
+            prev.hidden = next.hidden = links.length < 2;
+            preload(index + 1);
+            preload(index - 1);
+        };
+
+        links.forEach((link, i) => {
+            link.addEventListener("click", (event) => {
+                // Let modified clicks (new tab, download…) behave normally.
+                if (
+                    event.button !== 0 ||
+                    event.metaKey ||
+                    event.ctrlKey ||
+                    event.shiftKey ||
+                    event.altKey
+                ) {
+                    return;
+                }
+                event.preventDefault();
+                show(i);
+                dialog.showModal();
+            });
+        });
+
+        prev.addEventListener("click", () => show(index - 1));
+        next.addEventListener("click", () => show(index + 1));
+        close.addEventListener("click", () => dialog.close());
+
+        dialog.addEventListener("keydown", (event) => {
+            if (event.key === "ArrowLeft") show(index - 1);
+            else if (event.key === "ArrowRight") show(index + 1);
+            else if (event.key === "Home") show(0);
+            else if (event.key === "End") show(links.length - 1);
+            else return;
+            event.preventDefault();
+        });
+
+        // Click on the dark backdrop (not the image or buttons) closes the viewer.
+        dialog.addEventListener("click", (event) => {
+            const target = event.target as HTMLElement;
+            if (target === dialog || target.classList.contains("lightbox-figure")) dialog.close();
+        });
+
+        // Swipe left/right on touch screens.
+        let startX = 0;
+        let startY = 0;
+        dialog.addEventListener(
+            "touchstart",
+            (event) => {
+                if (event.touches.length !== 1) return;
+                startX = event.touches[0].clientX;
+                startY = event.touches[0].clientY;
+            },
+            { passive: true },
+        );
+        dialog.addEventListener("touchend", (event) => {
+            if (event.changedTouches.length !== 1 || window.visualViewport?.scale !== 1) return;
+            const dx = event.changedTouches[0].clientX - startX;
+            const dy = event.changedTouches[0].clientY - startY;
+            if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5)
+                show(index + (dx < 0 ? 1 : -1));
+        });
+
+        // Return focus to the image the viewer was opened from.
+        dialog.addEventListener("close", () => {
+            links[index].focus();
+            img.removeAttribute("src");
+        });
+    }
+</script>

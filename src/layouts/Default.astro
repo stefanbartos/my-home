@@ -4,6 +4,8 @@ import type { MarkdownHeading } from "astro";
 import Topo from "../components/Topo.astro";
 import Toc from "../components/Toc.astro";
 import ThemeToggle from "../components/ThemeToggle.astro";
+import Lightbox from "../components/Lightbox.astro";
+import CodeCopy from "../components/CodeCopy.astro";
 import { defaultLocale, homeUrl, useTranslations, type Locale } from "../i18n/ui";
 
 interface Props {
@@ -137,5 +139,17 @@ const nav = [
                 <a href="https://github.com/stefanbartos">GitHub</a>
             </p>
         </footer>
+
+        {!wide && <CodeCopy labels={{ copy: t("code.copy"), copied: t("code.copied") }} />}
+        {!wide && (
+            <Lightbox
+                labels={{
+                    dialog: t("lightbox.label"),
+                    close: t("lightbox.close"),
+                    prev: t("lightbox.prev"),
+                    next: t("lightbox.next"),
+                }}
+            />
+        )}
     </body>
 </html>

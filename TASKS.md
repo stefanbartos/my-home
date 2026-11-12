@@ -29,7 +29,7 @@ Backlog from a project review (2026-11-03). Each task has a unique ID; reference
 | [HK-04](#hk-04)   | Remove Astro leftovers locally                                | P3       | S    | Obsolete | #4       |
 | [HK-05](#hk-05)   | Write a README                                                | P3       | S    | Done     | #20      |
 | [UX-01](#ux-01)   | Add a minimal stylesheet                                      | P1       | S    | Done     | #9       |
-| [UX-02](#ux-02)   | Add site navigation to the layout                             | P2       | S    | Open     | #10      |
+| [UX-02](#ux-02)   | Add site navigation to the layout                             | P2       | S    | Done     | #10      |
 | [UX-03](#ux-03)   | Add a table of contents to `sci.md`                           | P3       | M    | Done     | #11      |
 | [UX-04](#ux-04)   | Harden the YouTube shortcode                                  | P3       | S    | Done     | #12      |
 | [CNT-01](#cnt-01) | Fix heading hierarchy and deprecated markup in `sci.md`       | P2       | S    | Done     | #21      |
@@ -236,9 +236,9 @@ The site has no CSS at all. Long pages like `sci.md` are hard to read.
 
 **Add site navigation to the layout** · P2 · S
 
-**Status:** Open: PR #10 is waiting for review.
+**Status:** Done in the site redesign (`feat-improve-ui`): `Default.astro` now has a site header with a home link, a nav, a language switch and a theme toggle. PR #10 was closed as superseded.
 
-- [ ] Add a `<nav>` to `default.html` with links to all pages (use the `url` filter so `pathPrefix` works)
+- [x] Add a `<nav>` to `default.html` with links to all pages (use the `url` filter so `pathPrefix` works)
 
 ### UX-03
 

@@ -478,6 +478,153 @@ h4 {
     background: #fff;
 }
 
+.prose .img-zoom {
+    display: block;
+    width: fit-content;
+    max-width: 100%;
+    margin: 1.5rem 0;
+    cursor: zoom-in;
+}
+.prose .img-zoom img {
+    margin: 0;
+}
+/* Portrait images: keep the whole image on screen. */
+.prose .img-zoom.tall {
+    max-width: min(100%, var(--img-w));
+}
+.prose .img-zoom.tall img {
+    width: auto;
+    max-width: min(100%, var(--img-w));
+    max-height: 80svh;
+}
+/* Large landscape photos: break out of the text column, centred on it. */
+.prose .img-zoom.wide {
+    --breakout: min(960px, 100vw - 2 * var(--gutter));
+    width: var(--breakout);
+    max-width: none;
+    margin-inline: calc((100% - var(--breakout)) / 2);
+}
+.prose .img-zoom.wide img {
+    width: 100%;
+}
+
+/* Image viewer (Lightbox.astro) */
+html:has(.lightbox[open]) {
+    overflow: hidden;
+}
+.lightbox {
+    width: 100vw;
+    height: 100dvh;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: rgb(10 11 14 / 0.97);
+    color: #f1efeb;
+}
+.lightbox::backdrop {
+    background: transparent;
+}
+.lightbox-figure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    height: 100%;
+    margin: 0;
+    padding: 3.5rem 4.5rem 1rem;
+}
+.lightbox-img {
+    min-height: 0;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 4px;
+    background: #fff;
+}
+.lightbox-caption {
+    max-width: 70ch;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    text-align: center;
+    color: #c9c6c0;
+}
+.lightbox-counter {
+    margin-right: 0.6em;
+    font-variant-numeric: tabular-nums;
+    color: #8f8c86;
+}
+.lightbox-btn {
+    position: absolute;
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 0;
+    border-radius: 999px;
+    background: rgb(255 255 255 / 0.1);
+    color: inherit;
+    cursor: pointer;
+}
+.lightbox-btn:hover:not(:disabled) {
+    background: rgb(255 255 255 / 0.2);
+}
+.lightbox-btn:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+.lightbox-btn:disabled {
+    opacity: 0.25;
+    cursor: default;
+}
+.lightbox-btn[hidden] {
+    display: none;
+}
+.lightbox-btn svg {
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+.lightbox-close {
+    top: 0.75rem;
+    right: 0.75rem;
+}
+.lightbox-prev,
+.lightbox-next {
+    top: 50%;
+    translate: 0 -50%;
+}
+.lightbox-prev {
+    left: 0.75rem;
+}
+.lightbox-next {
+    right: 0.75rem;
+}
+@media (max-width: 560px) {
+    .lightbox-figure {
+        padding: 3.5rem 0 4.5rem;
+    }
+    .lightbox-img {
+        border-radius: 0;
+    }
+    .lightbox-prev,
+    .lightbox-next {
+        top: auto;
+        bottom: 0.75rem;
+        translate: none;
+    }
+    .lightbox-caption {
+        padding: 0 16px;
+    }
+}
+
 .prose code {
     padding: 0.1rem 0.35rem;
     border-radius: 4px;
@@ -497,6 +644,60 @@ h4 {
     padding: 0;
     background: none;
     font-size: inherit;
+}
+.code-block {
+    position: relative;
+    margin: 1.25rem 0;
+}
+.code-block pre {
+    margin: 0;
+    padding-right: 3.25rem;
+}
+.code-copy {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    display: grid;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    border: 1px solid rgb(255 255 255 / 0.12);
+    border-radius: 6px;
+    background: rgb(255 255 255 / 0.06);
+    color: #c9d1d9;
+    cursor: pointer;
+    transition:
+        background-color 0.15s,
+        color 0.15s;
+}
+.code-copy:hover {
+    background: rgb(255 255 255 / 0.14);
+    color: #fff;
+}
+.code-copy:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+.code-copy svg {
+    grid-area: 1 / 1;
+    width: 1rem;
+    height: 1rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+.code-copy .code-copy-done,
+.code-copy.is-copied .code-copy-icon {
+    visibility: hidden;
+}
+.code-copy.is-copied .code-copy-done {
+    visibility: visible;
+}
+.code-copy.is-copied {
+    color: #7ee787;
 }
 .prose blockquote {
     margin: 1.5rem 0;
