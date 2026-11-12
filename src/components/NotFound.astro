@@ -34,31 +34,14 @@ const en404 = notFoundUrl("en");
     </script>}
     <section class="not-found">
         <Topo class="not-found-topo" seed={404} peaks={[{ x: 50, y: 48, r: 58 }]} />
-        <p class="not-found-code" aria-hidden="true">
-            404
-        </p>
-        <p class="eyebrow">{t("notFound.eyebrow")}</p>
+        <p class="eyebrow mono">404</p>
         <h1 class="not-found-title">{t("notFound.title")}</h1>
         <p class="not-found-text">{t("notFound.text")}</p>
-        <p class="not-found-path mono" hidden></p>
         <div class="not-found-actions">
-            <a class="button button-primary" href={home}>
-                <span aria-hidden="true">←</span>
+            <a class="button" href={home}>
                 {t("notFound.home")}
             </a>
-            <a class="button" href={`${home}#posts`}>
-                {t("notFound.posts")}
-            </a>
+            <a href={`${home}#posts`}>{t("notFound.posts")}</a>
         </div>
     </section>
-    <script is:inline>
-        // Show which address failed, so a mistyped URL is easy to spot.
-        {
-            const path = document.querySelector(".not-found-path");
-            if (path && !location.pathname.endsWith("/404/")) {
-                path.textContent = decodeURI(location.pathname);
-                path.hidden = false;
-            }
-        }
-    </script>
 </Default>

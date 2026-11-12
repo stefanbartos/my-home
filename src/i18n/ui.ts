@@ -32,7 +32,6 @@ const ui = {
         "code.copy": "Kopírovať kód",
         "code.copied": "Skopírované",
 
-        "notFound.eyebrow": "Mimo cesty",
         "notFound.title": "Stránka sa nenašla",
         "notFound.text":
             "Odkaz, ktorý ste otvorili, je nefunkčný alebo stránka bola presunutá či odstránená.",
@@ -73,7 +72,6 @@ const ui = {
         "code.copy": "Copy code",
         "code.copied": "Copied",
 
-        "notFound.eyebrow": "Off route",
         "notFound.title": "Page not found",
         "notFound.text": "The link you followed is broken, or the page has been moved or removed.",
         "notFound.home": "Back home",
