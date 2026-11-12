@@ -25,5 +25,5 @@ export function getPosts(): Post[] {
             lang: mod.frontmatter.lang ?? "sk",
             summary: mod.frontmatter.summary ?? {},
         }))
-        .sort((a, b) => a.title.localeCompare(b.title));
+        .toSorted((a, b) => a.title.localeCompare(b.title));
 }
