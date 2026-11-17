@@ -66,3 +66,36 @@ summary:
     "lint:fallow": "fallow --fail-on-issues"
   }
   ```
+
+## Git hooks
+
+- **Run the formatter and linter in a pre-commit hook.** Problems are caught on your machine in seconds, before they reach a commit, a review or a CI run. Use [husky](https://typicode.github.io/husky/) to install the hook (its `prepare` script sets it up on every `npm install`) and [lint-staged](https://github.com/lint-staged/lint-staged) to check only the staged files, so the hook stays fast.
+
+  ```json
+  "scripts": {
+    "prepare": "husky"
+  }
+  ```
+
+  ```js
+  // lint-staged.config.js
+  export default {
+    "*.{js,ts,vue}": ["oxfmt --no-error-on-unmatched-pattern", "oxlint"],
+    "*.{json,css,scss,yml,md}": ["oxfmt --no-error-on-unmatched-pattern"],
+  };
+  ```
+
+  A hook can be skipped with `git commit --no-verify`, so keep the same checks in CI too.
+
+- **Call tools from `node_modules/.bin`, not through `npx`.** When the package isn't installed locally (a fresh clone before `npm install`, a missing dependency or a typo in the name), `npx` downloads it from the registry and runs it. In a Git hook or in CI there is no terminal to ask you, so it does that without a prompt. You end up running code that isn't pinned by your lockfile and skips `min-release-age` and `allowScripts`. Calling the binary by path runs only what is installed and fails loudly when it's missing.
+
+  ```sh
+  # .husky/pre-commit
+  # Don't: downloads and runs lint-staged if it isn't installed
+  npx lint-staged --allow-empty
+
+  # Do: runs only the locally installed version
+  ./node_modules/.bin/lint-staged --allow-empty
+  ```
+
+  Git runs hooks from the repository root, so the relative path works. Commands in `package.json` scripts and in the lint-staged config already resolve from `node_modules/.bin`, so there you can call `oxfmt` or `oxlint` by name.
