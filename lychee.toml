@@ -1,0 +1,30 @@
+# Link checker config (https://lychee.cli.rs). CI checks the built site:
+# pages.yml checks internal links on every build, links.yml checks external
+# links every week. The root dir is passed on the command line because it
+# must be an absolute path.
+
+# Resolve /my-home/foo/ to foo/index.html, so a link to a page that doesn't
+# exist fails even if the directory does.
+index_files = ["index.html"]
+
+max_concurrency = 8
+timeout = 20
+max_retries = 3
+retry_wait_time = 2
+
+# 429 means the site is rate limiting us, not that the link is dead.
+accept = ["200..=299", "429"]
+
+exclude = [
+    # LinkedIn answers every request from a script with status 999.
+    '^https://(www\.)?linkedin\.com/',
+    # Resets connections from scripts, but works in a browser.
+    '^https://www\.skalnioblasti\.cz/',
+]
+
+exclude_path = [
+    # GitHub Pages serves 404.html for any missing URL, so the 404 pages
+    # link to themselves at URLs that don't exist as files.
+    '404\.html$',
+    '/404/index\.html$',
+]
