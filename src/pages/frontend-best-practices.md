@@ -35,7 +35,7 @@ summary:
   FROM node:22
 
   # Prefer: OS is explicit
-  FROM node:22-bookworm-slim
+  FROM node:22-bookworm
   ```
 
 - **Pin container images by digest in pipelines and Dockerfiles.** A tag like `node:22-alpine` can be re-pushed to point at different content, so a compromised or changed image reaches your build without any change on your side. A digest always resolves to the same image. Keep the tag in front of it so people can still read which version it is.
