@@ -28,6 +28,16 @@ summary:
 
 ## Container images
 
+- **Use a Node image tag with an OS suffix.** A bare tag like `node:22` doesn't say which OS it runs on, and the default base changes when a new Debian release comes out, so system libraries and native modules can break without any change on your side. A suffix like `-bookworm`, `-trixie` or `-alpine` makes the OS visible and keeps it fixed until you change it on purpose.
+
+  ```dockerfile
+  # Avoid: OS not visible, changes with the next Debian release
+  FROM node:22
+
+  # Prefer: OS is explicit
+  FROM node:22-bookworm-slim
+  ```
+
 - **Pin container images by digest in pipelines and Dockerfiles.** A tag like `node:22-alpine` can be re-pushed to point at different content, so a compromised or changed image reaches your build without any change on your side. A digest always resolves to the same image. Keep the tag in front of it so people can still read which version it is.
 
   The same form works in GitLab CI, GitHub Actions and Dockerfiles:
