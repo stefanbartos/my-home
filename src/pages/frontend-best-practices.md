@@ -66,3 +66,47 @@ summary:
     "lint:fallow": "fallow --fail-on-issues"
   }
   ```
+
+## Git hooks
+
+- **Run the formatter and linter in a pre-commit hook.** Problems are caught on your machine in seconds, before they reach a commit, a review or a CI run. A hook can be skipped with `git commit --no-verify`, so keep the same checks in CI too.
+
+- **Use [Lefthook](https://lefthook.dev/), not husky with lint-staged.** JavaScript tooling is moving to fast native tools like oxfmt and oxlint, and the hook runner should follow. Lefthook is a single compiled binary with no Node.js startup and no dependencies. One `lefthook.yml` replaces both the husky hook scripts and the lint-staged config. It passes only the staged files to each command (`{staged_files}`) and re-stages what the formatter fixed (`stage_fixed: true`).
+
+  ```sh
+  npm install --save-dev lefthook
+  ```
+
+  ```json
+  "scripts": {
+    "prepare": "lefthook install"
+  }
+  ```
+
+  ```yaml
+  # lefthook.yml
+  pre-commit:
+    jobs:
+      - name: format
+        glob: "*.{js,ts,vue,json,css,scss,yml,md}"
+        run: ./node_modules/.bin/oxfmt {staged_files}
+        stage_fixed: true
+      - name: lint
+        glob: "*.{js,ts,vue}"
+        run: ./node_modules/.bin/oxlint {staged_files}
+  ```
+
+  The `prepare` script installs the hooks on every `npm install`, so you don't need to add Lefthook's own install script to `allowScripts`.
+
+- **Call tools from `node_modules/.bin`, not through `npx`.** When the package isn't installed locally (a fresh clone before `npm install`, a missing dependency or a typo in the name), `npx` downloads it from the registry and runs it. In a Git hook or in CI there is no terminal to ask you, so it does that without a prompt. You end up running code that isn't pinned by your lockfile and skips `min-release-age` and `allowScripts`. Calling the binary by path runs only what is installed and fails loudly when it's missing.
+
+  ```yaml
+  # lefthook.yml
+  # Don't: downloads and runs oxlint if it isn't installed
+  run: npx oxlint {staged_files}
+
+  # Do: runs only the locally installed version
+  run: ./node_modules/.bin/oxlint {staged_files}
+  ```
+
+  Lefthook runs commands from the repository root, so the relative path works. Commands in `package.json` scripts already resolve from `node_modules/.bin`, so there you can call `oxfmt` or `oxlint` by name.
