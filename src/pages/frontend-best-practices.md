@@ -1,7 +1,7 @@
 ---
 layout: ../layouts/Default.astro
 title: Frontend Best Practices
-lang: en
+lang: sk
 summary:
   sk: Čo nastaviť v každom frontend projekte – bezpečnosť závislostí, CI a zdravie kódu.
   en: What to set up in every frontend project – dependency security, CI and code health.
@@ -9,26 +9,26 @@ summary:
 
 # Frontend Best Practices
 
-## Security
+## Bezpečnosť
 
-- **Set `strict-allow-scripts=true` in the project `.npmrc`.** npm then fails the install when a dependency has install scripts that `allowScripts` in `package.json` doesn't cover, so nothing you haven't reviewed runs on your machine or in CI. See the [npm docs](https://docs.npmjs.com/cli/using-npm/config#strict-allow-scripts).
+- **V projektovom `.npmrc` nastavte `strict-allow-scripts=true`.** npm potom zlyhá pri inštalácii, keď má niektorá závislosť install skripty, ktoré `allowScripts` v `package.json` nepokrýva. Na vašom počítači ani v CI tak nespustí nič, čo ste neskontrolovali. Pozrite [dokumentáciu npm](https://docs.npmjs.com/cli/using-npm/config#strict-allow-scripts).
 
   ```ini
   strict-allow-scripts=true
   ```
 
-- **Set `min-release-age=7` in the project `.npmrc`.** npm then only installs versions published at least 7 days ago, which gives the community time to spot and pull a compromised release before it reaches you. See the [npm docs](https://docs.npmjs.com/cli/using-npm/config#min-release-age).
+- **V projektovom `.npmrc` nastavte `min-release-age=7`.** npm potom inštaluje len verzie zverejnené aspoň pred 7 dňami. Komunita tak má čas odhaliť a stiahnuť kompromitované vydanie skôr, než sa k vám dostane. Pozrite [dokumentáciu npm](https://docs.npmjs.com/cli/using-npm/config#min-release-age).
 
   ```ini
   min-release-age=7
   min-release-age-exclude[]=@myorg/*
   ```
 
-  Note: this also delays urgent security fixes. To let a package (or your own packages) through right away, add it to `min-release-age-exclude`, as in the second line above. Only that package skips the delay. Its dependencies still wait.
+  Pozor: zdrží to aj naliehavé bezpečnostné opravy. Ak chcete balík (alebo vlastné balíky) pustiť hneď, pridajte ho do `min-release-age-exclude` ako v druhom riadku vyššie. Oneskorenie preskočí len ten balík. Jeho závislosti stále čakajú.
 
-## Install scripts
+## Install skripty
 
-- **List every dependency with install scripts in `allowScripts` in `package.json`.** Set a package to `true` to let its `preinstall`, `install` or `postinstall` script run, or to `false` to skip it. Use `false` whenever the package works without its script, and `true` only for packages you have reviewed that really need one, such as native modules that compile on install. With `strict-allow-scripts=true` (see [Security](#security)), npm fails the install when a package with install scripts is missing from the list, so a new script can't run until you decide on it.
+- **Každú závislosť s install skriptami uveďte v `allowScripts` v `package.json`.** Hodnota `true` povolí jej skript `preinstall`, `install` alebo `postinstall`, hodnota `false` ho preskočí. `false` použite vždy, keď balík funguje aj bez skriptu, a `true` len pre balíky, ktoré ste skontrolovali a skript naozaj potrebujú, napríklad natívne moduly, ktoré sa pri inštalácii kompilujú. So `strict-allow-scripts=true` (pozrite [Bezpečnosť](#bezpečnosť)) npm zlyhá, keď balík s install skriptami v zozname chýba, takže nový skript sa nespustí, kým o ňom nerozhodnete.
 
   ```json
   "allowScripts": {
@@ -36,23 +36,23 @@ summary:
   }
   ```
 
-  Lefthook's `postinstall` script only installs the Git hooks. The `prepare` script does the same on every `npm install` (see [Git hooks](#git-hooks)), so setting `lefthook` to `false` loses nothing and keeps a package script from running on your machine.
+  Skript `postinstall` v Lefthooku len inštaluje Git hooky. Skript `prepare` robí to isté pri každom `npm install` (pozrite [Git hooky](#git-hooky)), takže nastavením `lefthook` na `false` nič nestratíte a na vašom počítači sa nespustí ďalší skript z balíka.
 
-## Container images
+## Kontajnerové obrazy
 
-- **Use a Node image tag with an OS suffix.** A bare tag like `node:22` doesn't say which OS it runs on, and the default base changes when a new Debian release comes out, so system libraries and native modules can break without any change on your side. A suffix like `-bookworm`, `-trixie` or `-alpine` makes the OS visible and keeps it fixed until you change it on purpose.
+- **Používajte tag Node obrazu so suffixom OS.** Holý tag ako `node:22` nehovorí, na akom OS beží, a predvolený základ sa zmení, keď vyjde nové vydanie Debianu. Systémové knižnice a natívne moduly sa tak môžu rozbiť bez akejkoľvek zmeny na vašej strane. Suffix ako `-bookworm`, `-trixie` alebo `-alpine` OS zviditeľní a drží ho pevne, kým ho zámerne nezmeníte.
 
   ```dockerfile
-  # Avoid: OS not visible, changes with the next Debian release
+  # Nepoužívajte: OS nie je vidieť, zmení sa s ďalším vydaním Debianu
   FROM node:22
 
-  # Prefer: OS is explicit
+  # Používajte: OS je jasne uvedený
   FROM node:22-bookworm
   ```
 
-- **Pin container images by digest in pipelines and Dockerfiles.** A tag like `node:22-alpine` can be re-pushed to point at different content, so a compromised or changed image reaches your build without any change on your side. A digest always resolves to the same image. Keep the tag in front of it so people can still read which version it is.
+- **V pipelinoch a Dockerfiloch pripnite kontajnerové obrazy cez digest.** Tag ako `node:22-alpine` sa dá znova pushnúť a ukazovať na iný obsah, takže kompromitovaný alebo zmenený obraz sa dostane do buildu bez akejkoľvek zmeny na vašej strane. Digest vždy ukazuje na ten istý obraz. Tag pred ním nechajte, aby bolo stále vidieť, o akú verziu ide.
 
-  The same form works in GitLab CI, GitHub Actions and Dockerfiles:
+  Rovnaký zápis funguje v GitLab CI, GitHub Actions aj v Dockerfiloch:
 
   ```yaml
   # GitLab CI (.gitlab-ci.yml)
@@ -60,7 +60,7 @@ summary:
   ```
 
   ```yaml
-  # GitHub Actions: job container, services and Docker actions
+  # GitHub Actions: kontajner jobu, services a Docker akcie
   jobs:
     build:
       container:
@@ -77,11 +77,11 @@ summary:
   FROM node:22-alpine@sha256:<digest>
   ```
 
-  Pin the multi-arch index digest (shown by `docker buildx imagetools inspect node:22-alpine`), not a single-platform one. Automate the updates: Renovate updates digests in all of the files above. Dependabot only covers Dockerfiles and Compose files, not images referenced in GitHub Actions or GitLab CI YAML. Pinning without automated updates leaves you on an old image that stops getting security patches.
+  Pripnite digest multi-arch indexu (ukáže ho `docker buildx imagetools inspect node:22-alpine`), nie digest jednej platformy. Aktualizácie automatizujte: Renovate aktualizuje digesty vo všetkých súboroch vyššie. Dependabot pokrýva len Dockerfily a Compose súbory, nie obrazy uvedené v YAML pre GitHub Actions alebo GitLab CI. Pripnutie bez automatických aktualizácií vás nechá na starom obraze, ktorý prestane dostávať bezpečnostné záplaty.
 
-## Code health
+## Zdravie kódu
 
-- **Run [fallow](https://fallow.tools/docs) in CI.** Unused files, exports and dependencies pile up quietly as code changes, and nothing in a normal build fails because of them. fallow finds them, along with copy-pasted code and overly complex functions, in one fast pass with no config for most frameworks. Pass `--fail-on-issues` so findings fail the build. Without it, fallow always exits 0.
+- **Spúšťajte [fallow](https://fallow.tools/docs) v CI.** Nepoužívané súbory, exporty a závislosti sa pri zmenách kódu potichu hromadia a bežný build kvôli nim nezlyhá. fallow ich nájde spolu so skopírovaným kódom a príliš zložitými funkciami v jednom rýchlom prechode a pre väčšinu frameworkov bez konfigurácie. Pridajte `--fail-on-issues`, aby nálezy zhodili build. Bez neho fallow vždy skončí s kódom 0.
 
   ```json
   "scripts": {
@@ -89,11 +89,11 @@ summary:
   }
   ```
 
-## Git hooks
+## Git hooky
 
-- **Run the formatter and linter in a pre-commit hook.** Problems are caught on your machine in seconds, before they reach a commit, a review or a CI run. A hook can be skipped with `git commit --no-verify`, so keep the same checks in CI too.
+- **Formátovač a linter spúšťajte v pre-commit hooku.** Problémy zachytíte na svojom počítači za pár sekúnd, skôr než sa dostanú do commitu, review alebo CI. Hook sa dá preskočiť cez `git commit --no-verify`, takže rovnaké kontroly nechajte aj v CI.
 
-- **Use [Lefthook](https://lefthook.dev/), not husky with lint-staged.** JavaScript tooling is moving to fast native tools like oxfmt and oxlint, and the hook runner should follow. Lefthook is a single compiled binary with no Node.js startup and no dependencies. One `lefthook.yml` replaces both the husky hook scripts and the lint-staged config. It passes only the staged files to each command (`{staged_files}`) and re-stages what the formatter fixed (`stage_fixed: true`).
+- **Používajte [Lefthook](https://lefthook.dev/), nie husky s lint-staged.** JavaScriptové nástroje prechádzajú na rýchle natívne nástroje ako oxfmt a oxlint a spúšťač hookov by mal ísť s nimi. Lefthook je jedna skompilovaná binárka bez štartu Node.js a bez závislostí. Jeden `lefthook.yml` nahradí skripty hookov z husky aj konfiguráciu lint-staged. Každému príkazu odovzdá len stagované súbory (`{staged_files}`) a znova stagne to, čo formátovač opravil (`stage_fixed: true`).
 
   ```sh
   npm install --save-dev lefthook
@@ -118,17 +118,17 @@ summary:
         run: ./node_modules/.bin/oxlint {staged_files}
   ```
 
-  The `prepare` script installs the hooks on every `npm install`, so you can set `lefthook` to `false` in `allowScripts` and skip Lefthook's own install script (see [Install scripts](#install-scripts)).
+  Skript `prepare` inštaluje hooky pri každom `npm install`, takže v `allowScripts` môžete nastaviť `lefthook` na `false` a vlastný install skript Lefthooku preskočiť (pozrite [Install skripty](#install-skripty)).
 
-- **Call tools from `node_modules/.bin`, not through `npx`.** When the package isn't installed locally (a fresh clone before `npm install`, a missing dependency or a typo in the name), `npx` downloads it from the registry and runs it. In a Git hook or in CI there is no terminal to ask you, so it does that without a prompt. You end up running code that isn't pinned by your lockfile and skips `min-release-age` and `allowScripts`. Calling the binary by path runs only what is installed and fails loudly when it's missing.
+- **Nástroje volajte z `node_modules/.bin`, nie cez `npx`.** Keď balík nie je nainštalovaný lokálne (čerstvý klon pred `npm install`, chýbajúca závislosť alebo preklep v názve), `npx` ho stiahne z registra a spustí. V Git hooku ani v CI nie je terminál, ktorý by sa vás spýtal, takže to urobí bez potvrdenia. Spustíte tak kód, ktorý lockfile nepripína a ktorý obíde `min-release-age` aj `allowScripts`. Volanie binárky cez cestu spustí len to, čo je nainštalované, a keď chýba, hlasno zlyhá.
 
   ```yaml
   # lefthook.yml
-  # Don't: downloads and runs oxlint if it isn't installed
+  # Nepoužívajte: stiahne a spustí oxlint, ak nie je nainštalovaný
   run: npx oxlint {staged_files}
 
-  # Do: runs only the locally installed version
+  # Používajte: spustí len lokálne nainštalovanú verziu
   run: ./node_modules/.bin/oxlint {staged_files}
   ```
 
-  Lefthook runs commands from the repository root, so the relative path works. Commands in `package.json` scripts already resolve from `node_modules/.bin`, so there you can call `oxfmt` or `oxlint` by name.
+  Lefthook spúšťa príkazy z koreňa repozitára, takže relatívna cesta funguje. Príkazy v skriptoch `package.json` sa už hľadajú v `node_modules/.bin`, takže tam môžete volať `oxfmt` alebo `oxlint` priamo menom.
