@@ -2,6 +2,7 @@
 layout: ../layouts/Default.astro
 title: Prvá pomoc
 lang: sk
+updated: 2026-11-12
 summary:
   sk: Čo patrí do outdoorovej lekárničky a ako postupovať, keď sa niečo pokazí.
   en: What goes into an outdoor first-aid kit and what to do when things go wrong.

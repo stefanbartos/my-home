@@ -37,6 +37,7 @@ const ui = {
         "lightbox.next": "Ďalší obrázok",
         "code.copy": "Kopírovať kód",
         "code.copied": "Skopírované",
+        updated: "Naposledy upravené",
 
         "notFound.title": "Stránka sa nenašla",
         "notFound.text":
@@ -94,6 +95,7 @@ const ui = {
         "lightbox.next": "Next image",
         "code.copy": "Copy code",
         "code.copied": "Copied",
+        updated: "Last updated",
 
         "notFound.title": "Page not found",
         "notFound.text": "The link you followed is broken, or the page has been moved or removed.",
@@ -141,6 +143,11 @@ const languageNames: Record<Locale, Record<string, string>> = {
 /** "in Czech" etc., shown on post cards whose language differs from the page. */
 export function languageName(locale: Locale, lang: string) {
     return languageNames[locale][lang] ?? lang;
+}
+
+/** Long date in the UI locale, e.g. "19. novembra 2026" / "November 19, 2026". */
+export function formatDate(locale: Locale, date: Date) {
+    return new Intl.DateTimeFormat(locale, { dateStyle: "long", timeZone: "UTC" }).format(date);
 }
 
 export type UIKey = keyof (typeof ui)["sk"];

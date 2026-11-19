@@ -11,7 +11,7 @@ import Lightbox from "../components/Lightbox.astro";
 import CodeCopy from "../components/CodeCopy.astro";
 import themeInit from "../scripts/theme-init.js?raw";
 import type { Locale } from "../i18n/ui";
-import { contactUrl, defaultLocale, homeUrl, url, useTranslations } from "../i18n/ui";
+import { contactUrl, defaultLocale, formatDate, homeUrl, url, useTranslations } from "../i18n/ui";
 
 interface Props {
     frontmatter?: {
@@ -19,6 +19,8 @@ interface Props {
         description?: string;
         lang?: string;
         toc?: boolean;
+        /** Date of the last content edit (YAML parses `2026-11-19` as a Date). */
+        updated?: Date | string;
     };
     headings?: MarkdownHeading[];
     title?: string;
@@ -42,6 +44,7 @@ const title = pageTitle ? `${pageTitle} · Štefan Bartoš` : "Štefan Bartoš";
 const description = Astro.props.description ?? frontmatter?.description ?? t("site.description");
 const lang = Astro.props.lang ?? frontmatter?.lang ?? locale;
 const alternate = Astro.props.alternate;
+const updated = frontmatter?.updated ? new Date(frontmatter.updated) : undefined;
 const switchHref = alternate ?? homeUrl(otherLocale);
 
 const home = homeUrl(locale);
@@ -148,6 +151,14 @@ const currentPath = Astro.url.pathname;
             )}
             {frontmatter?.toc && <Toc headings={headings} />}
             <slot />
+            {updated && (
+                <p class="page-updated" lang={locale}>
+                    {t("updated")}{" "}
+                    <time datetime={updated.toISOString().slice(0, 10)}>
+                        {formatDate(locale, updated)}
+                    </time>
+                </p>
+            )}
         </main>
 
         <footer class="site-footer" lang={locale}>

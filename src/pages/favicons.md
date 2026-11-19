@@ -2,6 +2,7 @@
 layout: ../layouts/Default.astro
 title: Favicons
 lang: en
+updated: 2026-11-19
 summary:
   sk: Aké súbory favicon potrebuje web, v akých veľkostiach a ako ich prepojiť.
   en: Which favicon files a site needs, in which sizes, and how to link them.
