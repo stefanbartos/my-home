@@ -25,6 +25,7 @@ summary:
 
 ## Tips
 
+- No other sizes (48, 64…) are needed. The SVG scales to any size, and only older tools use the ICO.
 - Keep `sizes="32x32"` on the ICO link, or Chrome picks it over the SVG.
 - Under a subpath, prefix every `href` with the base path. Browsers only guess `/favicon.ico` at the domain root.
 - Design for 16 px: one or two bold letters or a simple shape on a solid background.
