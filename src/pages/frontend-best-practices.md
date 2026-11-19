@@ -26,6 +26,18 @@ summary:
 
   Note: this also delays urgent security fixes. To let a package (or your own packages) through right away, add it to `min-release-age-exclude`, as in the second line above. Only that package skips the delay. Its dependencies still wait.
 
+## Install scripts
+
+- **List every dependency with install scripts in `allowScripts` in `package.json`.** Set a package to `true` to let its `preinstall`, `install` or `postinstall` script run, or to `false` to skip it. Use `false` whenever the package works without its script, and `true` only for packages you have reviewed that really need one, such as native modules that compile on install. With `strict-allow-scripts=true` (see [Security](#security)), npm fails the install when a package with install scripts is missing from the list, so a new script can't run until you decide on it.
+
+  ```json
+  "allowScripts": {
+    "lefthook": false
+  }
+  ```
+
+  Lefthook's `postinstall` script only installs the Git hooks. The `prepare` script does the same on every `npm install` (see [Git hooks](#git-hooks)), so setting `lefthook` to `false` loses nothing and keeps a package script from running on your machine.
+
 ## Container images
 
 - **Use a Node image tag with an OS suffix.** A bare tag like `node:22` doesn't say which OS it runs on, and the default base changes when a new Debian release comes out, so system libraries and native modules can break without any change on your side. A suffix like `-bookworm`, `-trixie` or `-alpine` makes the OS visible and keeps it fixed until you change it on purpose.
@@ -106,7 +118,7 @@ summary:
         run: ./node_modules/.bin/oxlint {staged_files}
   ```
 
-  The `prepare` script installs the hooks on every `npm install`, so you don't need to add Lefthook's own install script to `allowScripts`.
+  The `prepare` script installs the hooks on every `npm install`, so you can set `lefthook` to `false` in `allowScripts` and skip Lefthook's own install script (see [Install scripts](#install-scripts)).
 
 - **Call tools from `node_modules/.bin`, not through `npx`.** When the package isn't installed locally (a fresh clone before `npm install`, a missing dependency or a typo in the name), `npx` downloads it from the registry and runs it. In a Git hook or in CI there is no terminal to ask you, so it does that without a prompt. You end up running code that isn't pinned by your lockfile and skips `min-release-age` and `allowScripts`. Calling the binary by path runs only what is installed and fails loudly when it's missing.
 
