@@ -1,5 +1,5 @@
 ---
-layout: ../layouts/Default.astro
+layout: ../../layouts/Default.astro
 title: Frontend Best Practices
 lang: en
 summary:
