@@ -1,0 +1,15 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended", "helpers:pinGitHubActionDigestsToSemver", "schedule:monthly"],
+  "description": "Updates npm packages, GitHub Actions (pinned to commit SHAs with a version comment) and the Node version in .node-version.",
+  "minimumReleaseAge": "7 days",
+  "internalChecksFilter": "strict",
+  "osvVulnerabilityAlerts": true,
+  "packageRules": [
+    {
+      "description": "Update Astro and its integrations together.",
+      "groupName": "astro",
+      "matchPackageNames": ["astro", "@astrojs/**"]
+    }
+  ]
+}

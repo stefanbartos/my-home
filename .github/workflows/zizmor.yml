@@ -1,6 +1,6 @@
 name: Workflow security
 
-# Static analysis of the workflows and Dependabot config with zizmor.
+# Static analysis of the workflows with zizmor.
 # Findings appear in the Security tab and on the pull request diff.
 on:
   push:
