@@ -4,12 +4,12 @@
 
 For every task that changes files in this repo, work on your own without asking for confirmation at each step:
 
-1. **Create a worktree.** Never edit or commit on `main` in the main checkout. Start each task in a new git worktree on a new branch off up-to-date `origin/main`. Use the `EnterWorktree` tool if you have it, or else run:
+1. **Create a worktree.** Never edit or commit on `main` in the main checkout. Start each task in a new git worktree under `.claude/worktrees/` in the main checkout, on a new branch off up-to-date `origin/main`. Never put worktrees next to the repo (e.g. `../my-home-<name>`), because that clutters the parent directory. `.gitignore` excludes `.claude/worktrees/`, so oxfmt, oxlint and editor search skip the worktrees. Create the worktree with git, so the branch keeps the `<type>/<short-task-name>` convention:
    ```sh
    git fetch origin
-   git worktree add ../my-home-<short-task-name> -b <type>/<short-task-name> origin/main
+   git worktree add .claude/worktrees/<short-task-name> -b <type>/<short-task-name> origin/main
    ```
-   Then do all work inside that worktree. Run `npm install` there if `node_modules` is missing.
+   If you have the `EnterWorktree` tool, call it with that `path` to switch the session into the worktree. Then do all work inside that worktree. Run `npm install` there if `node_modules` is missing.
 2. **Implement and verify.** Before committing, run `npm run format:check`, `npm run lint`, `npm run lint:fallow` and `npm run build` in the worktree, and fix any failures.
 3. **Commit** with a clear message. Commits must use the GitHub noreply email `18068307+stefanbartos@users.noreply.github.com` as both author and committer. Otherwise GitHub rejects the push because of email privacy settings. Let git hooks run on every commit: never pass `--no-verify` (or `-n`), and never set `core.hooksPath` to bypass hooks. [Lefthook](https://lefthook.dev/) runs a pre-commit hook (`lefthook.yml`) that formats staged files with oxfmt, re-stages the fixes, and lints them with oxlint. The `prepare` script installs it on `npm install`. Hooks are shared with the main checkout, so they also run in the worktree. Make sure `node_modules` is installed there first, because the hook calls the tools from `node_modules/.bin`. If a hook fails, fix the cause and commit again rather than skipping it. A skipped hook can let a broken build reach the PR.
 4. **Push and open the PR yourself.** Push the branch to `origin` and open a pull request against `main` with `gh pr create`. Give it a descriptive title and a body that summarizes the changes and how you verified them. Don't wait for approval before pushing or opening the PR.
