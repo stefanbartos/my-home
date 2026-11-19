@@ -3,7 +3,7 @@ updates:
   - package-ecosystem: github-actions
     directory: /
     schedule:
-      interval: monthly
+      interval: weekly
     # Wait a week before proposing a new release, so a compromised version
     # is likely caught and pulled first.
     cooldown:
@@ -12,7 +12,7 @@ updates:
   - package-ecosystem: npm
     directory: /
     schedule:
-      interval: monthly
+      interval: weekly
     # Wait a week before proposing a new release, so a compromised version
     # is likely caught and pulled first.
     cooldown:
