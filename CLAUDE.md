@@ -11,7 +11,7 @@ For every task that changes files in this repo, work on your own without asking 
    ```
    Then do all work inside that worktree. Run `npm install` there if `node_modules` is missing.
 2. **Implement and verify.** Before committing, run `npm run format:check`, `npm run lint`, `npm run lint:fallow` and `npm run build` in the worktree, and fix any failures.
-3. **Commit** with a clear message. Commits must use the GitHub noreply email `18068307+stefanbartos@users.noreply.github.com` as both author and committer. Otherwise GitHub rejects the push because of email privacy settings.
+3. **Commit** with a clear message. Commits must use the GitHub noreply email `18068307+stefanbartos@users.noreply.github.com` as both author and committer. Otherwise GitHub rejects the push because of email privacy settings. Let git hooks run on every commit: never pass `--no-verify` (or `-n`), and never set `core.hooksPath` to bypass hooks. Hooks are shared with the main checkout, so they also run in the worktree. Make sure `node_modules` is installed there first, because hooks call the npm scripts. If a hook fails, fix the cause and commit again rather than skipping it. A skipped hook can let a broken build reach the PR.
 4. **Push and open the PR yourself.** Push the branch to `origin` and open a pull request against `main` with `gh pr create`. Give it a descriptive title and a body that summarizes the changes and how you verified them. Don't wait for approval before pushing or opening the PR.
 5. **Report back** with the PR URL. Leave the worktree in place until the PR is merged. Don't merge the PR unless asked.
 
