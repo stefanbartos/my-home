@@ -23,7 +23,7 @@ Backlog from a project review (2026-11-03). Each task has a unique ID; reference
 | [CI-02](#ci-02)   | Migrate to the official GitHub Pages actions                  | P2       | M    | Done     | #33      |
 | [CI-03](#ci-03)   | Cancel superseded deploys                                     | P3       | S    | Done     | #17      |
 | [CI-04](#ci-04)   | Build on pull requests                                        | P2       | S    | Done     | #16      |
-| [CI-05](#ci-05)   | Run `npm audit` in CI                                         | P2       | S    | Done     |          |
+| [CI-05](#ci-05)   | Run `npm audit` in CI                                         | P2       | S    | Done     | #74      |
 | [HK-01](#hk-01)   | Clean up `package.json` metadata                              | P3       | S    | Done     | #18      |
 | [HK-02](#hk-02)   | Update dependencies and fix `npm audit` findings              | P2       | S    | Obsolete | #4       |
 | [HK-03](#hk-03)   | Trim `.gitignore`                                             | P3       | S    | Done     | #19      |
@@ -174,7 +174,7 @@ Today the workflow only runs on pushes to `main`, so a broken build is only disc
 
 **Run `npm audit` in CI** · P2 · S
 
-**Status:** Done.
+**Status:** Done in #74.
 
 Vulnerable dependencies were only found when someone ran `npm audit` locally. Astro 7.4.6 had a moderate advisory ([GHSA-r3h5-4585-7x3w](https://github.com/advisories/GHSA-r3h5-4585-7x3w)) that nothing flagged.
 
