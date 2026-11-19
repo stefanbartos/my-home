@@ -1,0 +1,117 @@
+---
+import Default from "../layouts/Default.astro";
+import type { Locale } from "../i18n/ui";
+import { contactUrl, useTranslations } from "../i18n/ui";
+
+interface Props {
+    locale: Locale;
+}
+
+/**
+ * Web3Forms access key: it only identifies the inbox the messages go to and is
+ * meant to sit in public HTML. Create one at https://web3forms.com/.
+ */
+const accessKey = "0ffefdf5-b817-42a8-bf2c-3863ce013c24";
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const otherLocale: Locale = locale === "sk" ? "en" : "sk";
+---
+
+<Default
+    locale={locale}
+    title={t("contact.title")}
+    description={t("contact.description")}
+    alternate={contactUrl(otherLocale)}
+>
+    <h1>{t("contact.title")}</h1>
+    <p class="contact-lead">{t("contact.lead")}</p>
+
+    <form
+        class="contact-form"
+        action="https://api.web3forms.com/submit"
+        method="POST"
+        data-sending={t("contact.sending")}
+        data-success={t("contact.success")}
+        data-error={t("contact.error")}
+    >
+        <input type="hidden" name="access_key" value={accessKey} />
+        <input type="hidden" name="subject" value={t("contact.subject")} />
+        <input type="hidden" name="from_name" value="stefanbartos.github.io/my-home" />
+        <!-- Honeypot: hidden from people, bots that tick it are rejected by Web3Forms. -->
+        <input
+            class="contact-botcheck"
+            type="checkbox"
+            name="botcheck"
+            tabindex="-1"
+            autocomplete="off"
+            aria-hidden="true"
+        />
+
+        <div class="contact-field">
+            <label for="contact-name">{t("contact.name")}</label>
+            <input id="contact-name" name="name" type="text" autocomplete="name" required />
+        </div>
+        <div class="contact-field">
+            <label for="contact-email">{t("contact.email")}</label>
+            <input id="contact-email" name="email" type="email" autocomplete="email" required />
+        </div>
+        <div class="contact-field">
+            <label for="contact-message">{t("contact.message")}</label>
+            <textarea id="contact-message" name="message" rows="7" required></textarea>
+        </div>
+
+        <p class="contact-privacy">{t("contact.privacy")}</p>
+
+        <div class="contact-actions">
+            <button class="button" type="submit">
+                {t("contact.send")}
+            </button>
+            <p class="contact-status" role="status" aria-live="polite"></p>
+        </div>
+    </form>
+
+    <p class="contact-other">
+        {t("contact.other")}
+        <a href="https://github.com/stefanbartos">GitHub</a>·
+        <a href="https://www.linkedin.com/in/stefan-bartos/">LinkedIn</a>
+    </p>
+</Default>
+
+<script>
+    // Without JavaScript the form posts normally and Web3Forms shows its own
+    // confirmation page. With it, the message is sent in place.
+    const form = document.querySelector<HTMLFormElement>(".contact-form");
+    const status = form?.querySelector<HTMLElement>(".contact-status");
+    const button = form?.querySelector<HTMLButtonElement>("button[type=submit]");
+
+    form?.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        if (!status || !button) {
+            return;
+        }
+        const { sending = "", success = "", error = "" } = form.dataset;
+        button.disabled = true;
+        status.textContent = sending;
+        status.dataset.state = "sending";
+        try {
+            const response = await fetch(form.action, {
+                method: "POST",
+                headers: { Accept: "application/json" },
+                body: new FormData(form),
+            });
+            const result: { success?: boolean } = await response.json();
+            if (!response.ok || result.success !== true) {
+                throw new Error(`Web3Forms responded with ${response.status}`);
+            }
+            form.reset();
+            status.textContent = success;
+            status.dataset.state = "success";
+        } catch {
+            status.textContent = error;
+            status.dataset.state = "error";
+        } finally {
+            button.disabled = false;
+        }
+    });
+</script>

@@ -7,7 +7,7 @@ import ThemeToggle from "../components/ThemeToggle.astro";
 import Lightbox from "../components/Lightbox.astro";
 import CodeCopy from "../components/CodeCopy.astro";
 import type { Locale } from "../i18n/ui";
-import { defaultLocale, homeUrl, url, useTranslations } from "../i18n/ui";
+import { contactUrl, defaultLocale, homeUrl, url, useTranslations } from "../i18n/ui";
 
 interface Props {
     frontmatter?: {
@@ -44,7 +44,9 @@ const home = homeUrl(locale);
 const nav = [
     { href: `${home}#posts`, label: t("nav.posts") },
     { href: `${home}#about`, label: t("nav.about") },
+    { href: contactUrl(locale), label: t("nav.contact") },
 ];
+const currentPath = Astro.url.pathname;
 ---
 
 <!doctype html>
@@ -115,7 +117,12 @@ const nav = [
                 <ul>
                     {nav.map((item) => (
                         <li>
-                            <a href={item.href}>{item.label}</a>
+                            <a
+                                href={item.href}
+                                aria-current={item.href === currentPath ? "page" : undefined}
+                            >
+                                {item.label}
+                            </a>
                         </li>
                     ))}
                     <li>
@@ -151,7 +158,8 @@ const nav = [
             <p>
                 © {new Date().getFullYear()} Štefan Bartoš ·
                 <a href="https://github.com/stefanbartos">GitHub</a> ·
-                <a href="https://www.linkedin.com/in/stefan-bartos/">LinkedIn</a>
+                <a href="https://www.linkedin.com/in/stefan-bartos/">LinkedIn</a> ·
+                <a href={contactUrl(locale)}>{t("nav.contact")}</a>
             </p>
         </footer>
 
