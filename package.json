@@ -12,7 +12,8 @@
     "format": "oxfmt",
     "format:check": "oxfmt --check",
     "lint": "oxlint --deny-warnings",
-    "lint:fallow": "fallow --fail-on-issues"
+    "lint:fallow": "fallow --fail-on-issues",
+    "prepare": "lefthook install"
   },
   "repository": {
     "type": "git",
@@ -30,12 +31,14 @@
     "astro": "~7.4"
   },
   "allowScripts": {
-    "fsevents": false
+    "fsevents": false,
+    "lefthook": false
   },
   "devDependencies": {
     "@astrojs/compiler-rs": "^0.5.2",
     "@astrojs/sitemap": "^3.7.4",
     "fallow": "^3.38.1",
+    "lefthook": "^2.2.2",
     "oxfmt": "^0.75.0",
     "oxlint": "^1.91.0"
   }

@@ -1,0 +1,12 @@
+# Git hooks, installed by the `prepare` script on `npm install`.
+# Tools run from node_modules/.bin, never through npx, so only the
+# locally installed versions run.
+pre-commit:
+  jobs:
+    - name: format
+      glob: "*.{js,mjs,ts,astro,json,jsonc,css,yml,yaml,md,mdx}"
+      run: ./node_modules/.bin/oxfmt --no-error-on-unmatched-pattern {staged_files}
+      stage_fixed: true
+    - name: lint
+      glob: "*.{js,mjs,ts,astro}"
+      run: ./node_modules/.bin/oxlint --deny-warnings {staged_files}
