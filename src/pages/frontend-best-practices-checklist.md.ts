@@ -16,7 +16,7 @@ function toChecklistLine({ groups }: RegExpExecArray) {
  */
 export const GET: APIRoute = ({ site }) => {
     const pageUrl = new URL(url("/frontend-best-practices/"), site);
-    const entries = [...source.matchAll(entryPattern)].map(toChecklistLine);
+    const entries = [...source.matchAll(entryPattern)].map((match) => toChecklistLine(match));
     const body = [
         "# Frontend Best Practices – Checklist",
         "",
