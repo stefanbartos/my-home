@@ -23,6 +23,7 @@ Backlog from a project review (2026-11-03). Each task has a unique ID; reference
 | [CI-02](#ci-02)   | Migrate to the official GitHub Pages actions                  | P2       | M    | Done     | #33      |
 | [CI-03](#ci-03)   | Cancel superseded deploys                                     | P3       | S    | Done     | #17      |
 | [CI-04](#ci-04)   | Build on pull requests                                        | P2       | S    | Done     | #16      |
+| [CI-05](#ci-05)   | Run `npm audit` in CI                                         | P2       | S    | Done     |          |
 | [HK-01](#hk-01)   | Clean up `package.json` metadata                              | P3       | S    | Done     | #18      |
 | [HK-02](#hk-02)   | Update dependencies and fix `npm audit` findings              | P2       | S    | Obsolete | #4       |
 | [HK-03](#hk-03)   | Trim `.gitignore`                                             | P3       | S    | Done     | #19      |
@@ -168,6 +169,18 @@ All images in `sci.md` have `alt=""`. These are instructional photos, so a short
 Today the workflow only runs on pushes to `main`, so a broken build is only discovered after merging.
 
 - [x] Add a `pull_request` trigger that runs the build but skips the deploy step
+
+### CI-05
+
+**Run `npm audit` in CI** · P2 · S
+
+**Status:** Done.
+
+Vulnerable dependencies were only found when someone ran `npm audit` locally. Astro 7.4.6 had a moderate advisory ([GHSA-r3h5-4585-7x3w](https://github.com/advisories/GHSA-r3h5-4585-7x3w)) that nothing flagged.
+
+- [x] Fail the build on `npm audit --audit-level=moderate`
+- [x] Verify registry signatures with `npm audit signatures`
+- [x] `npm audit fix`: Astro 7.4.6 → 7.4.11
 
 ## Housekeeping
 
