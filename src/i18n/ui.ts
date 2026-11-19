@@ -9,6 +9,11 @@ export function url(path: string) {
     return `${base}${path}`;
 }
 
+/** Contact page URL for a locale. */
+export function contactUrl(lang: Locale) {
+    return url(lang === defaultLocale ? "/kontakt/" : `/${lang}/contact/`);
+}
+
 /** Home page URL for a locale. */
 export function homeUrl(lang: Locale) {
     return url(lang === defaultLocale ? "/" : `/${lang}/`);
@@ -22,6 +27,7 @@ const ui = {
         "nav.home": "Domov",
         "nav.posts": "Články",
         "nav.about": "O mne",
+        "nav.contact": "Kontakt",
         "lang.switch": "Switch to English",
         "lang.other": "EN",
         "theme.toggle": "Prepnúť svetlý/tmavý režim",
@@ -36,6 +42,23 @@ const ui = {
         "notFound.text":
             "Odkaz, ktorý ste otvorili, je nefunkčný alebo stránka bola presunutá či odstránená.",
         "notFound.home": "Späť na úvod",
+
+        "contact.title": "Kontakt",
+        "contact.description": "Napíšte mi správu cez kontaktný formulár.",
+        "contact.lead":
+            "Máte otázku, postreh k článku alebo len chcete pozdraviť? Napíšte mi a ozvem sa vám e-mailom.",
+        "contact.name": "Meno",
+        "contact.email": "E-mail",
+        "contact.message": "Správa",
+        "contact.send": "Odoslať správu",
+        "contact.sending": "Odosielam…",
+        "contact.success": "Ďakujem, správa bola odoslaná. Ozvem sa čo najskôr.",
+        "contact.error":
+            "Správu sa nepodarilo odoslať. Skúste to prosím znova alebo ma kontaktujte cez LinkedIn.",
+        "contact.subject": "Nová správa z webu",
+        "contact.privacy":
+            "Formulár odosiela správu cez službu Web3Forms na môj e-mail. Meno a e-mail použijem len na odpoveď.",
+        "contact.other": "Alebo ma nájdete na",
 
         "hero.eyebrow": "Ahoj, ja som",
         "hero.lead":
@@ -61,6 +84,7 @@ const ui = {
         "nav.home": "Home",
         "nav.posts": "Posts",
         "nav.about": "About",
+        "nav.contact": "Contact",
         "lang.switch": "Prepnúť do slovenčiny",
         "lang.other": "SK",
         "theme.toggle": "Toggle light/dark theme",
@@ -74,6 +98,22 @@ const ui = {
         "notFound.title": "Page not found",
         "notFound.text": "The link you followed is broken, or the page has been moved or removed.",
         "notFound.home": "Back home",
+
+        "contact.title": "Contact",
+        "contact.description": "Send me a message through the contact form.",
+        "contact.lead":
+            "Got a question, a comment on a post, or just want to say hi? Send me a message and I'll reply by email.",
+        "contact.name": "Name",
+        "contact.email": "Email",
+        "contact.message": "Message",
+        "contact.send": "Send message",
+        "contact.sending": "Sending…",
+        "contact.success": "Thanks, your message has been sent. I'll get back to you soon.",
+        "contact.error": "The message could not be sent. Please try again or reach me on LinkedIn.",
+        "contact.subject": "New message from the website",
+        "contact.privacy":
+            "The form sends your message to my email through Web3Forms. I only use your name and email to reply.",
+        "contact.other": "You can also find me on",
 
         "hero.eyebrow": "Hi, I'm",
         "hero.lead":

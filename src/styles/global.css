@@ -820,6 +820,87 @@ main.prose .toc .depth-3 {
     margin-top: 2rem;
 }
 
+/* ==========================================================================
+   Contact form
+   ========================================================================== */
+.contact-lead {
+    color: var(--ink-soft);
+}
+.contact-form {
+    display: grid;
+    gap: 1.25rem;
+    margin-top: 2rem;
+    padding: clamp(1.25rem, 3vw, 2rem);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--bg-raised);
+}
+.contact-field {
+    display: grid;
+    gap: 0.4rem;
+}
+.contact-field label {
+    font-weight: 600;
+    font-size: 0.92rem;
+}
+.contact-field input,
+.contact-field textarea {
+    width: 100%;
+    padding: 0.65rem 0.8rem;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--bg);
+    color: var(--ink);
+    font: inherit;
+}
+.contact-field textarea {
+    resize: vertical;
+}
+.contact-field input:focus-visible,
+.contact-field textarea:focus-visible {
+    border-color: var(--accent);
+}
+.contact-botcheck {
+    position: absolute;
+    left: -9999px;
+}
+.contact-privacy {
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 0.85rem;
+}
+.contact-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1rem;
+}
+.contact-actions .button {
+    border: 0;
+    font-family: inherit;
+    cursor: pointer;
+}
+.contact-actions .button:disabled {
+    opacity: 0.6;
+    cursor: progress;
+}
+.contact-status {
+    margin: 0;
+    font-size: 0.92rem;
+}
+.contact-status[data-state="success"] {
+    color: var(--ink);
+    font-weight: 600;
+}
+.contact-status[data-state="error"] {
+    color: var(--accent);
+    font-weight: 600;
+}
+.contact-other {
+    margin-top: 2rem;
+    color: var(--ink-soft);
+}
+
 .button {
     padding: 0.6rem 1.15rem;
     border-radius: 999px;
