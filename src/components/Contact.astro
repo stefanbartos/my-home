@@ -50,15 +50,35 @@ const otherLocale: Locale = locale === "sk" ? "en" : "sk";
 
         <div class="contact-field">
             <label for="contact-name">{t("contact.name")}</label>
-            <input id="contact-name" name="name" type="text" autocomplete="name" required />
+            <input
+                id="contact-name"
+                name="name"
+                type="text"
+                autocomplete="name"
+                maxlength="100"
+                required
+            />
         </div>
         <div class="contact-field">
             <label for="contact-email">{t("contact.email")}</label>
-            <input id="contact-email" name="email" type="email" autocomplete="email" required />
+            <input
+                id="contact-email"
+                name="email"
+                type="email"
+                autocomplete="email"
+                maxlength="254"
+                required
+            />
         </div>
         <div class="contact-field">
             <label for="contact-message">{t("contact.message")}</label>
-            <textarea id="contact-message" name="message" rows="7" required></textarea>
+            <textarea
+                id="contact-message"
+                name="message"
+                rows="7"
+                maxlength="5000"
+                required
+            ></textarea>
         </div>
 
         <p class="contact-privacy">{t("contact.privacy")}</p>
@@ -73,7 +93,8 @@ const otherLocale: Locale = locale === "sk" ? "en" : "sk";
 
     <p class="contact-other">
         {t("contact.other")}
-        <a href="https://github.com/stefanbartos">GitHub</a>·
+        <a href="https://github.com/stefanbartos">GitHub</a>
+        {" · "}
         <a href="https://www.linkedin.com/in/stefan-bartos/">LinkedIn</a>
     </p>
 </Default>
@@ -88,6 +109,15 @@ const otherLocale: Locale = locale === "sk" ? "en" : "sk";
     form?.addEventListener("submit", async (event) => {
         event.preventDefault();
         if (!status || !button) {
+            return;
+        }
+        // Trim the text fields so a message of only spaces fails "required".
+        for (const field of form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>(
+            "input[type=text], input[type=email], textarea",
+        )) {
+            field.value = field.value.trim();
+        }
+        if (!form.reportValidity()) {
             return;
         }
         const { sending = "", success = "", error = "" } = form.dataset;
