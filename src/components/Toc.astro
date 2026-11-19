@@ -3,6 +3,7 @@ import type { MarkdownHeading } from "astro";
 
 interface Props {
     headings: MarkdownHeading[];
+    label: string;
 }
 
 // Page title (h1) is skipped; h2 and h3 sections are listed.
@@ -11,7 +12,7 @@ const items = Astro.props.headings.filter((h) => h.depth === 2 || h.depth === 3)
 
 {items.length > 0 && (
     <details class="toc">
-        <summary>Obsah</summary>
+        <summary>{Astro.props.label}</summary>
         <ul>
             {items.map((h) => (
                 <li class={`depth-${h.depth}`}>

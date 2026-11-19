@@ -8,6 +8,7 @@ import Lightbox from "../components/Lightbox.astro";
 import CodeCopy from "../components/CodeCopy.astro";
 import type { Locale } from "../i18n/ui";
 import { defaultLocale, homeUrl, url, useTranslations } from "../i18n/ui";
+import { findPost } from "../posts";
 
 interface Props {
     frontmatter?: {
@@ -29,7 +30,8 @@ interface Props {
 }
 
 const { frontmatter, headings = [], wide = false } = Astro.props;
-const locale: Locale = Astro.props.locale ?? defaultLocale;
+const page = findPost(Astro.url.pathname);
+const locale: Locale = Astro.props.locale ?? page.post?.locale ?? defaultLocale;
 const otherLocale: Locale = locale === "sk" ? "en" : "sk";
 const t = useTranslations(locale);
 
@@ -37,7 +39,7 @@ const pageTitle = Astro.props.title ?? frontmatter?.title;
 const title = pageTitle ? `${pageTitle} · Štefan Bartoš` : "Štefan Bartoš";
 const description = Astro.props.description ?? frontmatter?.description ?? t("site.description");
 const lang = Astro.props.lang ?? frontmatter?.lang ?? locale;
-const alternate = Astro.props.alternate;
+const alternate = Astro.props.alternate ?? page.translation?.href;
 const switchHref = alternate ?? homeUrl(otherLocale);
 
 const home = homeUrl(locale);
@@ -143,7 +145,7 @@ const nav = [
                     <Topo seed={title.length} peaks={[{ x: 85, y: 40, r: 60 }]} />
                 </div>
             )}
-            {frontmatter?.toc && <Toc headings={headings} />}
+            {frontmatter?.toc && <Toc headings={headings} label={t("toc.title")} />}
             <slot />
         </main>
 

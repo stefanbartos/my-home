@@ -10,7 +10,7 @@ interface Props {
 
 const { locale } = Astro.props;
 const t = useTranslations(locale);
-const posts = getPosts();
+const posts = getPosts(locale);
 ---
 
 <section class="hero">
