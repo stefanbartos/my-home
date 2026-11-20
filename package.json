@@ -13,6 +13,7 @@
     "format:check": "oxfmt --check",
     "lint": "oxlint --deny-warnings",
     "lint:fallow": "fallow --fail-on-issues",
+    "check": "astro check",
     "prepare": "lefthook install",
     "test": "vitest run"
   },
@@ -39,12 +40,14 @@
     "lefthook": false
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.12",
     "@astrojs/compiler-rs": "^0.5.3",
     "@astrojs/sitemap": "^3.7.4",
     "fallow": "^3.42.0",
     "lefthook": "^2.2.2",
     "oxfmt": "^0.78.0",
     "oxlint": "^1.93.0",
+    "typescript": "^6.0.3",
     "vitest": "^5.1.0"
   }
 }

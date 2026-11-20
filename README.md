@@ -17,6 +17,7 @@ npm run build     # production build into dist/
 npm run preview   # serve the production build
 npm run lint         # oxlint: bugs and suspicious patterns (runs in CI)
 npm run lint:fallow  # unused code, duplication, complexity (runs in CI)
+npm run check        # type-check .astro and .ts files (runs in CI)
 npm test             # Vitest unit tests for src/utils (runs in CI)
 ```
 

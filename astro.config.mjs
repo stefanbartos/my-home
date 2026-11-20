@@ -8,6 +8,7 @@ import { readFileSync } from "node:fs";
 // Astro hashes only the scripts it bundles, not is:inline ones. The theme
 // script must run inline before first paint, so hash its exact source here.
 const themeInit = readFileSync(new URL("src/scripts/theme-init.js", import.meta.url), "utf8");
+/** @type {`sha256-${string}`} */
 const themeInitHash = `sha256-${createHash("sha256").update(themeInit).digest("base64")}`;
 
 export default defineConfig({
