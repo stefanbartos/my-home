@@ -35,7 +35,8 @@ export default defineConfig({
                 "form-action https://api.web3forms.com",
             ],
             scriptDirective: {
-                resources: ["'self'", "https://gc.zgo.at"],
+                // Only the pinned GoatCounter script, not the whole host.
+                resources: ["'self'", "https://gc.zgo.at/count.v4.js"],
             },
             // Code highlighting (Shiki) and responsive images use inline style
             // attributes, which hashes can't cover.
