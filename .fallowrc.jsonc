@@ -4,4 +4,10 @@
   // fallow counts as a dev-only file. Astro's docs keep integrations in
   // dependencies, so do not flag it as test-only.
   "ignoreDependencies": ["@astrojs/mdx"],
+  "health": {
+    // Components hold client-side DOM event handlers. Unit tests cover
+    // only src/utils/, so fallow assumes 0% coverage and flags their CRAP
+    // score. Dead-code and duplication checks still cover components.
+    "ignore": ["src/components/**"],
+  },
 }
