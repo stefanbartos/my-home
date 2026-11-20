@@ -27,12 +27,11 @@ const en404 = notFoundUrl("en");
     description={t("notFound.text")}
     alternate={notFoundUrl(otherLocale)}
 >
-    {locale === "sk" && <script is:inline define:vars={{ enPrefix, en404 }}>
-        if (location.pathname.startsWith(enPrefix)) {
-            location.replace(en404);
-        }
-    </script>}
-    <section class="not-found">
+    <section
+        class="not-found"
+        data-en-prefix={locale === "sk" ? enPrefix : undefined}
+        data-en404={locale === "sk" ? en404 : undefined}
+    >
         <Topo class="not-found-topo" seed={404} peaks={[{ x: 50, y: 48, r: 58 }]} />
         <h1 class="not-found-title">
             <span class="not-found-code mono">404</span>
@@ -46,3 +45,12 @@ const en404 = notFoundUrl("en");
         </div>
     </section>
 </Default>
+
+<script>
+    // Bundled (not is:inline) so the CSP covers it. Only the Slovak page sets the data.
+    const notFound = document.querySelector<HTMLElement>(".not-found");
+    const { enPrefix, en404 } = notFound?.dataset ?? {};
+    if (enPrefix && en404 && location.pathname.startsWith(enPrefix)) {
+        location.replace(en404);
+    }
+</script>
