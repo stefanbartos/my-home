@@ -49,3 +49,43 @@ const { label } = Astro.props;
         }
     });
 </script>
+
+<style>
+    .theme-toggle {
+        display: grid;
+        place-items: center;
+        width: 2rem;
+        height: 2rem;
+        margin-left: 0.25rem;
+        padding: 0;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        background: transparent;
+        color: var(--ink-soft);
+        cursor: pointer;
+    }
+    .theme-toggle:hover {
+        border-color: var(--ink-soft);
+        color: var(--ink);
+    }
+    .theme-toggle svg {
+        width: 1rem;
+        height: 1rem;
+    }
+    /* Show the sun in dark mode (click → light) and the moon in light mode. */
+    .theme-toggle .icon-sun,
+    :global(:root[data-theme="dark"]) .theme-toggle .icon-moon {
+        display: none;
+    }
+    :global(:root[data-theme="dark"]) .theme-toggle .icon-sun {
+        display: block;
+    }
+    @media (prefers-color-scheme: dark) {
+        :global(:root:not([data-theme="light"])) .theme-toggle .icon-sun {
+            display: block;
+        }
+        :global(:root:not([data-theme="light"])) .theme-toggle .icon-moon {
+            display: none;
+        }
+    }
+</style>
