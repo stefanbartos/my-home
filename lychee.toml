@@ -20,6 +20,8 @@ exclude = [
     '^https://(www\.)?linkedin\.com/',
     # Resets connections from scripts, but works in a browser.
     '^https://www\.skalnioblasti\.cz/',
+    # The contact form's action URL only accepts POST, so a GET returns 405.
+    '^https://api\.web3forms\.com/',
 ]
 
 exclude_path = [
