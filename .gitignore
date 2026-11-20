@@ -17,3 +17,6 @@ npm-debug.log*
 
 # Git worktrees for tasks (see CLAUDE.md)
 .claude/worktrees/
+
+# Lighthouse CI build copy and reports (npm run lighthouse)
+.lighthouseci/
