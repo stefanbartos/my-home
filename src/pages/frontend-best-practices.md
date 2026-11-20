@@ -4,8 +4,8 @@ title: Frontend Best Practices
 lang: en
 updated: 2026-11-19
 summary:
-  sk: Čo nastaviť v každom frontend projekte – bezpečnosť závislostí, CI a zdravie kódu.
-  en: What to set up in every frontend project – dependency security, CI and code health.
+  sk: Čo nastaviť v každom frontend projekte – bezpečnosť a aktualizácie závislostí, CI a zdravie kódu.
+  en: What to set up in every frontend project – dependency security and updates, CI and code health.
 ---
 
 # Frontend Best Practices
@@ -38,6 +38,29 @@ summary:
   ```
 
   Lefthook's `postinstall` script only installs the Git hooks. The `prepare` script does the same on every `npm install` (see [Git hooks](#git-hooks)), so setting `lefthook` to `false` loses nothing and keeps a package script from running on your machine.
+
+## Dependency updates
+
+- **Automate dependency updates with [Renovate](https://docs.renovatebot.com/).** Updates you do by hand get put off until one is urgent, and then you're several major versions behind. Renovate opens a pull request for each update, so CI tests it and you review a small diff. Prefer it to Dependabot version updates: Renovate also updates the Node version in `.node-version` or `.nvmrc`, image digests in GitHub Actions and GitLab CI files (see [Container images](#container-images)), and the version comments next to actions pinned to commit SHAs. It also lists every pending update on a Dependency Dashboard issue. It runs on GitHub, GitLab and other platforms with the same config.
+
+  ```json
+  {
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "extends": ["config:recommended", "helpers:pinGitHubActionDigestsToSemver", "schedule:monthly"],
+    "minimumReleaseAge": "7 days",
+    "internalChecksFilter": "strict",
+    "packageRules": [
+      {
+        "groupName": "astro",
+        "matchPackageNames": ["astro", "@astrojs/**"]
+      }
+    ]
+  }
+  ```
+
+  `minimumReleaseAge` waits until a release is 7 days old, for the same reason as `min-release-age` in `.npmrc` (see [Security](#security)). Keep the two values the same. `internalChecksFilter: "strict"` stops Renovate from opening the pull request before then. Group packages that are released together, such as a framework and its plugins, so they're updated in one pull request. Run only one update bot: Dependabot version updates and Renovate together open duplicate pull requests.
+
+- **Turn on Dependabot alerts.** In the repository, go to _Settings → Advanced Security_ and enable _Dependabot alerts_. GitHub then checks your lockfile against its advisory database and tells you when a dependency you use has a known vulnerability, without waiting for the next scheduled update. Alerts are separate from Dependabot version updates, so they work alongside Renovate. Renovate reads them and opens a fix pull request right away, outside its schedule. Where Dependabot alerts aren't available, for example on GitLab, set `"osvVulnerabilityAlerts": true` in the Renovate config to get the same from the [OSV](https://osv.dev/) database.
 
 ## Container images
 
@@ -78,7 +101,7 @@ summary:
   FROM node:22-alpine@sha256:<digest>
   ```
 
-  Pin the multi-arch index digest (shown by `docker buildx imagetools inspect node:22-alpine`), not a single-platform one. Automate the updates: Renovate updates digests in all of the files above. Dependabot only covers Dockerfiles and Compose files, not images referenced in GitHub Actions or GitLab CI YAML. Pinning without automated updates leaves you on an old image that stops getting security patches.
+  Pin the multi-arch index digest (shown by `docker buildx imagetools inspect node:22-alpine`), not a single-platform one. Automate the updates (see [Dependency updates](#dependency-updates)): Renovate updates digests in all of the files above. Dependabot only covers Dockerfiles and Compose files, not images referenced in GitHub Actions or GitLab CI YAML. Pinning without automated updates leaves you on an old image that stops getting security patches.
 
 ## Code health
 
