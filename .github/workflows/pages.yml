@@ -51,6 +51,10 @@ jobs:
       - name: Check code with fallow
         run: npm run lint:fallow
 
+      # Unit tests (Vitest) for the helper functions in src/utils.
+      - name: Run unit tests
+        run: npm test
+
       # Astro keeps optimized images in node_modules/.astro. Restoring it skips
       # re-processing photos that have not changed. It must come after npm ci,
       # which wipes node_modules.
