@@ -1,10 +1,13 @@
 import type { Locale } from "./i18n/ui";
 import { url } from "./i18n/ui";
+import { parseFrontmatterDate } from "./utils/date";
 
 interface PostFrontmatter {
     title: string;
     lang?: string;
     summary?: Partial<Record<Locale, string>>;
+    /** Date of the last content edit, e.g. `updated: 2026-11-19` (YAML parses it as a Date). */
+    updated?: Date | string;
 }
 
 export interface Post {
@@ -12,6 +15,7 @@ export interface Post {
     title: string;
     lang: string;
     summary: Partial<Record<Locale, string>>;
+    updated: Date;
 }
 
 /** Every markdown page under src/pages is a post. */
@@ -25,6 +29,20 @@ export function getPosts(): Post[] {
             title: mod.frontmatter.title,
             lang: mod.frontmatter.lang ?? "sk",
             summary: mod.frontmatter.summary ?? {},
+            updated: parseUpdated(file, mod.frontmatter.updated),
         }))
         .toSorted((a, b) => a.title.localeCompare(b.title));
+}
+
+/** Fails the build when a page has no valid `updated` date in its front matter. */
+function parseUpdated(file: string, value: Date | string | undefined) {
+    const message = `${file}: front matter needs a valid \`updated: YYYY-MM-DD\` date`;
+    if (value === undefined) {
+        throw new Error(message);
+    }
+    try {
+        return parseFrontmatterDate(value);
+    } catch (error) {
+        throw new Error(message, { cause: error });
+    }
 }

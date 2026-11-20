@@ -12,6 +12,7 @@ import CodeCopy from "../components/CodeCopy.astro";
 import themeInit from "../scripts/theme-init.js?raw";
 import type { Locale } from "../i18n/ui";
 import { contactUrl, defaultLocale, homeUrl, url, useTranslations } from "../i18n/ui";
+import { currentYear, formatDate, isoDate, parseFrontmatterDate } from "../utils/date";
 
 interface Props {
     frontmatter?: {
@@ -19,6 +20,8 @@ interface Props {
         description?: string;
         lang?: string;
         toc?: boolean;
+        /** Date of the last content edit (YAML parses `2026-11-19` as a Date). */
+        updated?: Date | string;
     };
     headings?: MarkdownHeading[];
     title?: string;
@@ -42,6 +45,8 @@ const title = pageTitle ? `${pageTitle} · Štefan Bartoš` : "Štefan Bartoš";
 const description = Astro.props.description ?? frontmatter?.description ?? t("site.description");
 const lang = Astro.props.lang ?? frontmatter?.lang ?? locale;
 const alternate = Astro.props.alternate;
+const updated =
+    frontmatter?.updated === undefined ? null : parseFrontmatterDate(frontmatter.updated);
 const switchHref = alternate ?? homeUrl(otherLocale);
 
 const home = homeUrl(locale);
@@ -148,11 +153,17 @@ const currentPath = Astro.url.pathname;
             )}
             {frontmatter?.toc && <Toc headings={headings} />}
             <slot />
+            {updated && (
+                <p class="page-updated" lang={locale}>
+                    {t("updated")}{" "}
+                    <time datetime={isoDate(updated)}>{formatDate(locale, updated)}</time>
+                </p>
+            )}
         </main>
 
         <footer class="site-footer" lang={locale}>
             <p>
-                © {new Date().getFullYear()} Štefan Bartoš
+                © {currentYear()} Štefan Bartoš
                 {" · "}
                 <a href="https://github.com/stefanbartos">GitHub</a>
                 {" · "}

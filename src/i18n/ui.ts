@@ -37,6 +37,7 @@ const ui = {
         "lightbox.next": "Ďalší obrázok",
         "code.copy": "Kopírovať kód",
         "code.copied": "Skopírované",
+        updated: "Naposledy upravené",
 
         "notFound.title": "Stránka sa nenašla",
         "notFound.text":
@@ -94,6 +95,7 @@ const ui = {
         "lightbox.next": "Next image",
         "code.copy": "Copy code",
         "code.copied": "Copied",
+        updated: "Last updated",
 
         "notFound.title": "Page not found",
         "notFound.text": "The link you followed is broken, or the page has been moved or removed.",

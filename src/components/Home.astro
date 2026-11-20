@@ -2,6 +2,7 @@
 import Topo from "./Topo.astro";
 import type { Locale } from "../i18n/ui";
 import { languageName, useTranslations } from "../i18n/ui";
+import { formatDate, isoDate } from "../utils/date";
 import { getPosts } from "../posts";
 
 interface Props {
@@ -37,9 +38,14 @@ const posts = getPosts();
                     {post.summary[locale] && (
                         <span class="post-summary">{post.summary[locale]}</span>
                     )}
-                    {post.lang !== locale && (
-                        <span class="post-lang">{languageName(locale, post.lang)}</span>
-                    )}
+                    <span class="post-meta">
+                        <time datetime={isoDate(post.updated)}>
+                            {t("updated")} {formatDate(locale, post.updated)}
+                        </time>
+                        {post.lang !== locale && (
+                            <span class="post-lang">{languageName(locale, post.lang)}</span>
+                        )}
+                    </span>
                     <span class="post-arrow" aria-hidden="true">
                         →
                     </span>
