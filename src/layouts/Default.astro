@@ -93,12 +93,20 @@ const currentPath = Astro.url.pathname;
                 // Storage blocked (private mode etc.): keep the system theme.
             }
         </script>
-        <!-- GoatCounter: cookieless page-view stats; it ignores localhost by default. -->
+        <!--
+            GoatCounter: cookieless page-view stats; it ignores localhost by default.
+            Load the versioned script with Subresource Integrity, so the browser
+            refuses it if gc.zgo.at ever serves different code. The hash is the one
+            published at https://www.goatcounter.com/help/countjs-versions. Update
+            both the version and the hash together.
+        -->
         <script
             is:inline
             data-goatcounter="https://stefanbartos.goatcounter.com/count"
             async
-            src="https://gc.zgo.at/count.js"
+            src="https://gc.zgo.at/count.v4.js"
+            crossorigin="anonymous"
+            integrity="sha384-nRw6qfbWyJha9LhsOtSb2YJDyZdKvvCFh0fJYlkquSFjUxp9FVNugbfy8q1jdxI+"
         ></script>
     </head>
 
