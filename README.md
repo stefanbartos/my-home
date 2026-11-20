@@ -43,3 +43,5 @@ import photo from "../assets/images/photo.jpg";
 ## Deployment
 
 Every push to `main` builds the site with GitHub Actions (`.github/workflows/pages.yml`) and deploys `dist/` with the official GitHub Pages actions (repo Settings → Pages → Source: "GitHub Actions"). Pull requests only build. The site is served under the `/my-home` base path (see `astro.config.mjs`).
+
+Every build also checks the internal links and `#anchors` of the built site with [lychee](https://lychee.cli.rs), so a broken one fails the build. External links are checked once a week by `.github/workflows/links.yml`. A dead one fails that run and GitHub sends the usual failure email. Exclusions and retries are in `lychee.toml`.
