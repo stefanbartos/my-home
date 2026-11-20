@@ -17,6 +17,7 @@ npm run build     # production build into dist/
 npm run preview   # serve the production build
 npm run lint         # oxlint: bugs and suspicious patterns (runs in CI)
 npm run lint:fallow  # unused code, duplication, complexity (runs in CI)
+npm test             # Vitest unit tests for src/utils (runs in CI)
 ```
 
 ## Project layout
@@ -27,6 +28,7 @@ npm run lint:fallow  # unused code, duplication, complexity (runs in CI)
 | `src/layouts/Default.astro` | Shared page layout                                               |
 | `src/components/`           | `Img` (optimized images) and `YouTube` (video embed)             |
 | `src/assets/images/`        | Source images, processed by Astro at build time                  |
+| `src/utils/`                | Helper functions, with their Vitest tests (`*.test.ts`)          |
 | `TASKS.md`                  | Improvement backlog                                              |
 
 To add an image to an `.mdx` page, import it and use the `Img` component with an `alt` description:
