@@ -1,4 +1,8 @@
 ---
+// Self-hosted fonts: bundled at build time, so visitors never contact Google.
+import "@fontsource-variable/inter/index.css";
+import "@fontsource-variable/inter-tight/index.css";
+import "@fontsource-variable/jetbrains-mono/index.css";
 import "../styles/global.css";
 import type { MarkdownHeading } from "astro";
 import Topo from "../components/Topo.astro";
@@ -75,12 +79,6 @@ const currentPath = Astro.url.pathname;
         <link rel="icon" href={url("/favicon.ico")} sizes="32x32" />
         <link rel="icon" href={url("/favicon.svg")} type="image/svg+xml" />
         <link rel="apple-touch-icon" href={url("/apple-touch-icon.png")} />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500..700&family=Inter:wght@400..700&family=JetBrains+Mono:wght@500;600&display=swap"
-        />
         <title>{title}</title>
         <script is:inline>
             // Apply a saved light/dark choice before first paint (see ThemeToggle.astro).

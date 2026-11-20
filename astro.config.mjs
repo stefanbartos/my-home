@@ -20,6 +20,13 @@ export default defineConfig({
         // about 3x faster and, for these photos, produces slightly smaller files.
         service: sharpImageService({ avif: { effort: 3 } }),
     },
+    vite: {
+        build: {
+            // Emit every font as a file. Vite would inline small subsets as data:
+            // URIs, which the CSP's font-src 'self' blocks.
+            assetsInlineLimit: (filePath) => (filePath.endsWith(".woff2") ? false : undefined),
+        },
+    },
     security: {
         // Emits a Content-Security-Policy <meta> tag on every page, with hashes
         // for the scripts Astro renders. GitHub Pages can't set CSP headers.
@@ -29,7 +36,7 @@ export default defineConfig({
                 "base-uri 'self'",
                 "object-src 'none'",
                 "img-src 'self' data: https://stefanbartos.goatcounter.com",
-                "font-src https://fonts.gstatic.com",
+                "font-src 'self'",
                 "connect-src 'self' https://api.web3forms.com https://stefanbartos.goatcounter.com",
                 "frame-src https://www.youtube-nocookie.com",
                 "form-action https://api.web3forms.com",
@@ -41,7 +48,7 @@ export default defineConfig({
             // Code highlighting (Shiki) and responsive images use inline style
             // attributes, which hashes can't cover.
             styleDirective: {
-                resources: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
+                resources: ["'self'", "'unsafe-inline'"],
             },
         },
     },
