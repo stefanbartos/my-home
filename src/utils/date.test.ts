@@ -5,12 +5,12 @@ const date = new Date("2026-11-19T00:00:00.000Z");
 
 describe("parseFrontmatterDate", () => {
     test("returns a Date as the same point in time", () => {
-        expect(parseFrontmatterDate(date)).toEqual(date);
+        expect(parseFrontmatterDate(date)).toStrictEqual(date);
     });
 
     test("parses an ISO string", () => {
-        expect(parseFrontmatterDate("2026-11-19")).toEqual(date);
-        expect(parseFrontmatterDate("2026-11-19T00:00:00.000Z")).toEqual(date);
+        expect(parseFrontmatterDate("2026-11-19")).toStrictEqual(date);
+        expect(parseFrontmatterDate("2026-11-19T00:00:00.000Z")).toStrictEqual(date);
     });
 
     test("throws a RangeError for an invalid date", () => {
