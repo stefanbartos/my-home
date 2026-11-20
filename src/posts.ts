@@ -1,5 +1,6 @@
 import type { Locale } from "./i18n/ui";
 import { url } from "./i18n/ui";
+import { parseFrontmatterDate } from "./utils/date";
 
 interface PostFrontmatter {
     title: string;
@@ -34,10 +35,14 @@ export function getPosts(): Post[] {
 }
 
 /** Fails the build when a page has no valid `updated` date in its front matter. */
-function parseUpdated(file: string, value: Date | string | undefined): Date {
-    const date = value === undefined ? undefined : new Date(value);
-    if (date === undefined || Number.isNaN(date.getTime())) {
-        throw new Error(`${file}: front matter needs a valid \`updated: YYYY-MM-DD\` date`);
+function parseUpdated(file: string, value: Date | string | undefined) {
+    const message = `${file}: front matter needs a valid \`updated: YYYY-MM-DD\` date`;
+    if (value === undefined) {
+        throw new Error(message);
     }
-    return date;
+    try {
+        return parseFrontmatterDate(value);
+    } catch (error) {
+        throw new Error(message, { cause: error });
+    }
 }
