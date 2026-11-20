@@ -1,7 +1,8 @@
 ---
 import Topo from "./Topo.astro";
 import type { Locale } from "../i18n/ui";
-import { formatDate, languageName, useTranslations } from "../i18n/ui";
+import { languageName, useTranslations } from "../i18n/ui";
+import { formatDate } from "../utils/format-date";
 import { getPosts } from "../posts";
 
 interface Props {

@@ -145,11 +145,6 @@ export function languageName(locale: Locale, lang: string) {
     return languageNames[locale][lang] ?? lang;
 }
 
-/** Long date in the UI locale, e.g. "19. novembra 2026" / "November 19, 2026". */
-export function formatDate(locale: Locale, date: Date) {
-    return new Intl.DateTimeFormat(locale, { dateStyle: "long", timeZone: "UTC" }).format(date);
-}
-
 export type UIKey = keyof (typeof ui)["sk"];
 
 export function useTranslations(lang: Locale) {

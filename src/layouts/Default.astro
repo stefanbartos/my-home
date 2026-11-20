@@ -11,7 +11,8 @@ import Lightbox from "../components/Lightbox.astro";
 import CodeCopy from "../components/CodeCopy.astro";
 import themeInit from "../scripts/theme-init.js?raw";
 import type { Locale } from "../i18n/ui";
-import { contactUrl, defaultLocale, formatDate, homeUrl, url, useTranslations } from "../i18n/ui";
+import { contactUrl, defaultLocale, homeUrl, url, useTranslations } from "../i18n/ui";
+import { formatDate } from "../utils/format-date";
 
 interface Props {
     frontmatter?: {
