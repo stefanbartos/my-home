@@ -2,6 +2,13 @@
 import { defineConfig, sharpImageService } from "astro/config";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
+import { createHash } from "node:crypto";
+import { readFileSync } from "node:fs";
+
+// Astro hashes only the scripts it bundles, not is:inline ones. The theme
+// script must run inline before first paint, so hash its exact source here.
+const themeInit = readFileSync(new URL("src/scripts/theme-init.js", import.meta.url), "utf8");
+const themeInitHash = `sha256-${createHash("sha256").update(themeInit).digest("base64")}`;
 
 export default defineConfig({
     site: "https://stefanbartos.github.io",
@@ -37,6 +44,7 @@ export default defineConfig({
             scriptDirective: {
                 // Only the pinned GoatCounter script, not the whole host.
                 resources: ["'self'", "https://gc.zgo.at/count.v4.js"],
+                hashes: [themeInitHash],
             },
             // Code highlighting (Shiki) and responsive images use inline style
             // attributes, which hashes can't cover.

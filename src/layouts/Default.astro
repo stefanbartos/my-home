@@ -6,6 +6,7 @@ import Toc from "../components/Toc.astro";
 import ThemeToggle from "../components/ThemeToggle.astro";
 import Lightbox from "../components/Lightbox.astro";
 import CodeCopy from "../components/CodeCopy.astro";
+import themeInit from "../scripts/theme-init.js?raw";
 import type { Locale } from "../i18n/ui";
 import { contactUrl, defaultLocale, homeUrl, url, useTranslations } from "../i18n/ui";
 
@@ -82,17 +83,7 @@ const currentPath = Astro.url.pathname;
             href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500..700&family=Inter:wght@400..700&family=JetBrains+Mono:wght@500;600&display=swap"
         />
         <title>{title}</title>
-        <script is:inline>
-            // Apply a saved light/dark choice before first paint (see ThemeToggle.astro).
-            try {
-                const theme = localStorage.getItem("theme");
-                if (theme === "light" || theme === "dark") {
-                    document.documentElement.dataset.theme = theme;
-                }
-            } catch {
-                // Storage blocked (private mode etc.): keep the system theme.
-            }
-        </script>
+        <script is:inline set:html={themeInit} />
         <!--
             GoatCounter: cookieless page-view stats; it ignores localhost by default.
             Load the versioned script with Subresource Integrity, so the browser
