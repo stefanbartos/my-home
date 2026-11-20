@@ -72,3 +72,167 @@ const posts = getPosts();
         </div>
     </div>
 </section>
+
+<style>
+    .hero {
+        position: relative;
+        isolation: isolate;
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: clamp(3rem, 8vw, 6rem) var(--gutter) clamp(2rem, 5vw, 3.5rem);
+    }
+    /* The <svg> is rendered by Topo.astro, so it doesn't carry this scope. */
+    .hero :global(.hero-topo) {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        z-index: -1;
+        left: calc(50% - 50vw);
+        width: 100vw;
+        max-width: none;
+        height: 100%;
+        opacity: 0.8;
+        mask-image: linear-gradient(to bottom, #000 40%, transparent);
+        -webkit-mask-image: linear-gradient(to bottom, #000 40%, transparent);
+    }
+    .hero-title {
+        margin: 0;
+        font-size: clamp(2.75rem, 7vw, 5rem);
+        font-weight: 700;
+        line-height: 1;
+        letter-spacing: -0.035em;
+    }
+    .hero-accent {
+        color: var(--ink-soft);
+    }
+    .hero-lead {
+        max-width: 44ch;
+        margin: 1.5rem 0 1.75rem;
+        font-size: clamp(1.075rem, 1rem + 0.35vw, 1.25rem);
+        color: var(--ink-soft);
+    }
+
+    .posts,
+    .about {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: clamp(2rem, 5vw, 3.5rem) var(--gutter);
+    }
+    .about {
+        padding-bottom: clamp(3rem, 7vw, 5rem);
+    }
+    .section-head h2,
+    .about h2 {
+        margin: 0 0 1.5rem;
+        font-size: clamp(1.6rem, 1.3rem + 1.2vw, 2.25rem);
+    }
+
+    .post-list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        border-top: 1px solid var(--line);
+    }
+    .post-list li {
+        border-bottom: 1px solid var(--line);
+    }
+    .post-item {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        column-gap: 2rem;
+        row-gap: 0.3rem;
+        padding: 1.4rem 0.75rem;
+        margin: 0 -0.75rem;
+        border-radius: 8px;
+        text-decoration: none;
+        transition: background 0.15s;
+    }
+    .post-item > * {
+        grid-column: 1;
+    }
+    .post-item:hover {
+        color: inherit;
+        background: var(--bg-raised);
+    }
+    .post-title {
+        font-family: var(--font-display);
+        font-weight: 650;
+        font-size: clamp(1.15rem, 1.05rem + 0.4vw, 1.35rem);
+        line-height: 1.3;
+        letter-spacing: -0.01em;
+    }
+    .post-item:hover .post-title {
+        color: var(--accent);
+    }
+    .post-summary {
+        max-width: 70ch;
+        color: var(--ink-soft);
+    }
+    .post-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.25rem 1rem;
+        color: var(--ink-soft);
+        font-size: 0.8rem;
+    }
+    /* .post-item in front so this beats .post-item > * above. */
+    .post-item .post-arrow {
+        grid-column: 2;
+        grid-row: 1 / span 3;
+        align-self: center;
+        color: var(--ink-soft);
+        font-size: 1.25rem;
+        transition:
+            transform 0.2s,
+            color 0.2s;
+    }
+    .post-item:hover .post-arrow {
+        color: var(--accent);
+        transform: translateX(4px);
+    }
+
+    .about-card {
+        padding: clamp(1.5rem, 3vw, 2rem);
+        border-radius: var(--radius);
+        background: var(--bg-raised);
+        border: 1px solid var(--line);
+    }
+    .about-card p:not(.eyebrow) {
+        max-width: 62ch;
+        color: var(--ink-soft);
+    }
+
+    /* Qualification in the About card */
+    .credential {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1.75rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--line);
+    }
+    .credential-badge {
+        flex: none;
+        display: grid;
+        place-items: center;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 10px;
+        background: var(--accent-soft);
+        color: var(--accent);
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: 0.85rem;
+        letter-spacing: 0.04em;
+    }
+    .credential p {
+        margin: 0;
+    }
+    .about-card p.credential-title {
+        color: var(--ink);
+        font-weight: 600;
+    }
+    .about-card p.credential-text {
+        margin: 0.25rem 0 0;
+        font-size: 0.95rem;
+    }
+</style>
