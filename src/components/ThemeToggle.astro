@@ -6,6 +6,7 @@ interface Props {
 const { label } = Astro.props;
 ---
 
+<!-- A toggle button: aria-pressed="true" means the dark theme is on (set by the script). -->
 <button class="theme-toggle" type="button" aria-label={label} title={label}>
     <svg
         class="icon-moon"
@@ -36,12 +37,21 @@ const { label } = Astro.props;
 <script>
     // The saved choice is applied in <head> (Default.astro) before first paint.
     const prefersDark = globalThis.matchMedia("(prefers-color-scheme: dark)");
+    const root = document.documentElement;
+    const toggle = document.querySelector<HTMLButtonElement>(".theme-toggle");
 
-    document.querySelector(".theme-toggle")?.addEventListener("click", () => {
-        const root = document.documentElement;
-        const current = root.dataset.theme ?? (prefersDark.matches ? "dark" : "light");
-        const next = current === "dark" ? "light" : "dark";
+    const currentTheme = () => root.dataset.theme ?? (prefersDark.matches ? "dark" : "light");
+    const updatePressed = () => {
+        toggle?.setAttribute("aria-pressed", String(currentTheme() === "dark"));
+    };
+
+    updatePressed();
+    prefersDark.addEventListener("change", updatePressed);
+
+    toggle?.addEventListener("click", () => {
+        const next = currentTheme() === "dark" ? "light" : "dark";
         root.dataset.theme = next;
+        updatePressed();
         try {
             localStorage.setItem("theme", next);
         } catch {

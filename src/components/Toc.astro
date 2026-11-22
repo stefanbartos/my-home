@@ -1,8 +1,11 @@
 ---
 import type { MarkdownHeading } from "astro";
+import { tocTitle } from "../i18n/ui";
 
 interface Props {
     headings: MarkdownHeading[];
+    /** Language of the page content, which the TOC heading follows. */
+    lang: string;
 }
 
 // Page title (h1) is skipped; h2 and h3 sections are listed.
@@ -11,7 +14,7 @@ const items = Astro.props.headings.filter((h) => h.depth === 2 || h.depth === 3)
 
 {items.length > 0 && (
     <details class="toc">
-        <summary>Obsah</summary>
+        <summary>{tocTitle(Astro.props.lang)}</summary>
         <ul>
             {items.map((h) => (
                 <li class={`depth-${h.depth}`}>

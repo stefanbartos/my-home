@@ -30,7 +30,7 @@ const ui = {
         "nav.contact": "Kontakt",
         "lang.switch": "Switch to English",
         "lang.other": "EN",
-        "theme.toggle": "Prepnúť svetlý/tmavý režim",
+        "theme.dark": "Tmavý režim",
         "lightbox.label": "Prehliadač obrázkov",
         "lightbox.close": "Zavrieť",
         "lightbox.prev": "Predchádzajúci obrázok",
@@ -88,7 +88,7 @@ const ui = {
         "nav.contact": "Contact",
         "lang.switch": "Prepnúť do slovenčiny",
         "lang.other": "SK",
-        "theme.toggle": "Toggle light/dark theme",
+        "theme.dark": "Dark theme",
         "lightbox.label": "Image viewer",
         "lightbox.close": "Close",
         "lightbox.prev": "Previous image",
@@ -143,6 +143,13 @@ const languageNames: Record<Locale, Record<string, string>> = {
 /** "in Czech" etc., shown on post cards whose language differs from the page. */
 export function languageName(locale: Locale, lang: string) {
     return languageNames[locale][lang] ?? lang;
+}
+
+/** Heading of the table of contents, in the page content's language (not the UI locale). */
+const tocTitles: Record<string, string> = { sk: "Obsah", cs: "Obsah", en: "Contents" };
+
+export function tocTitle(lang: string) {
+    return tocTitles[lang] ?? tocTitles.en;
 }
 
 export type UIKey = keyof (typeof ui)["sk"];

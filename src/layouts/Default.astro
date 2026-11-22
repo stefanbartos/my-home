@@ -108,7 +108,7 @@ const currentPath = Astro.url.pathname;
             {t("skip")}
         </a>
         <header class="site-header" lang={locale}>
-            <a class="brand" href={homeUrl(locale)} aria-label={t("nav.home")}>
+            <a class="brand" href={homeUrl(locale)}>
                 <span class="brand-hold" aria-hidden="true">
                     ŠB
                 </span>
@@ -127,7 +127,7 @@ const currentPath = Astro.url.pathname;
                         </li>
                     ))}
                     <li>
-                        <ThemeToggle label={t("theme.toggle")} />
+                        <ThemeToggle label={t("theme.dark")} />
                     </li>
                     <li>
                         <a
@@ -136,7 +136,7 @@ const currentPath = Astro.url.pathname;
                             hreflang={otherLocale}
                             lang={otherLocale}
                             title={t("lang.switch")}
-                            aria-label={t("lang.switch")}
+                            aria-label={`${t("lang.other")} – ${t("lang.switch")}`}
                         >
                             {t("lang.other")}
                         </a>
@@ -151,7 +151,7 @@ const currentPath = Astro.url.pathname;
                     <Topo seed={title.length} peaks={[{ x: 85, y: 40, r: 60 }]} />
                 </div>
             )}
-            {frontmatter?.toc && <Toc headings={headings} />}
+            {frontmatter?.toc && <Toc headings={headings} lang={lang} />}
             <slot />
             {updated && (
                 <p class="page-updated" lang={locale}>
@@ -292,8 +292,14 @@ const currentPath = Astro.url.pathname;
     }
 
     @media (max-width: 560px) {
+        /* Hidden visually only: it stays the link's accessible name. */
         .brand-name {
-            display: none;
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            clip-path: inset(50%);
+            white-space: nowrap;
         }
         .site-header nav a {
             padding: 0.4rem 0.5rem;

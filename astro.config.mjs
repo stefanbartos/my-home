@@ -19,6 +19,10 @@ export default defineConfig({
         // Keep the 404 pages out of the sitemap (/404.html is skipped already).
         sitemap({ filter: (page) => !page.endsWith("/404/") }),
     ],
+    markdown: {
+        // The default github-dark theme greys out comments below 4.5:1 contrast.
+        shikiConfig: { theme: "github-dark-default" },
+    },
     image: {
         // Scale images down to fit narrow screens (never above their set size)
         // and generate a srcset with several widths.

@@ -46,6 +46,8 @@
 html {
     -webkit-text-size-adjust: 100%;
     scroll-behavior: smooth;
+    /* Keep anchor targets and focused elements clear of the sticky header. */
+    scroll-padding-top: 5rem;
 }
 
 body {
@@ -100,6 +102,16 @@ a:hover {
 ::selection {
     background: var(--accent-soft);
     color: var(--ink);
+}
+
+/* Hidden on screen, still read by screen readers. */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
 }
 
 .mono {
