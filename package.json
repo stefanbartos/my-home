@@ -14,6 +14,7 @@
     "lint": "oxlint --deny-warnings",
     "lint:fallow": "fallow --fail-on-issues",
     "check": "astro check",
+    "check:a11y": "node scripts/check-a11y.ts",
     "prepare": "lefthook install",
     "test": "vitest run",
     "lighthouse": "rm -rf .lighthouseci && mkdir -p .lighthouseci/site && cp -R dist .lighthouseci/site/my-home && lhci autorun"
@@ -44,11 +45,13 @@
     "@astrojs/check": "^0.9.12",
     "@astrojs/compiler-rs": "^0.5.3",
     "@astrojs/sitemap": "^3.7.4",
+    "@axe-core/playwright": "^4.14.0",
     "@lhci/cli": "^0.16.0",
     "fallow": "^3.42.0",
     "lefthook": "^2.2.2",
     "oxfmt": "^0.78.0",
     "oxlint": "^1.93.0",
+    "playwright": "^1.65.1",
     "typescript": "^6.0.3",
     "vitest": "^5.1.0"
   },
