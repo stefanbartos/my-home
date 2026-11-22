@@ -21,12 +21,14 @@ const { labels } = Astro.props;
         </svg>
     </button>
 </template>
+<p class="visually-hidden" id="code-copy-status" role="status"></p>
 
 <script>
     const template = document.querySelector<HTMLTemplateElement>("#code-copy-template");
     const buttonTemplate = template?.content.firstElementChild;
+    const status = document.querySelector<HTMLElement>("#code-copy-status");
 
-    if (template && buttonTemplate && navigator.clipboard) {
+    if (template && buttonTemplate && status && navigator.clipboard) {
         const { copy = "", copied = "" } = template.dataset;
 
         for (const pre of document.querySelectorAll<HTMLPreElement>(".prose pre")) {
@@ -48,13 +50,14 @@ const { labels } = Astro.props;
                     return;
                 }
                 button.classList.add("is-copied");
-                button.ariaLabel = copied;
                 button.title = copied;
+                // A changed aria-label isn't reliably announced; a status message is.
+                status.textContent = copied;
                 clearTimeout(timer);
                 timer = globalThis.setTimeout(() => {
                     button.classList.remove("is-copied");
-                    button.ariaLabel = copy;
                     button.title = copy;
+                    status.textContent = "";
                 }, 2000);
             });
         }

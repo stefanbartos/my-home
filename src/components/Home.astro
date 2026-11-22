@@ -218,7 +218,8 @@ const posts = getPosts();
         height: 3rem;
         border-radius: 10px;
         background: var(--accent-soft);
-        color: var(--accent);
+        /* Plain --accent is just under 4.5:1 on --accent-soft. */
+        color: color-mix(in srgb, var(--accent) 85%, var(--ink));
         font-family: var(--font-display);
         font-weight: 700;
         font-size: 0.85rem;

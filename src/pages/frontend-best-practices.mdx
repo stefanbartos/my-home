@@ -14,7 +14,8 @@ import { url as siteUrl } from "../i18n/ui";
 
 <p>
   <a class="button" href={siteUrl("/frontend-best-practices-checklist.md")} download>
-    Download as a checklist (Markdown)
+    {/* A JS string, not plain text: MDX would wrap text on its own line in a <p>, which breaks the link. */}
+    {"Download as a checklist (Markdown)"}
   </a>
 </p>
 

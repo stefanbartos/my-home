@@ -12,8 +12,9 @@ const { labels } = Astro.props;
 
 <dialog class="lightbox" aria-label={labels.dialog}>
     <figure class="lightbox-figure">
+        <!-- The caption carries the description, so the image itself has an empty alt. -->
         <img class="lightbox-img" alt="" />
-        <figcaption class="lightbox-caption">
+        <figcaption class="lightbox-caption" aria-live="polite">
             <span class="lightbox-counter"></span>
             <span class="lightbox-alt"></span>
         </figcaption>
@@ -75,7 +76,6 @@ const { labels } = Astro.props;
         const show = (i: number) => {
             index = Math.max(0, Math.min(links.length - 1, i));
             img.src = links[index].href;
-            img.alt = altOf(index);
             caption.textContent = altOf(index);
             counter.textContent = links.length > 1 ? `${index + 1} / ${links.length}` : "";
             prev.disabled = index === 0;
