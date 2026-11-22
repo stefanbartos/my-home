@@ -8,7 +8,7 @@
         "http://localhost/my-home/frontend-best-practices/",
         "http://localhost/my-home/kontakt/"
       ],
-      "numberOfRuns": 3
+      "numberOfRuns": 1
     },
     "assert": {
       "assertions": {
