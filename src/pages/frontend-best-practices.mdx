@@ -8,16 +8,17 @@ summary:
   en: What to set up in every frontend project – dependency security, CI and code health.
 ---
 
+import Button from "../components/Button.astro";
 import { url as siteUrl } from "../i18n/ui";
 
 # Frontend Best Practices
 
-<p>
-  <a class="button" href={siteUrl("/frontend-best-practices-checklist.md")} download>
-    {/* A JS string, not plain text: MDX would wrap text on its own line in a <p>, which breaks the link. */}
-    {"Download as a checklist (Markdown)"}
-  </a>
-</p>
+<Button
+  href={siteUrl("/frontend-best-practices-checklist.md")}
+  download
+  icon="download"
+  label="Download as a checklist (Markdown)"
+/>
 
 ## Security
 

@@ -1,5 +1,6 @@
 ---
 import Default from "../layouts/Default.astro";
+import Button from "./Button.astro";
 import type { Locale } from "../i18n/ui";
 import { contactUrl, useTranslations } from "../i18n/ui";
 
@@ -84,9 +85,7 @@ const otherLocale: Locale = locale === "sk" ? "en" : "sk";
         <p class="contact-privacy">{t("contact.privacy")}</p>
 
         <div class="contact-actions">
-            <button class="button" type="submit">
-                {t("contact.send")}
-            </button>
+            <Button type="submit" label={t("contact.send")} />
             <p class="contact-status" role="status" aria-live="polite"></p>
         </div>
     </form>
@@ -197,15 +196,6 @@ const otherLocale: Locale = locale === "sk" ? "en" : "sk";
         flex-wrap: wrap;
         align-items: center;
         gap: 0.75rem 1rem;
-    }
-    .contact-actions .button {
-        border: 0;
-        font-family: inherit;
-        cursor: pointer;
-    }
-    .contact-actions .button:disabled {
-        opacity: 0.6;
-        cursor: progress;
     }
     .contact-status {
         margin: 0;
