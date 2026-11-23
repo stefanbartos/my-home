@@ -103,6 +103,56 @@ jobs:
         with:
           path: ./dist
 
+  # Runs alongside build, not after it, so it doesn't slow down the other
+  # checks or hold up a deploy (deploy needs only build).
+  lighthouse:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    concurrency:
+      group: ${{ github.workflow }}-lighthouse-${{ github.ref }}
+      cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Setup node
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .node-version
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      # Same cache as the build job, but only restored: build saves it, and
+      # two jobs saving the same key at once would race.
+      - name: Restore optimized images
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: node_modules/.astro
+          key: astro-${{ hashFiles('src/**', 'astro.config.mjs', 'package-lock.json') }}
+          restore-keys: astro-
+
+      - name: Build
+        run: npm run build
+
+      # Audits a few representative pages, once each (lighthouserc.json).
+      # Accessibility, best practices, SEO and page weight fail the job;
+      # performance scores only warn, because they vary between runners.
+      - name: Run Lighthouse CI
+        run: npm run lighthouse
+
+      # The full HTML reports, to see why an assertion failed.
+      - name: Upload Lighthouse reports
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: lighthouse-reports
+          path: .lighthouseci/reports
+          retention-days: 14
+          if-no-files-found: ignore
+
   deploy:
     needs: build
     # Never from pull requests.
