@@ -8,6 +8,7 @@ summary:
   en: A two-day traverse of the Malá Fatra ridge from Strečno over Kriváň and Rozsutec to Terchová.
 ---
 
+import Button from "../components/Button.astro";
 import Gallery from "../components/Gallery.astro";
 import Img from "../components/Img.astro";
 import gpxUrl from "../assets/gpx/mala-fatra.gpx?url";
@@ -88,19 +89,4 @@ zišli po zelenej až do Terchovej, kde sme si dali teplú polievku na večeru.
 
 Z Terchovej sme sa presunuli autobusom do Žiliny na ubytovanie.
 
-<p>
-  <a class="button" href={gpxUrl} download="mala-fatra.gpx">
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      aria-hidden="true"
-    >
-      <path d="M12 4v11M7 10l5 5 5-5M5 20h14" />
-    </svg>
-    {"Stiahnuť trasu (GPX)"}
-  </a>
-</p>
+<Button href={gpxUrl} download="mala-fatra.gpx" icon="download" label="Stiahnuť trasu (GPX)" />
