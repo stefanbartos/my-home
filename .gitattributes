@@ -1,0 +1,2 @@
+# Collapse GPX track diffs in GitHub PRs
+*.gpx linguist-generated=true
