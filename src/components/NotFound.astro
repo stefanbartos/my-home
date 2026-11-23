@@ -1,5 +1,6 @@
 ---
 import Default from "../layouts/Default.astro";
+import Button from "./Button.astro";
 import Topo from "./Topo.astro";
 import type { Locale } from "../i18n/ui";
 import { homeUrl, url, useTranslations } from "../i18n/ui";
@@ -39,9 +40,7 @@ const en404 = notFoundUrl("en");
         </h1>
         <p class="not-found-text">{t("notFound.text")}</p>
         <div class="not-found-actions">
-            <a class="button" href={home}>
-                {t("notFound.home")}
-            </a>
+            <Button href={home} label={t("notFound.home")} />
         </div>
     </section>
 </Default>

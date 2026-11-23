@@ -1,0 +1,68 @@
+---
+/**
+ * Pill-shaped accent button. Renders a link when `href` is given, otherwise a
+ * `<button>`. `icon` adds an icon before the label.
+ */
+interface Props {
+    /** A prop, not a slot: in MDX, text in a slot gets wrapped in a <p>. */
+    label: string;
+    href?: string;
+    /** Download the link target instead of opening it; a string sets the file name. */
+    download?: boolean | string;
+    type?: "button" | "submit";
+    icon?: "download";
+}
+
+const { label, href, download, type = "button", icon } = Astro.props;
+const Tag = href === undefined ? "button" : "a";
+const attrs = href === undefined ? { type } : { href, download };
+---
+
+<Tag class="button" {...attrs}>
+    {icon === "download" && (
+        <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+        >
+            <path d="M12 4v11M7 10l5 5 5-5M5 20h14" />
+        </svg>
+    )}
+    {label}
+</Tag>
+
+<style>
+    .button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5em;
+        padding: 0.6rem 1.15rem;
+        border: 0;
+        border-radius: 999px;
+        background: var(--accent);
+        color: var(--bg);
+        font-family: inherit;
+        font-weight: 600;
+        font-size: 0.95rem;
+        text-decoration: none;
+        cursor: pointer;
+        transition: background 0.15s;
+    }
+    .button:hover {
+        background: color-mix(in srgb, var(--accent) 85%, var(--ink));
+        color: var(--bg);
+    }
+    .button:disabled {
+        opacity: 0.6;
+        cursor: progress;
+    }
+    svg {
+        flex: none;
+        width: 1.1em;
+        height: 1.1em;
+    }
+</style>
