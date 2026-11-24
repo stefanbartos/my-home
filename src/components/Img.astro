@@ -6,9 +6,11 @@ interface Props {
     src: ImageMetadata;
     /** Describe what the image shows; use "" only for purely decorative images. */
     alt: string;
+    /** Optional visible caption shown below the image. */
+    caption?: string;
 }
 
-const { src, alt } = Astro.props;
+const { src, alt, caption } = Astro.props;
 
 // Display size is derived from the image itself:
 // - large landscape photos break out of the text column (up to 960px),
@@ -35,52 +37,60 @@ const full = await getImage({
 });
 ---
 
-<a
-    class:list={["img-zoom", { wide, tall }]}
-    style={`--img-w: ${width}px`}
-    href={full.src}
-    target="_blank"
-    rel="noopener"
->
-    <Picture
-        src={src}
-        alt={alt}
-        width={width}
-        formats={["avif", "webp"]}
-        loading="lazy"
-        decoding="async"
-    />
-</a>
+<figure class:list={["img", { wide, tall }]} style={`--img-w: ${width}px`}>
+    <a class="img-zoom" href={full.src} target="_blank" rel="noopener">
+        <Picture
+            src={src}
+            alt={alt}
+            width={width}
+            formats={["avif", "webp"]}
+            loading="lazy"
+            decoding="async"
+        />
+    </a>
+    {caption && <figcaption>{caption}</figcaption>}
+</figure>
 
 <style>
-    .img-zoom {
-        display: block;
+    .img {
         width: fit-content;
         max-width: 100%;
         margin: 1.5rem 0;
+    }
+    .img-zoom {
+        display: block;
         cursor: zoom-in;
     }
     /* The <img> is rendered by <Picture>, so it doesn't carry this scope. */
     .img-zoom :global(img) {
         margin: 0;
     }
+    /* Never let the caption widen the figure past the image. */
+    figcaption {
+        width: 0;
+        min-width: 100%;
+        margin-top: 0.5rem;
+        color: var(--ink-soft);
+        font-size: 0.875rem;
+        line-height: 1.4;
+    }
     /* Portrait images: keep the whole image on screen. */
-    .img-zoom.tall {
+    .img.tall {
         max-width: min(100%, var(--img-w));
     }
-    .img-zoom.tall :global(img) {
+    .tall .img-zoom :global(img) {
         width: auto;
         max-width: min(100%, var(--img-w));
         max-height: 80svh;
     }
     /* Large landscape photos: break out of the text column, centred on it. */
-    .img-zoom.wide {
+    .img.wide {
         --breakout: min(960px, 100vw - 2 * var(--gutter));
         width: var(--breakout);
         max-width: none;
         margin-inline: calc((100% - var(--breakout)) / 2);
     }
-    .img-zoom.wide :global(img) {
+    .wide .img-zoom :global(img) {
         width: 100%;
     }
 </style>
