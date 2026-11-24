@@ -18,6 +18,7 @@ npm run preview   # serve the production build
 npm run lint         # oxlint: bugs and suspicious patterns (runs in CI)
 npm run lint:fallow  # unused code, duplication, complexity (runs in CI)
 npm run check        # type-check .astro and .ts files (runs in CI)
+npm run check:a11y   # axe accessibility check of dist/, light and dark (runs in CI)
 npm test             # Vitest unit tests for src/utils (runs in CI)
 ```
 
@@ -48,3 +49,5 @@ Every push to `main` builds the site with GitHub Actions (`.github/workflows/pag
 Every build also checks the internal links and `#anchors` of the built site with [lychee](https://lychee.cli.rs), so a broken one fails the build. External links are checked once a week by `.github/workflows/links.yml`. A dead one fails that run and GitHub sends the usual failure email. Exclusions and retries are in `lychee.toml`.
 
 Every build also runs [Lighthouse CI](https://github.com/GoogleChrome/lighthouse-ci) on a few representative pages (listed in `lighthouserc.json`), one run each, in a separate job alongside the build so it doesn't delay the other checks or the deploy. An accessibility, best-practices or SEO score below its threshold, or a page heavier than its byte budget, fails the build. Performance scores only warn, because they vary between CI runners. The full reports are attached to the workflow run as the `lighthouse-reports` artifact. To run it locally after `npm run build`, use `npm run lighthouse` (it needs Chrome). The reports land in `.lighthouseci/reports/`.
+
+Every build also runs [axe-core](https://github.com/dequelabs/axe-core) on each built page in light and dark mode (`scripts/check-a11y.ts`). Any WCAG 2.2 A/AA or best-practice violation fails the build. To run it locally, install Playwright's Chromium once with `./node_modules/.bin/playwright install chromium`, then run `npm run build && npm run check:a11y`.
