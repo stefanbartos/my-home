@@ -31,7 +31,7 @@
   "homepage": "https://github.com/stefanbartos/my-home#readme",
   "type": "module",
   "dependencies": {
-    "@astrojs/mdx": "^8.1.5",
+    "@astrojs/mdx": "^8.1.6",
     "@fontsource-variable/inter": "^5.3.0",
     "@fontsource-variable/inter-tight": "^5.3.0",
     "@fontsource-variable/jetbrains-mono": "^5.3.0",
@@ -44,7 +44,7 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.12",
     "@astrojs/compiler-rs": "^0.5.3",
-    "@astrojs/sitemap": "^3.7.4",
+    "@astrojs/sitemap": "^3.7.5",
     "@axe-core/playwright": "^4.14.0",
     "@lhci/cli": "^0.16.1",
     "fallow": "^3.43.2",
