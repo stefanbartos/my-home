@@ -22,3 +22,8 @@ updates:
         patterns:
           - "astro"
           - "@astrojs/*"
+    ignore:
+      # TypeScript 7 is the native (Go) rewrite; stay on 6.x until the
+      # tooling (astro check) supports it.
+      - dependency-name: "typescript"
+        versions: [">=7"]
