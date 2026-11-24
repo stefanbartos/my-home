@@ -50,7 +50,8 @@ export default defineConfig({
                 "img-src 'self' data: https://stefanbartos.goatcounter.com",
                 "font-src 'self'",
                 "connect-src 'self' https://api.web3forms.com https://stefanbartos.goatcounter.com",
-                "frame-src https://www.youtube-nocookie.com",
+                // The mapy.com embed redirects through Seznam hosts (login, cookie sync) before it loads.
+                "frame-src https://www.youtube-nocookie.com https://mapy.com https://*.seznam.cz",
                 "form-action https://api.web3forms.com",
             ],
             scriptDirective: {

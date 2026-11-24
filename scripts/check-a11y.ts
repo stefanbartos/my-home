@@ -19,7 +19,7 @@ const BASE = "/my-home/";
 const SCHEMES = ["light", "dark"] as const;
 const TAGS = ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa", "best-practice"];
 // Third-party content we can't fix (and that would need the network).
-const EXCLUDE = [".youtube iframe"];
+const EXCLUDE = [".youtube iframe", ".mapy iframe"];
 
 async function htmlPages(dir: string): Promise<string[]> {
     const entries = await readdir(dir, { recursive: true });
