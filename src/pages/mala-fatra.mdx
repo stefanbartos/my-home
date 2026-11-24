@@ -2,14 +2,13 @@
 layout: ../layouts/Default.astro
 title: Prechod Malej Fatry
 lang: sk
-updated: 2026-11-23
+updated: 2026-11-24
 summary:
   sk: Dvojdňový prechod hrebeňa Malej Fatry zo Strečna cez Kriváň a Rozsutec do Terchovej.
   en: A two-day traverse of the Malá Fatra ridge from Strečno over Kriváň and Rozsutec to Terchová.
 ---
 
 import Button from "../components/Button.astro";
-import Gallery from "../components/Gallery.astro";
 import Img from "../components/Img.astro";
 import gpxUrl from "../assets/gpx/mala-fatra.gpx?url";
 import img_inverzia_les from "../assets/images/mala-fatra-inverzia-les.jpg";
@@ -36,12 +35,11 @@ Z Nezbudskej Lúčky sme sa napojili na červenú značku a šli sme po nej okol
 cez Starý hrad, Chatu pod Suchým, vrchol Suchého, cez Vráta, Malý Kriváň a Veľký Kriváň až na Chatu
 pod Chlebom.
 
-<Gallery>
-  <Img
-    src={img_inverzia_les}
-    alt="Pohľad z lúky nad Chatou pod Suchým na jesenné stromy a doliny zaliate inverznou hmlou"
-    caption="Doliny v inverzii nad Chatou pod Suchým"
-  />
+<Img
+  src={img_inverzia_les}
+  alt="Pohľad z lúky nad Chatou pod Suchým na jesenné stromy a doliny zaliate inverznou hmlou"
+  caption="Doliny v inverzii nad Chatou pod Suchým"
+/>
 
 <Img
   src={img_dvojkriz}
@@ -73,12 +71,11 @@ pod Chlebom.
   caption="Malý Kriváň, 1 671 m, v pozadí Veľký Rozsutec"
 />
 
-  <Img
-    src={img_velky_krivan}
-    alt="Vrcholový smerovník Veľký Kriváň obalený námrazou, pod ním zamrznuté skaly a výhľad na zamračené hory"
-    caption="Veľký Kriváň, 1 709 m, s námrazou"
-  />
-</Gallery>
+<Img
+  src={img_velky_krivan}
+  alt="Vrcholový smerovník Veľký Kriváň obalený námrazou, pod ním zamrznuté skaly a výhľad na zamračené hory"
+  caption="Veľký Kriváň, 1 709 m, s námrazou"
+/>
 
 ## 2. deň: Chata pod Chlebom – Terchová
 
