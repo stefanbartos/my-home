@@ -10,10 +10,8 @@ summary:
 
 import Button from "../components/Button.astro";
 import Img from "../components/Img.astro";
-import GpxMap from "../components/GpxMap.astro";
-import OsmEmbed from "../components/OsmEmbed.astro";
+import MapyEmbed from "../components/MapyEmbed.astro";
 import gpxUrl from "../assets/gpx/mala-fatra.gpx?url";
-import gpx from "../assets/gpx/mala-fatra.gpx?raw";
 import img_inverzia_les from "../assets/images/mala-fatra-inverzia-les.jpg";
 import img_dvojkriz from "../assets/images/mala-fatra-dvojkriz.jpg";
 import img_biele_skaly from "../assets/images/mala-fatra-biele-skaly.jpg";
@@ -37,14 +35,6 @@ Kriváni už bola námraza a v noci kleslo okolo chaty na zhruba 1 °C.
 
 Budík zvonil skoro, z Brna sme vyrazili autom o 4:40. Auto sme nechali v Žiline a ďalej pokračovali
 vlakom do Strečna, kde sme vystúpili v časti Nezbudská Lúčka.
-
-<OsmEmbed
-  lat={49.17521}
-  lon={18.86829}
-  zoom={15}
-  title="Mapa začiatku trasy v Nezbudskej Lúčke"
-  linkLabel="Zobraziť väčšiu mapu na OpenStreetMap"
-/>
 
 ## 1. deň: Strečno – Chata pod Chlebom
 
@@ -125,6 +115,9 @@ Z Terchovej sme sa presunuli autobusom do Žiliny na ubytovanie.
 
 ## Trasa
 
-<GpxMap gpx={gpx} title="Mapa trasy prechodu Malej Fatry" />
+<MapyEmbed
+  url="https://mapy.com/s/jepocatupo"
+  title="Mapa trasy prechodu Malej Fatry na mapy.com"
+/>
 
 <Button href={gpxUrl} download="mala-fatra.gpx" icon="download" label="Stiahnuť trasu (GPX)" />

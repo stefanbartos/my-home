@@ -4,6 +4,10 @@
   // fallow counts as a dev-only file. Astro's docs keep integrations in
   // dependencies, so do not flag it as test-only.
   "ignoreDependencies": ["@astrojs/mdx"],
+  // Map components ready for content pages that don't use them yet. Seeding
+  // them as entries keeps their helpers and Leaflet from being flagged too.
+  // Remove each one from here once a page uses it.
+  "entry": ["src/components/GpxMap.astro", "src/components/OsmEmbed.astro"],
   "health": {
     // Components hold client-side DOM event handlers. Unit tests cover
     // only src/utils/, so fallow assumes 0% coverage and flags their CRAP
