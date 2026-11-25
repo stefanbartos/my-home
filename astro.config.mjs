@@ -47,11 +47,11 @@ export default defineConfig({
                 "default-src 'self'",
                 "base-uri 'self'",
                 "object-src 'none'",
-                "img-src 'self' data: https://stefanbartos.goatcounter.com",
+                // GpxMap loads OpenTopoMap tiles.
+                "img-src 'self' data: https://stefanbartos.goatcounter.com https://*.tile.opentopomap.org",
                 "font-src 'self'",
                 "connect-src 'self' https://api.web3forms.com https://stefanbartos.goatcounter.com",
-                // The mapy.com embed redirects through Seznam hosts (login, cookie sync) before it loads.
-                "frame-src https://www.youtube-nocookie.com https://mapy.com https://*.seznam.cz",
+                "frame-src https://www.youtube-nocookie.com https://www.openstreetmap.org",
                 "form-action https://api.web3forms.com",
             ],
             scriptDirective: {

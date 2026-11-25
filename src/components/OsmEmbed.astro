@@ -1,0 +1,50 @@
+---
+import { osmEmbedUrl, osmMapUrl } from "../utils/osm";
+
+interface Props {
+    /** Latitude of the map centre and marker, e.g. 49.17521. */
+    lat: number;
+    /** Longitude of the map centre and marker, e.g. 18.86829. */
+    lon: number;
+    /** Zoom level as on openstreetmap.org (0–19). */
+    zoom?: number;
+    /** Describes the map for screen readers, e.g. the place name. */
+    title: string;
+    /** Text of a link to the place on openstreetmap.org, in the page's language. No link without it. */
+    linkLabel?: string;
+}
+
+const { lat, lon, zoom = 14, title, linkLabel } = Astro.props;
+---
+
+<figure class="osm">
+    <iframe
+        src={osmEmbedUrl(lat, lon, zoom)}
+        title={title}
+        loading="lazy"
+        referrerpolicy="strict-origin-when-cross-origin"
+    ></iframe>
+    {linkLabel && (
+        <figcaption>
+            <a href={osmMapUrl(lat, lon, zoom)}>{linkLabel}</a>
+        </figcaption>
+    )}
+</figure>
+
+<style>
+    .osm {
+        margin: 1.5rem 0;
+    }
+    iframe {
+        display: block;
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        height: auto;
+        border: 0;
+        border-radius: 8px;
+    }
+    figcaption {
+        margin-top: 0.5rem;
+        font-size: 0.875rem;
+    }
+</style>

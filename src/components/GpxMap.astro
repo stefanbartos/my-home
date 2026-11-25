@@ -1,0 +1,90 @@
+---
+import { parseGpxTrack, simplifyTrack } from "../utils/gpx";
+
+interface Props {
+    /** The GPX file's contents: import it with `?raw`. */
+    gpx: string;
+    /** Describes the map for screen readers, e.g. the route name. */
+    title: string;
+}
+
+const { gpx, title } = Astro.props;
+
+// Parse and simplify at build time: about 3 m tolerance keeps the shape of the
+// trail but cuts thousands of GPS points down to a few hundred.
+const track = simplifyTrack(parseGpxTrack(gpx), 0.00003);
+---
+
+<div class="gpx-map" role="region" aria-label={title} data-track={JSON.stringify(track)}></div>
+
+<script>
+    import type { LatLngTuple } from "leaflet";
+
+    // Dark enough to stand out on the light topo tiles in both colour schemes.
+    const color = "#c2410c";
+
+    async function render(element: HTMLElement) {
+        const [{ default: L }] = await Promise.all([
+            import("leaflet"),
+            import("leaflet/dist/leaflet.css"),
+        ]);
+        const track = JSON.parse(element.dataset.track ?? "[]") as LatLngTuple[];
+        // Scroll wheel zoom would trap the page scroll; zoom with the buttons or pinch.
+        const map = new L.Map(element, { scrollWheelZoom: false });
+        L.tileLayer("https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png", {
+            maxZoom: 17,
+            attribution:
+                'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, SRTM | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)',
+        }).addTo(map);
+        const line = L.polyline(track, { color, weight: 4, opacity: 0.9 }).addTo(map);
+        // Start and finish.
+        for (const point of [track.at(0), track.at(-1)]) {
+            if (point) {
+                L.circleMarker(point, {
+                    radius: 6,
+                    color: "#fff",
+                    weight: 2,
+                    fillColor: color,
+                    fillOpacity: 1,
+                }).addTo(map);
+            }
+        }
+        map.fitBounds(line.getBounds(), { padding: [16, 16] });
+    }
+
+    // Load Leaflet and the tiles only when a map comes near the viewport.
+    const observer = new IntersectionObserver(
+        (entries) => {
+            for (const entry of entries) {
+                if (entry.isIntersecting && entry.target instanceof HTMLElement) {
+                    observer.unobserve(entry.target);
+                    void render(entry.target);
+                }
+            }
+        },
+        { rootMargin: "200px" },
+    );
+    for (const element of document.querySelectorAll<HTMLElement>(".gpx-map")) {
+        observer.observe(element);
+    }
+</script>
+
+<style>
+    .gpx-map {
+        margin: 1.5rem 0;
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        border-radius: 8px;
+        background: var(--topo);
+        /* Below the sticky header and the lightbox. */
+        z-index: 0;
+        isolation: isolate;
+    }
+    /* Leaflet creates the tiles; undo the .prose image frame on them. */
+    .gpx-map :global(img) {
+        margin: 0;
+        border: 0;
+        border-radius: 0;
+        background: none;
+    }
+</style>
